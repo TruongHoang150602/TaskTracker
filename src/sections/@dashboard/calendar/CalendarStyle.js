@@ -25,9 +25,10 @@ const CalendarStyle = styled('div')(({ theme }) => ({
   '& .fc .fc-col-header ': {
     boxShadow: `inset 0 -1px 0 ${theme.palette.divider}`,
     '& th': { borderColor: 'transparent' },
+    
     '& .fc-col-header-cell-cushion': {
-      ...theme.typography.subtitle2,
       padding: '13px 0',
+      
     },
   },
 
@@ -39,7 +40,7 @@ const CalendarStyle = styled('div')(({ theme }) => ({
   '& .fc .fc-event .fc-event-main': {
     padding: '2px 4px',
     borderRadius: 4,
-    backgroundColor: theme.palette.common.white,
+    // backgroundColor: theme.palette.common.white,
     transition: theme.transitions.create('filter'),
     '&:hover': { filter: 'brightness(0.92)' },
     '&:before,&:after': {
@@ -133,7 +134,7 @@ const CalendarStyle = styled('div')(({ theme }) => ({
   // Week & Day View
   '& .fc .fc-timegrid-axis-cushion': {
     ...theme.typography.body2,
-    color: theme.palette.text.secondary,
+    color: 'theme.palette.text.secondary',
   },
   '& .fc .fc-timegrid-slot-label-cushion': {
     ...theme.typography.body2,

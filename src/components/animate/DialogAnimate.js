@@ -12,10 +12,10 @@ DialogAnimate.propTypes = {
   onClose: PropTypes.func,
   open: PropTypes.bool.isRequired,
   sx: PropTypes.object,
-  variants: PropTypes.object,
+  // variants: PropTypes.object,
 };
 
-export default function DialogAnimate({ open = false, variants, onClose, children, sx, ...other }) {
+export default function DialogAnimate({ open = false, onClose, children, sx, ...other }) {
   return (
     <AnimatePresence>
       {open && (

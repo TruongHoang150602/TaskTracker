@@ -57,14 +57,6 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
-const Task = () => {
-  const [value, setValue] = React.useState(0);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-  return (
-    <Box className="" sx={{ flexGrow: 1 }}>
-      <Grid className="px-[24px] pt-[0px]" container spacing={2}>
         <Grid item xs={12}>
           <Item className="text-[28px]">
             <h4 className="text-left text-[black] font-[600]">Task</h4>
