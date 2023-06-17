@@ -39,16 +39,12 @@ export default function DashboardAppPage() {
         </Typography>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={3} md={6}>
             <AppWidgetSummary title="Schedule" total={5} icon={'bi:calendar-week'} />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={3} md={6}>
             <AppWidgetSummary title="Task" total={2} color="info" icon={'bi:card-checklist'} />
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={4}>
-            <AppWidgetSummary title="Project" total={3} color="warning" icon={'bi:people'} />
           </Grid>
 
 
@@ -173,33 +169,7 @@ export default function DashboardAppPage() {
             />
           </Grid>
 
-          <Grid item xs={12} md={6} lg={4}>
-            <AppTrafficBySite
-              title="Traffic by Site"
-              list={[
-                {
-                  name: 'FaceBook',
-                  value: 323234,
-                  icon: <Iconify icon={'eva:facebook-fill'} color="#1877F2" width={32} />,
-                },
-                {
-                  name: 'Google',
-                  value: 341212,
-                  icon: <Iconify icon={'eva:google-fill'} color="#DF3E30" width={32} />,
-                },
-                {
-                  name: 'Linkedin',
-                  value: 411213,
-                  icon: <Iconify icon={'eva:linkedin-fill'} color="#006097" width={32} />,
-                },
-                {
-                  name: 'Twitter',
-                  value: 443232,
-                  icon: <Iconify icon={'eva:twitter-fill'} color="#1C9CEA" width={32} />,
-                },
-              ]}
-            />
-          </Grid>
+          
 
           <Grid item xs={12} md={6} lg={8}>
             <AppTasks
@@ -214,6 +184,35 @@ export default function DashboardAppPage() {
             />
           </Grid>
         </Grid>
+
+        <Grid item xs={6} mt={6} lg={4}>
+            <AppTrafficBySite
+              title="Traffic by Site"
+              list={[
+                {
+                  name: 'Google Calendar',
+                  value: 5,
+                  icon: <Iconify icon={'logos:google-calendar'} color="#1877F2" width={32} />,
+                },
+                {
+                  name: 'Notion',
+                  value: 3,
+                  icon: <Iconify icon={'logos:notion-icon'} color="#DF3E30" width={32} />,
+                },
+                {
+                  name: 'Todoist',
+                  value: 411213,
+                  icon: <Iconify icon={'logos:todoist'} color="#006097" width={32} />,
+                },
+                {
+                  name: 'Twitter',
+                  value: 443232,
+                  icon: <Iconify icon={'eva:twitter-fill'} color="#1C9CEA" width={32} />,
+                },
+              ]}
+            />
+          </Grid>
+
       </Container>
     </>
   );
