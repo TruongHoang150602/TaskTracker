@@ -38,8 +38,6 @@
     ]
   },
   "dependencies": {
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
     "@faker-js/faker": "^7.6.0",
     "@fullcalendar/daygrid": "^6.1.8",
     "@fullcalendar/interaction": "^6.1.8",
@@ -48,8 +46,8 @@
     "@fullcalendar/timegrid": "^6.1.8",
     "@fullcalendar/timeline": "^6.1.8",
     "@iconify/react": "^4.1.0",
+    "@mui/icons-material": "^5.11.16",
     "@mui/lab": "^5.0.0-alpha.103",
-    "@mui/material": "^5.11.10",
     "@reduxjs/toolkit": "^1.9.5",
     "apexcharts": "^3.37.0",
     "change-case": "^4.1.2",
