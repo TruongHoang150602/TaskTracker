@@ -1,19 +1,19 @@
-import PropTypes from 'prop-types';
-import { Box, Stack, Button,  TextField,  DialogActions , Typography} from '@mui/material';
-import { LoadingButton, MobileDateTimePicker } from '@mui/lab';
-import { ColorSinglePicker } from '../../../components/color-utils';
+// import PropTypes from 'prop-types';
+import { Box,  TextField,  Typography} from '@mui/material';
+// import { LoadingButton, MobileDateTimePicker } from '@mui/lab';
+// import { ColorSinglePicker } from '../../../components/color-utils';
 
 // ----------------------------------------------------------------------
 
-const COLOR_OPTIONS = [
-  '#00AB55', // theme.palette.primary.main,
-  '#1890FF', // theme.palette.info.main,
-  '#54D62C', // theme.palette.success.main,
-  '#FFC107', // theme.palette.warning.main,
-  '#FF4842', // theme.palette.error.main
-  '#04297A', // theme.palette.info.darker
-  '#7A0C2E', // theme.palette.error.darker
-];
+// const COLOR_OPTIONS = [
+//   '#00AB55', // theme.palette.primary.main,
+//   '#1890FF', // theme.palette.info.main,
+//   '#54D62C', // theme.palette.success.main,
+//   '#FFC107', // theme.palette.warning.main,
+//   '#FF4842', // theme.palette.error.main
+//   '#04297A', // theme.palette.info.darker
+//   '#7A0C2E', // theme.palette.error.darker
+// ];
 
 // const getInitialValues = (event, range) => {
 //   const _event = {

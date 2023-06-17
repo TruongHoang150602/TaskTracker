@@ -3,8 +3,6 @@ import { Outlet } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
 
-import SpeedDial from '@mui/material/SpeedDial';
-import Iconify from '../../components/iconify';
 
 
 //
@@ -46,12 +44,6 @@ export default function DashboardLayout() {
       <Header onOpenNav={() => setOpen(true)} />
 
       <Nav openNav={open} onCloseNav={() => setOpen(false)} />
-
-      <SpeedDial ariaLabel="SpeedDial basic example" 
-      sx={{ position: 'absolute', bottom: 32, right: 32 }}
-      icon={ <Iconify icon="octicon:question-16"   /> }
-      openIcon={<Iconify icon="eva:search-fill" /> } 
-      />
 
       <Main>
         <Outlet />

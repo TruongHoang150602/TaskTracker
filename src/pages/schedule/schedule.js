@@ -7,40 +7,33 @@ import interactionPlugin from '@fullcalendar/interaction';
 //
 import { useState, useRef, useEffect } from 'react';
 // @mui
-import { Card, Button, Container, DialogTitle } from '@mui/material';
-// redux
-// import { useDispatch, useSelector } from '../../redux/store';
-// import { openModal, closeModal } from '../../redux/slices/calendar';
-// routes
-// import { PATH_DASHBOARD } from '../../routes/paths';
-// hooks
-// import useSettings from '../../hooks/useSettings';
+import { Card, Button, Container, DialogTitle, Stack } from '@mui/material';
 import useResponsive from '../../hooks/useResponsive';
-// layouts
-// import Layout from '../../layouts';
+
 // components
 import Page from '../../components/Page';
+import Filter from '../../components/Filter';
 import Iconify from '../../components/iconify';
 import { DialogAnimate } from '../../components/animate';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 // // sections
 import {  CalendarForm, CalendarStyle, CalendarToolbar } from '../../sections/@dashboard/calendar';
-
+import events from '../../_mock/events'; 
 // ----------------------------------------------------------------------
 
 
 // ----------------------------------------------------------------------
 
-// const selectedEventSelector = (state) => {
-//   const { events, selectedEventId } = state.calendar;
-//   if (selectedEventId) {
-//     return events.find((_event) => _event.id === selectedEventId);
-//   }
-//   return null;
-// };
+
 
 export default function Calendar() {
 
+  const eventsCalendar = events.map((event) => ({
+    title: event.name,
+    color: event.colors,
+    start: event.time.start,
+    end: event.time.end
+  }));
   const [open, setOpen] = useState(false);
 
   const isDesktop = useResponsive('up', 'sm');
@@ -114,6 +107,7 @@ export default function Calendar() {
     setOpen(false);
     console.log(open)
   };
+  console.log(events);
 
   return (
     <Page title="Calendar">
@@ -122,13 +116,19 @@ export default function Calendar() {
           heading="Calendar"
           links={[{ name: 'Dashboard', href: '' }, { name: 'Calendar' }]}
           action={
-            <Button
-              variant="contained"
-              startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20}  />}
-              onClick={handleAddEvent}
-            >
-              New Event
-            </Button>
+            <Stack direction="row" spacing={2}>
+             
+             <Filter data = {['task', 'team']} />
+
+              <Button
+                variant="contained"
+                startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20}  />}
+                onClick={handleAddEvent}
+              >
+                New Event
+              </Button>
+            </Stack>
+          
           }
         />
 
@@ -147,7 +147,7 @@ export default function Calendar() {
               editable
               droppable
               selectable
-              // events={events}
+              events={eventsCalendar}
               ref={calendarRef}
               rerenderDelay={10}
               initialDate={date}
@@ -167,11 +167,12 @@ export default function Calendar() {
           </CalendarStyle>
         </Card>
 
+          {/* model */}
         <DialogAnimate open={open} onClose={handleCloseModal}>
           <DialogTitle>Test</DialogTitle>
-
           <CalendarForm />
         </DialogAnimate>
+
       </Container>
     </Page>
   );

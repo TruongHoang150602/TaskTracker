@@ -11,8 +11,7 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
-const Task = ()=>{
-    return  <Box sx={{ flexGrow: 1 }}>
+const Task = ()=><Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Item className='text-[30px]'>
@@ -30,7 +29,6 @@ const Task = ()=>{
         </Grid>
       </Grid>
     </Box>
-}
 
 
 export default Task;
