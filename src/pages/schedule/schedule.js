@@ -7,7 +7,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 //
 import { useState, useRef, useEffect } from 'react';
 // @mui
-import { Card, Button, Container, DialogTitle, Stack } from '@mui/material';
+import { Card, Button, Container, DialogTitle, DialogActions, Stack } from '@mui/material';
 import useResponsive from '../../hooks/useResponsive';
 
 // components
@@ -168,9 +168,24 @@ export default function Calendar() {
         </Card>
 
           {/* model */}
-        <DialogAnimate open={open} onClose={handleCloseModal}>
-          <DialogTitle>Test</DialogTitle>
+        <DialogAnimate open={open} onClose={handleCloseModal} >
+          <DialogTitle 
+          variant='h3'
+          sx = {{
+            fontFamily: 'Libre Franklin',
+            fontStyle: 'normal',
+            color: '#48409E',
+            
+          }}>New event</DialogTitle>
           <CalendarForm />
+
+          <DialogActions sx={{
+            margin: '24px'
+          }} >
+            <Button variant="outlined" color="error" autoFocus onClick={handleCloseModal}>Cancel</Button>
+            <Button variant="outlined" onClick={handleCloseModal}>Add event</Button>
+          </DialogActions>
+
         </DialogAnimate>
 
       </Container>
