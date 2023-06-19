@@ -11,10 +11,10 @@ const colors = {
     "MEDIUM" : "#FF7979",
 }
 
-const TaskItem = ({data}) => {
+const TaskItem = ({data, show}) => {
 
   return (
-    <Card className='ml-[80px] my-[20px]' sx={{ maxWidth: 700 }}>
+    <Card onClick={show} className='ml-[80px] my-[20px]' sx={{ maxWidth: 700 }}>
       <CardActionArea>
         <CardContent >
           <Typography  gutterBottom variant="h5" component="div">
