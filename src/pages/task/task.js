@@ -98,17 +98,17 @@ const Task = () => {
             </TabPanel>
             <TabPanel value={value} index={1} className="h-[490px]">
               {inProcessTask.map((item, index) => (
-                <TaskItem show={handleOpen} data={item} key={index} />
+                <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
               ))}
             </TabPanel>
             <TabPanel className="h-[490px]" value={value} index={2}>
               {submitedTask.map((item, index) => (
-                <TaskItem show={handleOpen} data={item} key={index} />
+                <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
               ))}
             </TabPanel>
             <TabPanel className="h-[490px]" value={value} index={3}>
               {completedTask.map((item, index) => (
-                <TaskItem show={handleOpen} data={item} key={index} />
+                <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
               ))}
             </TabPanel>
           </Box>
