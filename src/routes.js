@@ -17,6 +17,7 @@ import Dashboard from './pages/dashboard/dashboard';
 import Schedule from './pages/schedule/schedule';
 import Task from './pages/task/task';
 import Project from './pages/project/project';
+import ProjectDetail from './pages/projectdetail/ProjectDetail';
 
 // ----------------------------------------------------------------------
 
@@ -31,6 +32,7 @@ export default function Router() {
         { path: 'schedule', element: <Schedule /> },
         { path: 'task', element: <Task /> },
         { path: 'project', element: <Project /> },
+        { path: 'projectdetail', element: <ProjectDetail /> },
       ],
     },
     {
