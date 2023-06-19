@@ -31,7 +31,7 @@ body {
     left: 0;
     top: 0;
     padding: 0 10px;
-    width: calc(100% / 3);
+    width: calc(100% / 4);
     z-index: 1;
 }
 
@@ -90,7 +90,7 @@ body {
 .board-column-content-wrapper {
     position: relative;
     padding: 8px;
-    background: #f0f0f0;
+    background: #bfb9ff;
     height: calc(100vh - 90px);
     overflow-y: auto;
     border-radius: 0 0 5px 5px;

@@ -63,16 +63,14 @@ export default function AccountPopover() {
         onClose={handleClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        PaperProps={{
-          sx: {
-            p: 0,
-            mt: 1.5,
-            ml: 0.75,
-            width: 180,
-            '& .MuiMenuItem-root': {
-              typography: 'body2',
-              borderRadius: 0.75,
-            },
+        sx = {{
+          p: 0,
+          mt: 1.5,
+          ml: 0.75,
+          width: 200,
+          '& .MuiMenuItem-root': {
+            typography: 'body2',
+            borderRadius: 0.75,
           },
         }}
       >

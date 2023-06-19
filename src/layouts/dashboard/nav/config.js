@@ -26,11 +26,6 @@ const navConfig = [
     path: '/project',
     icon: icon('ic_project'),
   },
-  {
-    title: 'setting',
-    path: '/setting',
-    icon: icon('ic_setting'),
-  },
 ];
 
 export default navConfig;

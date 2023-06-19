@@ -3,12 +3,12 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
-import { DataGrid, GridCellParams } from '@mui/x-data-grid';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import TabPanel from '@mui/lab/TabPanel';
 import { useState, useEffect } from 'react';
+import { DataGrid } from '@mui/x-data-grid';
 import './styles.css';
 import { Card, Space } from 'antd';
 import Muuri from 'muuri';
@@ -65,11 +65,6 @@ export default function ProjectDetail() {
             boardGrid.destroy();
         };
     }, []);
-
-
-
-
-
 
     const [rows, setRows] = useState([
         { id: 1, name: 'Nguyễn Trọng Quang', email: 'quang.nt205118@sis.hust.edu.vn', position: 'Administrator' },
@@ -158,7 +153,7 @@ export default function ProjectDetail() {
                                                             size="small"
                                                             title="Small size card"
                                                             style={{
-                                                                width: 246,
+                                                                width: 170,
                                                             }}
                                                         >
                                                             <p>Card content</p>
@@ -173,7 +168,7 @@ export default function ProjectDetail() {
                                                             size="small"
                                                             title="Small size card"
                                                             style={{
-                                                                width: 246,
+                                                                width: 170,
                                                             }}
                                                         >
                                                             <p>Card content</p>
@@ -198,7 +193,7 @@ export default function ProjectDetail() {
                                                             size="small"
                                                             title="Small size card"
                                                             style={{
-                                                                width: 246,
+                                                                width: 170,
                                                             }}
                                                         >
                                                             <p>Card content</p>
@@ -213,7 +208,7 @@ export default function ProjectDetail() {
                                                             size="small"
                                                             title="Small size card"
                                                             style={{
-                                                                width: 246,
+                                                                width: 170,
                                                             }}
                                                         >
                                                             <p>Card content</p>
@@ -238,7 +233,7 @@ export default function ProjectDetail() {
                                                             size="small"
                                                             title="Small size card"
                                                             style={{
-                                                                width: 246,
+                                                                width: 170,
                                                             }}
                                                         >
                                                             <p>Card content</p>
@@ -253,7 +248,7 @@ export default function ProjectDetail() {
                                                             size="small"
                                                             title="Small size card"
                                                             style={{
-                                                                width: 246,
+                                                                width: 170,
                                                             }}
                                                         >
                                                             <p>Card content</p>
@@ -268,7 +263,7 @@ export default function ProjectDetail() {
                                                             size="small"
                                                             title="Small size card"
                                                             style={{
-                                                                width: 246,
+                                                                width: 170,
                                                             }}
                                                         >
                                                             <p>Card content</p>
@@ -283,7 +278,7 @@ export default function ProjectDetail() {
                                                             size="small"
                                                             title="Small size card"
                                                             style={{
-                                                                width: 246,
+                                                                width: 170,
                                                             }}
                                                         >
                                                             <p>Card content</p>

@@ -45,25 +45,14 @@ const EVENT_COLOR = ['#00AB55', '#000000', '#FFFFFF', '#FFC0CB', '#FF4842', '#18
 
 // ----------------------------------------------------------------------
 
-const events = [...Array(24)].map((_, index) => {
-  const setIndex = index + 1;
-
-  return {
+const events = [...Array(10)].map((_, index) => ({
     id: faker.datatype.uuid(),
     name: EVENT_NAME[index],
     time: randomTimeRange(),
-    colors:
-      (setIndex === 1 && EVENT_COLOR.slice(0, 2)) ||
-      (setIndex === 2 && EVENT_COLOR.slice(1, 3)) ||
-      (setIndex === 3 && EVENT_COLOR.slice(2, 4)) ||
-      (setIndex === 4 && EVENT_COLOR.slice(3, 6)) ||
-      (setIndex === 23 && EVENT_COLOR.slice(4, 6)) ||
-      (setIndex === 24 && EVENT_COLOR.slice(5, 6)) ||
-      EVENT_COLOR,
+    colors: sample(EVENT_COLOR),
     repeat: sample(['none', 'everyday', 'everyweek', 'everymonth']),
     alert: sample(['none', 'everyday', 'everyweek', 'everymonth']),
     description: ""
-  };
-});
+  }));
 
 export default events;
