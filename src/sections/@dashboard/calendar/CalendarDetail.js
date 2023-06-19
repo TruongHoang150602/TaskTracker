@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import { TextField,  DialogContent, Grid, MenuItem, Stack, Tooltip, IconButton, FormControlLabel, Switch} from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -40,15 +41,19 @@ const COLOR_OPTIONS = [
   }
 ];
 
+CalendarDetail.propTypes = {
+  event: PropTypes.object,
+};
 
 // ----------------------------------------------------------------------
 
 
-export default function CalendarForm() {
+export default function CalendarDetail({event}) {
 
-  const [eventColor, setEventColor] = React.useState('#00AB55');
+  console.log(event)
+  const [eventColor, setEventColor] = React.useState(event.color);
 
-  const [allDay, setAllDay] = React.useState(false);
+  const [allDay, setAllDay] = React.useState(event.allDay);
   
   const onClickAllDay = () => {
     setAllDay(!allDay)
@@ -72,7 +77,7 @@ export default function CalendarForm() {
               required
               id="outlined-required"
               label="Title"
-              defaultValue={"Please enter the task title!"}
+              defaultValue={ event.title}
               fullWidth
               />
             </Grid>
@@ -86,12 +91,12 @@ export default function CalendarForm() {
               {allDay === false && 
               <DateTimePicker
                 label="Starting date"
-                defaultValue={dayjs(defaultStartDate)}
+                defaultValue={event.start}
                 sx = {{  width: '100%' }}
               />  ||
               <DatePicker
               label="Starting date"
-              defaultValue={dayjs(defaultStartDate)}
+              defaultValue={event.start}
               sx = {{  width: '100%' }}
             /> 
               }
@@ -178,3 +183,4 @@ export default function CalendarForm() {
     </DialogContent>
   );
 }
+ 
