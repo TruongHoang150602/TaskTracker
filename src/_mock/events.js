@@ -1,4 +1,3 @@
-import { faker } from '@faker-js/faker';
 import { sample } from 'lodash';
 
 // ----------------------------------------------------------------------
@@ -46,13 +45,14 @@ const EVENT_COLOR = ['#00AB55', '#000000', '#FFFFFF', '#FFC0CB', '#FF4842', '#18
 // ----------------------------------------------------------------------
 
 const events = [...Array(10)].map((_, index) => ({
-    id: faker.datatype.uuid(),
-    name: EVENT_NAME[index],
-    time: randomTimeRange(),
-    colors: sample(EVENT_COLOR),
+    id: index,
+    title: EVENT_NAME[index],
+    color: sample(EVENT_COLOR),
+    allDay: sample(true, false),
     repeat: sample(['none', 'everyday', 'everyweek', 'everymonth']),
     alert: sample(['none', 'everyday', 'everyweek', 'everymonth']),
-    description: ""
+    description: "",
+    ... randomTimeRange()
   }));
 
 export default events;
