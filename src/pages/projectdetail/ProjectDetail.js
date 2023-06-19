@@ -147,54 +147,158 @@ export default function ProjectDetail() {
                     <TabPanel value="1">
                         <div>
                             <div className="board">
-                                <div className="board-column todo">
+                                <div className="board-column new">
                                     <div className="board-column-container">
-                                        <div className="board-column-header">Todo</div>
+                                        <div className="board-column-header">New Task</div>
                                         <div className="board-column-content-wrapper">
                                             <div className="board-column-content">
                                                 <div className="board-item">
-                                                    <div className="board-item-content">
-                                                        <Space direction="vertical" size={16}>
-                                                            <Card
-                                                                size="small"
-                                                                title="Small size card"
-                                                                extra={<a href="#">More</a>}
-                                                                style={{
-                                                                    width: 300,
-                                                                }}
-                                                            >
-                                                                <p>Card content</p>
-                                                                <p>Card content</p>
-                                                                <p>Card content</p>
-                                                            </Card>
-                                                        </Space>
-                                                    </div>
+                                                    <Space direction="vertical" size={16}>
+                                                        <Card
+                                                            size="small"
+                                                            title="Small size card"
+                                                            style={{
+                                                                width: 246,
+                                                            }}
+                                                        >
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                        </Card>
+                                                    </Space>
                                                 </div>
-                                                <div className="board-item"><div className="board-item-content"><span>Item #</span>2</div></div>
-                                                <div className="board-item"><div className="board-item-content"><span>Item #</span>3</div></div>
-                                                <div className="board-item"><div className="board-item-content"><span>Item #</span>4</div></div>
-                                                <div className="board-item"><div className="board-item-content"><span>Item #</span>5</div></div>
+                                                <div className="board-item">
+                                                    <Space direction="vertical" size={16}>
+                                                        <Card
+                                                            size="small"
+                                                            title="Small size card"
+                                                            style={{
+                                                                width: 246,
+                                                            }}
+                                                        >
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                        </Card>
+                                                    </Space>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="board-column working">
+
+                                <div className="board-column todo">
                                     <div className="board-column-container">
-                                        <div className="board-column-header">Working</div>
+                                        <div className="board-column-header">In Progress</div>
                                         <div className="board-column-content-wrapper">
                                             <div className="board-column-content">
-                                                <div className="board-item"><div className="board-item-content"><span>Item #</span>6</div></div>
-                                                <div className="board-item"><div className="board-item-content"><span>Item #</span>7</div></div>
-                                                <div className="board-item"><div className="board-item-content"><span>Item #</span>8</div></div>
-                                                <div className="board-item"><div className="board-item-content"><span>Item #</span>9</div></div>
-                                                <div className="board-item"><div className="board-item-content"><span>Item #</span>10</div></div>
+                                                <div className="board-item">
+                                                    <Space direction="vertical" size={16}>
+                                                        <Card
+                                                            size="small"
+                                                            title="Small size card"
+                                                            style={{
+                                                                width: 246,
+                                                            }}
+                                                        >
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                        </Card>
+                                                    </Space>
+                                                </div>
+                                                <div className="board-item">
+                                                    <Space direction="vertical" size={16}>
+                                                        <Card
+                                                            size="small"
+                                                            title="Small size card"
+                                                            style={{
+                                                                width: 246,
+                                                            }}
+                                                        >
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                        </Card>
+                                                    </Space>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="board-column working">
+                                    <div className="board-column-container">
+                                        <div className="board-column-header">Submitted</div>
+                                        <div className="board-column-content-wrapper">
+                                            <div className="board-column-content">
+                                                <div className="board-item">
+                                                    <Space direction="vertical" size={16}>
+                                                        <Card
+                                                            size="small"
+                                                            title="Small size card"
+                                                            style={{
+                                                                width: 246,
+                                                            }}
+                                                        >
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                        </Card>
+                                                    </Space>
+                                                </div>
+                                                <div className="board-item">
+                                                    <Space direction="vertical" size={16}>
+                                                        <Card
+                                                            size="small"
+                                                            title="Small size card"
+                                                            style={{
+                                                                width: 246,
+                                                            }}
+                                                        >
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                        </Card>
+                                                    </Space>
+                                                </div>
+                                                <div className="board-item">
+                                                    <Space direction="vertical" size={16}>
+                                                        <Card
+                                                            size="small"
+                                                            title="Small size card"
+                                                            style={{
+                                                                width: 246,
+                                                            }}
+                                                        >
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                        </Card>
+                                                    </Space>
+                                                </div>
+                                                <div className="board-item">
+                                                    <Space direction="vertical" size={16}>
+                                                        <Card
+                                                            size="small"
+                                                            title="Small size card"
+                                                            style={{
+                                                                width: 246,
+                                                            }}
+                                                        >
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                            <p>Card content</p>
+                                                        </Card>
+                                                    </Space>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="board-column done">
                                     <div className="board-column-container">
-                                        <div className="board-column-header">Done</div>
+                                        <div className="board-column-header">Completed</div>
                                         <div className="board-column-content-wrapper">
                                             <div className="board-column-content">
                                                 <div className="board-item"><div className="board-item-content"><span>Item #</span>11</div></div>

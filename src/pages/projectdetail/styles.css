@@ -71,6 +71,10 @@ body {
     }
 }
 
+.board-column.new .board-column-header {
+    background: #eaf94a;
+}
+
 .board-column.todo .board-column-header {
     background: #4A9FF9;
 }
