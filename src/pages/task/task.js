@@ -11,6 +11,8 @@ import Typography from '@mui/material/Typography';
 
 import data from './data';
 import TaskItem from './TaskItem';
+import TaskDetail from './TaskDetail';
+import style from "../../assets/css/task.module.css";
 
 const completedTask = data.filter((item) => item.status === 'completed');
 const newTask = data.filter((item) => item.status === 'newTask');
@@ -59,20 +61,29 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 const Task = () => {
   const [value, setValue] = React.useState(0);
+
+  const [open, setOpen] = React.useState(false);
+  const [item, setItem] = React.useState(null);
+  const handleOpen = (item) =>{
+    setOpen(true);
+    setItem(item);
+  } 
+  const handleClose = () => setOpen(false);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   return (
     <Box className="" sx={{ flexGrow: 1 }}>
-      <Grid className="px-[24px] pt-[0px]" container spacing={2}>
-        <Grid item xs={12}>
-          <Item className="text-[28px]">
-            <h4 className="text-left text-[black] font-[600] my-[0]">Task</h4>
+      <Grid className="px-[24px] pt-[0px] " container spacing={2}>
+        <Grid item xs={12} className=''>
+          <Item className="text-[28px] py-[0px] w-[100%]">
+            <h4 className="text-left text-[black] w-[100%] bg-[white] font-[600] my-[0]">Task</h4>
           </Item>
         </Grid>
-        <Grid item xs={12}>
+        <Grid  style={{paddingTop:"0px"}} item xs={12}>
           <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Box  className="bg-[white] w-[100%]" sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                 <Tab label="New Task" {...a11yProps(0)} />
                 <Tab label="In process" {...a11yProps(1)} />
@@ -80,29 +91,33 @@ const Task = () => {
                 <Tab label="Completed" {...a11yProps(3)} />
               </Tabs>
             </Box>
-            <TabPanel value={value} index={0}>
+            <TabPanel className={`h-[490px] overflow-y-scroll overflow-y-hidden ${style.nonescroll}`} value={value} index={0}>
               {newTask.map((item, index) => (
-                <TaskItem data={item} key={index} />
+                <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
               ))}
             </TabPanel>
-            <TabPanel value={value} index={1}>
+            <TabPanel value={value} index={1} className="h-[490px]">
               {inProcessTask.map((item, index) => (
-                <TaskItem data={item} key={index} />
+                <TaskItem show={handleOpen} data={item} key={index} />
               ))}
             </TabPanel>
-            <TabPanel value={value} index={2}>
+            <TabPanel className="h-[490px]" value={value} index={2}>
               {submitedTask.map((item, index) => (
-                <TaskItem data={item} key={index} />
+                <TaskItem show={handleOpen} data={item} key={index} />
               ))}
             </TabPanel>
-            <TabPanel value={value} index={3}>
+            <TabPanel className="h-[490px]" value={value} index={3}>
               {completedTask.map((item, index) => (
-                <TaskItem data={item} key={index} />
+                <TaskItem show={handleOpen} data={item} key={index} />
               ))}
             </TabPanel>
           </Box>
         </Grid>
+        <Grid item xs={12}>
+          <TaskDetail data={item}  handleClose={handleClose} handleOpen={handleOpen} open={open} />
+        </Grid>
       </Grid>
+
     </Box>
   );
 };
