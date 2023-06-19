@@ -8424,6 +8424,13 @@
   optionalDependencies:
     "fsevents" "~2.3.2"
 
+"rrule@^2.7.2":
+  "integrity" "sha512-NkBsEEB6FIZOZ3T8frvEBOB243dm46SPufpDckY/Ap/YH24V1zLeMmDY8OA10lk452NdrF621+ynDThE7FQU2A=="
+  "resolved" "https://registry.npmjs.org/rrule/-/rrule-2.7.2.tgz"
+  "version" "2.7.2"
+  dependencies:
+    "tslib" "^2.4.0"
+
 "run-parallel@^1.1.9":
   "integrity" "sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA=="
   "resolved" "https://registry.npmjs.org/run-parallel/-/run-parallel-1.2.0.tgz"

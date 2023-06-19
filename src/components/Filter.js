@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 // @mui
 // import { alpha } from '@mui/material/styles';
-import { Stack, MenuItem,  Button, Popover } from '@mui/material';
+import { Stack, MenuItem,  Button, Popover, IconButton } from '@mui/material';
 import Iconify from './iconify/Iconify';
 // mocks_
 
@@ -32,6 +32,9 @@ export default function Filter({data = []}) {
             variant="outlined"
             startIcon={<Iconify icon={'solar:filter-linear'} width={20} height={20}  />}
             onClick={handleOpen}
+            sx={{
+              width: '120px'
+            }}
         >
             Filter
         </Button>
@@ -58,7 +61,11 @@ export default function Filter({data = []}) {
         <Stack sx={{ p: 1 }}>
           {data.map((option) => (
             <MenuItem key={option} onClick={handleClose}>
-              {option}
+               <IconButton
+                  value={option.label}
+                  sx={{ width: 20, height: 20, marginRight: '4px' , padding: 0, border: 0 , borderRadius: '50%' , background: option.color}}
+                   />
+                {option.label}
             </MenuItem>
           ))}
         </Stack>
