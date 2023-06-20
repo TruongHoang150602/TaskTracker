@@ -17,23 +17,46 @@ import Iconify from '../../components/iconify';
 import { DialogAnimate } from '../../components/animate';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 // // sections
-import {  CalendarForm, CalendarStyle, CalendarToolbar } from '../../sections/@dashboard/calendar';
+import {  CalendarForm, CalendarStyle, CalendarToolbar, CalendarDetail } from '../../sections/@dashboard/calendar';
 import events from '../../_mock/events'; 
 // ----------------------------------------------------------------------
 
 
 // ----------------------------------------------------------------------
-
+const COLOR_OPTIONS = [
+  {
+    label: 'Việc nhà',
+    color: '#00AB55'
+  }, 
+  {
+    label: 'Nghỉ ngơi',
+    color:  '#FF4842'
+  }, 
+  {
+    label: 'Cuộc gặp',
+    color: '#1890FF'
+  }, 
+  {
+    label: 'Ăn uống',
+    color: '#54D62C'
+  },
+  {
+    label: 'Công việc',
+    color:  '#FFC107'
+  },
+  {
+    label: 'Học tập',
+    color:  '#04297A'
+  },
+  {
+    label: 'Quan trọng',
+    color:  '#7A0C2E'
+  }
+];
 
 
 export default function Calendar() {
 
-  const eventsCalendar = events.map((event) => ({
-    title: event.name,
-    color: event.colors,
-    start: event.time.start,
-    end: event.time.end
-  }));
   const [open, setOpen] = useState(false);
 
   const isDesktop = useResponsive('up', 'sm');
@@ -44,13 +67,7 @@ export default function Calendar() {
 
   const [view, setView] = useState(isDesktop ? 'dayGridMonth' : 'listWeek');
 
-  // const selectedEvent = useSelector(selectedEventSelector);
-
-  // const { events, isOpenModal, selectedRange } = useSelector((state) => state.calendar);
-
-  // useEffect(() => {
-  //   // dispatch(getEvents());
-  // }, [dispatch]);
+  const [selectedEvent, setSelectedEvent] = useState();
 
   useEffect(() => {
     const calendarEl = calendarRef.current;
@@ -100,14 +117,17 @@ export default function Calendar() {
 
   const handleAddEvent = () => {
     setOpen(true);
-    console.log(open)
   };
 
   const handleCloseModal = () => {
     setOpen(false);
-    console.log(open)
   };
-  console.log(events);
+
+  const handleSelectEvent = (info) => {
+    setSelectedEvent(events[info.event.id]);
+    setOpen(true);
+  };
+    
 
   return (
     <Page title="Calendar">
@@ -118,7 +138,7 @@ export default function Calendar() {
           action={
             <Stack direction="row" spacing={2}>
              
-             <Filter data = {['task', 'team']} />
+             <Filter data = {COLOR_OPTIONS} />
 
               <Button
                 variant="contained"
@@ -147,7 +167,7 @@ export default function Calendar() {
               editable
               droppable
               selectable
-              events={eventsCalendar}
+              events={events}
               ref={calendarRef}
               rerenderDelay={10}
               initialDate={date}
@@ -157,9 +177,9 @@ export default function Calendar() {
               headerToolbar={false}
               allDayMaintainDuration
               eventResizableFromStart
+              eventClick={handleSelectEvent}
               // select={handleSelectRange}
               // eventDrop={handleDropEvent}
-              // eventClick={handleSelectEvent}
               // eventResize={handleResizeEvent}
               height={isDesktop ? 720 : 'auto'}
               plugins={[listPlugin, dayGridPlugin, timelinePlugin, timeGridPlugin, interactionPlugin]}
@@ -167,26 +187,33 @@ export default function Calendar() {
           </CalendarStyle>
         </Card>
 
-          {/* model */}
+          {/* Add event model */}
         <DialogAnimate open={open} onClose={handleCloseModal} >
           <DialogTitle 
           variant='h3'
-          sx = {{
-            fontFamily: 'Libre Franklin',
-            fontStyle: 'normal',
-            color: '#48409E',
-            
-          }}>New event</DialogTitle>
+          sx = {{  fontStyle: 'normal', color: '#48409E',}}>
+            New event</DialogTitle>
           <CalendarForm />
-
-          <DialogActions sx={{
-            margin: '24px'
-          }} >
+          <DialogActions sx={{ margin: '24px'}} >
             <Button variant="outlined" color="error" autoFocus onClick={handleCloseModal}>Cancel</Button>
             <Button variant="outlined" onClick={handleCloseModal}>Add event</Button>
           </DialogActions>
-
         </DialogAnimate>
+
+          {/* Event detail  model */}
+
+          <DialogAnimate open={open} onClose={handleCloseModal} >
+          <DialogTitle 
+          variant='h3'
+          sx = {{  fontStyle: 'normal', color: '#48409E',}}>
+            Event Detail</DialogTitle>
+          <CalendarDetail event={selectedEvent} />
+          <DialogActions sx={{ margin: '24px'}} >
+            <Button variant="outlined" color="error" autoFocus onClick={handleCloseModal}>Cancel</Button>
+            <Button variant="outlined" onClick={handleCloseModal}>Edit</Button>
+          </DialogActions>
+        </DialogAnimate>
+
 
       </Container>
     </Page>
