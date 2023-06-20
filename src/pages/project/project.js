@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Link from 'antd/es/typography/Link';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import { Helmet } from 'react-helmet-async';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
+import { useNavigate } from 'react-router-dom';
 
 import { project } from '../../_mock/project_data';
 
@@ -25,6 +25,8 @@ function LinearProgressWithLabel(props) {
 }
 
 export default function Project() {
+  const navigate = useNavigate();
+
   return (
     <div style={{ maxWidth: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
       <Helmet>
@@ -48,11 +50,9 @@ export default function Project() {
               <LinearProgressWithLabel value={p.quality} />
             </CardContent>
             <CardActions style={{ margin: '10px 24px 24px 24px', padding: '0' }}>
-              <Link href="/projectdetail">
-                <Button variant="contained" size="small">
-                  View Details
-                </Button>
-              </Link>
+              <Button onClick={() => navigate('/projectdetail')} variant="contained" size="small">
+                View Details
+              </Button>
             </CardActions>
           </Card>
         ))}
