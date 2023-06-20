@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import { TextField,  DialogContent, Grid, MenuItem, Stack, Tooltip, IconButton, FormControlLabel, Switch} from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -40,11 +41,31 @@ const COLOR_OPTIONS = [
   }
 ];
 
-
 // ----------------------------------------------------------------------
 
+CalendarForm.propTypes = {
+  event: PropTypes.object,
+};
 
-export default function CalendarForm() {
+const defaultStartDate = new Date();
+const defaultEndDate = new Date(defaultStartDate.getTime() + 60 * 60 * 1000);
+
+export default function CalendarForm({event}) {
+
+  const [initEvent, setInitEvent] = React.useState({
+    title: 'Please enter the task title!',
+    allday: false,
+    start: defaultStartDate,
+    end: defaultEndDate,
+    repeat: 'None',
+    alert: 'None',
+    description: 'Add a description'
+  })
+
+  // console.log(event)
+  console.log(initEvent)
+
+  if(event != null) setInitEvent(event);
 
   const [eventColor, setEventColor] = React.useState('#00AB55');
 
@@ -58,10 +79,6 @@ export default function CalendarForm() {
     setEventColor(value)
   }
 
-
-
-  const defaultStartDate = new Date();
-  const defaultEndDate = new Date(defaultStartDate.getTime() + 60 * 60 * 1000);
   return (
     
     <DialogContent sx={{ width: '600px', mt: '4px',}} >
@@ -72,7 +89,7 @@ export default function CalendarForm() {
               required
               id="outlined-required"
               label="Title"
-              defaultValue={"Please enter the task title!"}
+              defaultValue={initEvent.title}
               fullWidth
               />
             </Grid>
@@ -86,12 +103,12 @@ export default function CalendarForm() {
               {allDay === false && 
               <DateTimePicker
                 label="Starting date"
-                defaultValue={dayjs(defaultStartDate)}
+                defaultValue={dayjs(initEvent.start)}
                 sx = {{  width: '100%' }}
               />  ||
               <DatePicker
               label="Starting date"
-              defaultValue={dayjs(defaultStartDate)}
+              defaultValue={dayjs(initEvent.start)}
               sx = {{  width: '100%' }}
             /> 
               }
@@ -104,12 +121,12 @@ export default function CalendarForm() {
             {allDay === false && 
               <DateTimePicker
                 label="Ending date"
-                defaultValue={dayjs(defaultEndDate)}
+                defaultValue={dayjs(initEvent.end)}
                 sx = {{  width: '100%' }}
               />  ||
               <DatePicker
               label="Ending date"
-              defaultValue={dayjs(defaultEndDate)}
+              defaultValue={dayjs(initEvent.end)}
               sx = {{  width: '100%' }}
             /> 
               }
@@ -121,7 +138,7 @@ export default function CalendarForm() {
               id="outlined-select-currency"
               select
               label="Repeat"
-              defaultValue={"None"}
+              defaultValue={initEvent.repeat}
               fullWidth
             >
               <MenuItem value={'None'}>None</MenuItem>
@@ -136,7 +153,7 @@ export default function CalendarForm() {
               id="outlined-select-currency"
               select
               label="Alert"
-              defaultValue={"None"}
+              defaultValue={initEvent.alert}
               fullWidth
             >
               <MenuItem value={'None'}>None</MenuItem>
@@ -152,7 +169,7 @@ export default function CalendarForm() {
                 label="Description"
                 multiline
                 rows={4}
-                defaultValue={"Add a description"}
+                defaultValue={initEvent.description}
                 fullWidth
               />
             </Grid>
@@ -164,10 +181,10 @@ export default function CalendarForm() {
               <Tooltip key={option.label} title={option.label}>
                 <IconButton
                   value={option.label}
-                  onClick={() => onClickColor(option.label)}
+                  onClick={() => onClickColor(option.color)}
                   sx={{ width: 32, height: 32, padding: 0, border: 0 , borderRadius: '50%' , background: option.color}}
                   >
-                  {option.label === eventColor && <Iconify sx = {{color: '#000'}} icon={'teenyicons:tick-small-outline'}/>}
+                  {option.color === eventColor && <Iconify sx = {{color: '#000'}} icon={'teenyicons:tick-small-outline'}/>}
                   
                 </IconButton>
               </Tooltip>

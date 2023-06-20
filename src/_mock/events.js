@@ -49,8 +49,8 @@ const events = [...Array(10)].map((_, index) => ({
     title: EVENT_NAME[index],
     color: sample(EVENT_COLOR),
     allDay: sample(true, false),
-    repeat: sample(['none', 'everyday', 'everyweek', 'everymonth']),
-    alert: sample(['none', 'everyday', 'everyweek', 'everymonth']),
+    repeat: sample(['none', 'Every day', 'Every week', 'Every month']),
+    alert: sample(['none', 'Every day', 'Every week', 'Every month']),
     description: "",
     ... randomTimeRange()
   }));
