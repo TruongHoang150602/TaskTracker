@@ -12,6 +12,8 @@ import { TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
+import Iconify from '../../components/iconify/Iconify';
+import Filter from '../../components/Filter';
 import { project } from '../../_mock/project_data';
 
 function LinearProgressWithLabel(props) {
@@ -77,14 +79,24 @@ export default function Project() {
         <title> Project | TaskTracker+ </title>
       </Helmet>
       <h2 style={{ margin: '0 0 30px 0', fontSize: '40px' }}>Project</h2>
-      <div style={{ width: '65px', marginLeft: 'auto' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          width: '270px',
+          marginLeft: 'auto',
+          alignItems: 'center',
+          marginBottom: '30px',
+          fontSize: '14px',
+        }}
+      >
+        <Filter data={['task', 'team']} />
         <Button
-          onClick={handleNewProjectClick}
           variant="contained"
-          size="small"
-          style={{ marginBottom: '20px', fontSize: '15px' }}
+          startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
+          onClick={handleNewProjectClick}
         >
-          New
+          New Project
         </Button>
       </div>
       {showCreateProject && (
