@@ -17,7 +17,8 @@ import Dashboard from './pages/dashboard/dashboard';
 import Schedule from './pages/schedule/schedule';
 import Task from './pages/task/task';
 import Project from './pages/project/project';
-
+import ProfilePage from './pages/profile/profile';
+import SettingsPage from './pages/settings_p/notificaitons';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -31,6 +32,8 @@ export default function Router() {
         { path: 'schedule', element: <Schedule /> },
         { path: 'task', element: <Task /> },
         { path: 'project', element: <Project /> },
+        {path: 'profile', element: <ProfilePage /> },  
+        {path: 'settingspage', element: < SettingsPage/> },  
       ],
     },
     {
