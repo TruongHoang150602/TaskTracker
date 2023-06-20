@@ -17,7 +17,7 @@ import Iconify from '../../components/iconify';
 import { DialogAnimate } from '../../components/animate';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 // // sections
-import {  CalendarForm, CalendarStyle, CalendarToolbar, CalendarDetail } from '../../sections/@dashboard/calendar';
+import {  CalendarForm, CalendarStyle, CalendarToolbar } from '../../sections/@dashboard/calendar';
 import events from '../../_mock/events'; 
 // ----------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ export default function Calendar() {
 
   const [view, setView] = useState(isDesktop ? 'dayGridMonth' : 'listWeek');
 
-  const [selectedEvent, setSelectedEvent] = useState();
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
     const calendarEl = calendarRef.current;
@@ -178,7 +178,7 @@ export default function Calendar() {
               allDayMaintainDuration
               eventResizableFromStart
               eventClick={handleSelectEvent}
-              // select={handleSelectRange}
+              // select={handleSelectEvent}
               // eventDrop={handleDropEvent}
               // eventResize={handleResizeEvent}
               height={isDesktop ? 720 : 'auto'}
@@ -189,31 +189,15 @@ export default function Calendar() {
 
           {/* Add event model */}
         <DialogAnimate open={open} onClose={handleCloseModal} >
-          <DialogTitle 
-          variant='h3'
-          sx = {{  fontStyle: 'normal', color: '#48409E',}}>
-            New event</DialogTitle>
-          <CalendarForm />
+          <DialogTitle  variant='h3'  sx = {{  fontStyle: 'normal', color: '#48409E',}}>
+            {selectedEvent == null && 'Event detail' ||'New event'}
+          </DialogTitle>
+          <CalendarForm event={selectedEvent} />
           <DialogActions sx={{ margin: '24px'}} >
             <Button variant="outlined" color="error" autoFocus onClick={handleCloseModal}>Cancel</Button>
-            <Button variant="outlined" onClick={handleCloseModal}>Add event</Button>
+            <Button variant="outlined" onClick={handleCloseModal}>Save change</Button>
           </DialogActions>
         </DialogAnimate>
-
-          {/* Event detail  model */}
-
-          <DialogAnimate open={open} onClose={handleCloseModal} >
-          <DialogTitle 
-          variant='h3'
-          sx = {{  fontStyle: 'normal', color: '#48409E',}}>
-            Event Detail</DialogTitle>
-          <CalendarDetail event={selectedEvent} />
-          <DialogActions sx={{ margin: '24px'}} >
-            <Button variant="outlined" color="error" autoFocus onClick={handleCloseModal}>Cancel</Button>
-            <Button variant="outlined" onClick={handleCloseModal}>Edit</Button>
-          </DialogActions>
-        </DialogAnimate>
-
 
       </Container>
     </Page>
