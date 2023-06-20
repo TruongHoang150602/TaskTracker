@@ -10,12 +10,25 @@ import TabPanel from '@mui/lab/TabPanel';
 import { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import './styles.css';
-import { Card, Space } from 'antd';
+import { Card, Space, Avatar, Tooltip } from 'antd';
 import Muuri from 'muuri';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+import { AntDesignOutlined, UserOutlined } from '@ant-design/icons';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { Stack, Button } from '@mui/material';
+import Iconify from '../../components/iconify';
+import Filter from '../../components/Filter';
+import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
+
 
 export default function ProjectDetail() {
 
-
+    const handleAddTask = () => {
+        console.log("add task");
+    }
+    const handleAddMember = () => {
+        console.log("add member");
+    }
 
     useEffect(() => {
         const dragContainer = document.querySelector('.drag-container');
@@ -100,7 +113,6 @@ export default function ProjectDetail() {
                     </IconButton>
                     <IconButton
                         color="primary"
-                    // onClick={() => handleIconClick('edit', params.row)}
                     >
                         <EditIcon />
                     </IconButton>
@@ -109,28 +121,50 @@ export default function ProjectDetail() {
         },
     ];
 
-    const handleCellClick = (GridCellParams) => {
-        // Xử lý logic khi ô được nhấp vào
-        // console.log('Cell clicked:', params);
-
-    };
-
     const handleIconClick = (rows, row) => {
         console.log(row.id);
         removeItem(row.id);
     }
 
     const [value, setValue] = React.useState('1');
+    const [status, setStatus] = useState('1');
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        setStatus(newValue);
     };
 
     return (
         <div>
-            <p style={{ fontSize: '1.5rem', fontWeight: 'bold', paddingBottom: '10px' }}>
-                E-Commerce Website
-            </p>
+            <HeaderBreadcrumbs
+                heading="E-Commerce Website"
+                // links={[{ name: 'Dashboard', href: '' }, { name: 'Calendar' }]}
+                action={
+                    <Stack direction="row" spacing={2}>
+
+                        <Filter data={['task', 'team']} />
+                        {status === '1' ? (
+                            <Button
+                                variant="contained"
+                                startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
+                                onClick={handleAddTask}
+                            >
+                                New Task
+                            </Button>
+                        ) : (
+                            <Button
+                                variant="contained"
+                                startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
+                                onClick={handleAddMember}
+                            >
+                                Add Member
+                            </Button>
+                        )}
+
+                    </Stack>
+
+                }
+            />
             <Box sx={{ width: '100%', typography: 'body1' }}>
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -139,176 +173,541 @@ export default function ProjectDetail() {
                             <Tab label="Overview" value="2" />
                         </TabList>
                     </Box>
-                    <TabPanel value="1">
-                        <div>
-                            <div className="board">
-                                <div className="board-column new">
-                                    <div className="board-column-container">
-                                        <div className="board-column-header">New Task</div>
-                                        <div className="board-column-content-wrapper">
-                                            <div className="board-column-content">
-                                                <div className="board-item">
-                                                    <Space direction="vertical" size={16}>
-                                                        <Card
-                                                            size="small"
-                                                            title="Small size card"
-                                                            style={{
-                                                                width: 170,
-                                                            }}
-                                                        >
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                        </Card>
-                                                    </Space>
-                                                </div>
-                                                <div className="board-item">
-                                                    <Space direction="vertical" size={16}>
-                                                        <Card
-                                                            size="small"
-                                                            title="Small size card"
-                                                            style={{
-                                                                width: 170,
-                                                            }}
-                                                        >
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                        </Card>
-                                                    </Space>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <TabPanel value="1" style={{ padding: '0px', paddingTop: '20px' }}>
+                        {/* <div> */}
+                        <div className="board">
+                            <div className="board-column new">
+                                <div className="board-column-container">
+                                    <div className="board-column-header">New Task</div>
+                                    <div className="board-column-content-wrapper">
+                                        <div className="board-column-content">
+                                            <div className="board-item">
+                                                <Space className="board-item-content" direction="vertical" size={16}>
+                                                    <Card
+                                                        size="small"
+                                                        title="Shopping card interface code"
+                                                        style={{
+                                                            width: 165,
+                                                        }}
+                                                    >
+                                                        <Avatar.Group>
+                                                            <Tooltip title="Hoàng Trường">
+                                                                <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+                                                            </Tooltip>
+                                                            <Tooltip title="Văn Phúc">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#f56a00',
+                                                                    }}
+                                                                >
+                                                                    K
+                                                                </Avatar>
+                                                            </Tooltip>
+                                                            <Tooltip title="Khắc Tuân" placement="top">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#87d068',
+                                                                    }}
+                                                                    icon={<UserOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                            <Tooltip title="Duy Quý" placement="top">
 
-                                <div className="board-column todo">
-                                    <div className="board-column-container">
-                                        <div className="board-column-header">In Progress</div>
-                                        <div className="board-column-content-wrapper">
-                                            <div className="board-column-content">
-                                                <div className="board-item">
-                                                    <Space direction="vertical" size={16}>
-                                                        <Card
-                                                            size="small"
-                                                            title="Small size card"
-                                                            style={{
-                                                                width: 170,
-                                                            }}
-                                                        >
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                        </Card>
-                                                    </Space>
-                                                </div>
-                                                <div className="board-item">
-                                                    <Space direction="vertical" size={16}>
-                                                        <Card
-                                                            size="small"
-                                                            title="Small size card"
-                                                            style={{
-                                                                width: 170,
-                                                            }}
-                                                        >
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                        </Card>
-                                                    </Space>
-                                                </div>
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#1677ff',
+                                                                    }}
+                                                                    icon={<AntDesignOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                        </Avatar.Group>
+                                                        <Space wrap>
+                                                            <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>June 22, 2023</p>
+                                                            <Button style={{ backgroundColor: 'red', color: 'white' }} className="custom-button">
+                                                                Hight
+                                                            </Button>
+                                                        </Space>
+                                                    </Card>
+                                                </Space>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                            <div className="board-item">
+                                                <Space className="board-item-content" direction="vertical" size={16}>
+                                                    <Card
+                                                        size="small"
+                                                        title="Write API for shopping cart interface"
+                                                        style={{
+                                                            width: 165,
+                                                        }}
+                                                    >
+                                                        <Avatar.Group>
+                                                            <Tooltip title="Hoàng Trường">
+                                                                <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+                                                            </Tooltip>
+                                                            <Tooltip title="Văn Phúc">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#f56a00',
+                                                                    }}
+                                                                >
+                                                                    K
+                                                                </Avatar>
+                                                            </Tooltip>
+                                                            <Tooltip title="Khắc Tuân" placement="top">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#87d068',
+                                                                    }}
+                                                                    icon={<UserOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                            <Tooltip title="Duy Quý" placement="top">
 
-                                <div className="board-column working">
-                                    <div className="board-column-container">
-                                        <div className="board-column-header">Submitted</div>
-                                        <div className="board-column-content-wrapper">
-                                            <div className="board-column-content">
-                                                <div className="board-item">
-                                                    <Space direction="vertical" size={16}>
-                                                        <Card
-                                                            size="small"
-                                                            title="Small size card"
-                                                            style={{
-                                                                width: 170,
-                                                            }}
-                                                        >
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                        </Card>
-                                                    </Space>
-                                                </div>
-                                                <div className="board-item">
-                                                    <Space direction="vertical" size={16}>
-                                                        <Card
-                                                            size="small"
-                                                            title="Small size card"
-                                                            style={{
-                                                                width: 170,
-                                                            }}
-                                                        >
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                        </Card>
-                                                    </Space>
-                                                </div>
-                                                <div className="board-item">
-                                                    <Space direction="vertical" size={16}>
-                                                        <Card
-                                                            size="small"
-                                                            title="Small size card"
-                                                            style={{
-                                                                width: 170,
-                                                            }}
-                                                        >
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                        </Card>
-                                                    </Space>
-                                                </div>
-                                                <div className="board-item">
-                                                    <Space direction="vertical" size={16}>
-                                                        <Card
-                                                            size="small"
-                                                            title="Small size card"
-                                                            style={{
-                                                                width: 170,
-                                                            }}
-                                                        >
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                            <p>Card content</p>
-                                                        </Card>
-                                                    </Space>
-                                                </div>
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#1677ff',
+                                                                    }}
+                                                                    icon={<AntDesignOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                        </Avatar.Group>
+                                                        <Space wrap>
+                                                            <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>June 22, 2023</p>
+                                                            <Button style={{ backgroundColor: '#ffba53', color: 'white' }} className="custom-button">
+                                                                Medium
+                                                            </Button>
+                                                        </Space>
+                                                    </Card>
+                                                </Space>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="board-column done">
-                                    <div className="board-column-container">
-                                        <div className="board-column-header">Completed</div>
-                                        <div className="board-column-content-wrapper">
-                                            <div className="board-column-content">
-                                                <div className="board-item"><div className="board-item-content"><span>Item #</span>11</div></div>
-                                                <div className="board-item"><div className="board-item-content"><span>Item #</span>12</div></div>
-                                                <div className="board-item"><div className="board-item-content"><span>Item #</span>13</div></div>
-                                                <div className="board-item"><div className="board-item-content"><span>Item #</span>14</div></div>
-                                                <div className="board-item"><div className="board-item-content"><span>Item #</span>15</div></div>
+                            </div>
+
+                            <div className="board-column todo">
+                                <div className="board-column-container">
+                                    <div className="board-column-header">In Progress</div>
+                                    <div className="board-column-content-wrapper">
+                                        <div className="board-column-content">
+                                            <div className="board-item">
+                                                <Space className="board-item-content" direction="vertical" size={16}>
+                                                    <Card
+                                                        size="small"
+                                                        title="Code for login and registration interface"
+                                                        style={{
+                                                            width: 165,
+                                                        }}
+                                                    >
+                                                        <Avatar.Group>
+                                                            <Tooltip title="Hoàng Trường">
+                                                                <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+                                                            </Tooltip>
+                                                            <Tooltip title="Văn Phúc">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#f56a00',
+                                                                    }}
+                                                                >
+                                                                    K
+                                                                </Avatar>
+                                                            </Tooltip>
+                                                            <Tooltip title="Khắc Tuân" placement="top">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#87d068',
+                                                                    }}
+                                                                    icon={<UserOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                            <Tooltip title="Duy Quý" placement="top">
+
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#1677ff',
+                                                                    }}
+                                                                    icon={<AntDesignOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                        </Avatar.Group>
+                                                        <Space wrap>
+                                                            <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>June 15, 2023</p>
+                                                            <Button style={{ backgroundColor: 'red', color: 'white' }} className="custom-button">
+                                                                Hight
+                                                            </Button>
+                                                        </Space>
+                                                    </Card>
+                                                </Space>
+                                            </div>
+                                            <div className="board-item">
+                                                <Space className="board-item-content" direction="vertical" size={16}>
+                                                    <Card
+                                                        size="small"
+                                                        title="Write API for login and registration"
+                                                        style={{
+                                                            width: 165,
+                                                        }}
+                                                    >
+                                                        <Avatar.Group>
+                                                            <Tooltip title="Hoàng Trường">
+                                                                <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+                                                            </Tooltip>
+                                                            <Tooltip title="Văn Phúc">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#f56a00',
+                                                                    }}
+                                                                >
+                                                                    K
+                                                                </Avatar>
+                                                            </Tooltip>
+                                                            <Tooltip title="Khắc Tuân" placement="top">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#87d068',
+                                                                    }}
+                                                                    icon={<UserOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                            <Tooltip title="Duy Quý" placement="top">
+
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#1677ff',
+                                                                    }}
+                                                                    icon={<AntDesignOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                        </Avatar.Group>
+                                                        <Space wrap>
+                                                            <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>June 16, 2023</p>
+                                                            <Button style={{ backgroundColor: '#68da6c', color: 'white' }} className="custom-button">
+                                                                Easy
+                                                            </Button>
+                                                        </Space>
+                                                    </Card>
+                                                </Space>
+                                            </div>
+                                            <div className="board-item">
+                                                <Space className="board-item-content" direction="vertical" size={16}>
+                                                    <Card
+                                                        size="small"
+                                                        title="Home page interface code"
+                                                        style={{
+                                                            width: 165,
+                                                        }}
+                                                    >
+                                                        <Avatar.Group>
+                                                            <Tooltip title="Hoàng Trường">
+                                                                <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+                                                            </Tooltip>
+                                                            <Tooltip title="Văn Phúc">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#f56a00',
+                                                                    }}
+                                                                >
+                                                                    K
+                                                                </Avatar>
+                                                            </Tooltip>
+                                                            <Tooltip title="Khắc Tuân" placement="top">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#87d068',
+                                                                    }}
+                                                                    icon={<UserOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                            <Tooltip title="Duy Quý" placement="top">
+
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#1677ff',
+                                                                    }}
+                                                                    icon={<AntDesignOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                        </Avatar.Group>
+                                                        <Space wrap>
+                                                            <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>June 18, 2023</p>
+                                                            <Button style={{ backgroundColor: 'red', color: 'white' }} className="custom-button">
+                                                                Hight
+                                                            </Button>
+                                                        </Space>
+                                                    </Card>
+                                                </Space>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="board-column working">
+                                <div className="board-column-container">
+                                    <div className="board-column-header">Submitted</div>
+                                    <div className="board-column-content-wrapper">
+                                        <div className="board-column-content">
+                                            <div className="board-item">
+                                                <Space className="board-item-content" direction="vertical" size={16}>
+                                                    <Card
+                                                        size="small"
+                                                        title="Database design"
+                                                        style={{
+                                                            width: 165,
+                                                        }}
+                                                    >
+                                                        <Avatar.Group>
+                                                            <Tooltip title="Hoàng Trường">
+                                                                <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+                                                            </Tooltip>
+                                                            <Tooltip title="Văn Phúc">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#f56a00',
+                                                                    }}
+                                                                >
+                                                                    K
+                                                                </Avatar>
+                                                            </Tooltip>
+                                                            <Tooltip title="Khắc Tuân" placement="top">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#87d068',
+                                                                    }}
+                                                                    icon={<UserOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                            <Tooltip title="Duy Quý" placement="top">
+
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#1677ff',
+                                                                    }}
+                                                                    icon={<AntDesignOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                        </Avatar.Group>
+                                                        <Space wrap>
+                                                            <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>June 01, 2023</p>
+                                                            <Button style={{ backgroundColor: '#6f6f6f', color: 'white' }} className="custom-button">
+                                                                Submitted
+                                                            </Button>
+                                                        </Space>
+                                                    </Card>
+                                                </Space>
+                                            </div>
+                                            <div className="board-item">
+                                                <Space className="board-item-content" direction="vertical" size={16}>
+                                                    <Card
+                                                        size="small"
+                                                        title="Add data to the database"
+                                                        style={{
+                                                            width: 165,
+                                                        }}
+                                                    >
+                                                        <Avatar.Group>
+                                                            <Tooltip title="Hoàng Trường">
+                                                                <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+                                                            </Tooltip>
+                                                            <Tooltip title="Văn Phúc">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#f56a00',
+                                                                    }}
+                                                                >
+                                                                    K
+                                                                </Avatar>
+                                                            </Tooltip>
+                                                            <Tooltip title="Khắc Tuân" placement="top">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#87d068',
+                                                                    }}
+                                                                    icon={<UserOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                            <Tooltip title="Duy Quý" placement="top">
+
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#1677ff',
+                                                                    }}
+                                                                    icon={<AntDesignOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                        </Avatar.Group>
+                                                        <Space wrap>
+                                                            <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>June 01, 2023</p>
+                                                            <Button style={{ backgroundColor: '#6f6f6f', color: 'white' }} className="custom-button">
+                                                                Submitted
+                                                            </Button>
+                                                        </Space>
+                                                    </Card>
+                                                </Space>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="board-column done">
+                                <div className="board-column-container">
+                                    <div className="board-column-header">Completed</div>
+                                    <div className="board-column-content-wrapper">
+                                        <div className="board-column-content">
+                                            <div className="board-item">
+                                                <Space className="board-item-content" direction="vertical" size={16}>
+                                                    <Card
+                                                        size="small"
+                                                        title="Write a specification for the project"
+                                                        style={{
+                                                            width: 165,
+                                                        }}
+                                                    >
+                                                        <Avatar.Group>
+                                                            <Tooltip title="Hoàng Trường">
+                                                                <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+                                                            </Tooltip>
+                                                            <Tooltip title="Văn Phúc">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#f56a00',
+                                                                    }}
+                                                                >
+                                                                    K
+                                                                </Avatar>
+                                                            </Tooltip>
+                                                            <Tooltip title="Khắc Tuân" placement="top">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#87d068',
+                                                                    }}
+                                                                    icon={<UserOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                            <Tooltip title="Duy Quý" placement="top">
+
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#1677ff',
+                                                                    }}
+                                                                    icon={<AntDesignOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                        </Avatar.Group>
+                                                        <Space wrap>
+                                                            <CheckCircleOutlineIcon style={{ color: 'green' }} /> <p style={{ color: 'green' }}>FINISHED!</p>
+                                                            <Button style={{ backgroundColor: '#48409e', color: 'white' }} className="custom-button">
+                                                                100
+                                                            </Button>
+                                                        </Space>
+                                                    </Card>
+                                                </Space>
+                                            </div>
+                                            <div className="board-item">
+                                                <Space className="board-item-content" direction="vertical" size={16}>
+                                                    <Card
+                                                        size="small"
+                                                        title="Design the interface of all websites"
+                                                        style={{
+                                                            width: 165,
+                                                        }}
+                                                    >
+                                                        <Avatar.Group>
+                                                            <Tooltip title="Hoàng Trường">
+                                                                <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+                                                            </Tooltip>
+                                                            <Tooltip title="Văn Phúc">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#f56a00',
+                                                                    }}
+                                                                >
+                                                                    K
+                                                                </Avatar>
+                                                            </Tooltip>
+                                                            <Tooltip title="Khắc Tuân" placement="top">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#87d068',
+                                                                    }}
+                                                                    icon={<UserOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                            <Tooltip title="Duy Quý" placement="top">
+
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#1677ff',
+                                                                    }}
+                                                                    icon={<AntDesignOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                        </Avatar.Group>
+                                                        <Space wrap>
+                                                            <CheckCircleOutlineIcon style={{ color: 'green' }} /> <p style={{ color: 'green' }}>FINISHED!</p>
+                                                            <Button style={{ backgroundColor: '#48409e', color: 'white' }} className="custom-button">
+                                                                90
+                                                            </Button>
+                                                        </Space>
+                                                    </Card>
+                                                </Space>
+                                            </div>
+                                            <div className="board-item">
+                                                <Space className="board-item-content" direction="vertical" size={16}>
+                                                    <Card
+                                                        size="small"
+                                                        title="API design"
+                                                        style={{
+                                                            width: 165,
+                                                        }}
+                                                    >
+                                                        <Avatar.Group>
+                                                            <Tooltip title="Hoàng Trường">
+                                                                <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+                                                            </Tooltip>
+                                                            <Tooltip title="Văn Phúc">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#f56a00',
+                                                                    }}
+                                                                >
+                                                                    K
+                                                                </Avatar>
+                                                            </Tooltip>
+                                                            <Tooltip title="Khắc Tuân" placement="top">
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#87d068',
+                                                                    }}
+                                                                    icon={<UserOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                            <Tooltip title="Duy Quý" placement="top">
+
+                                                                <Avatar
+                                                                    style={{
+                                                                        backgroundColor: '#1677ff',
+                                                                    }}
+                                                                    icon={<AntDesignOutlined />}
+                                                                />
+                                                            </Tooltip>
+                                                        </Avatar.Group>
+                                                        <Space wrap>
+                                                            <CheckCircleOutlineIcon style={{ color: 'green' }} /> <p style={{ color: 'green' }}>FINISHED!</p>
+                                                            <Button style={{ backgroundColor: '#48409e', color: 'white' }} className="custom-button">
+                                                                95
+                                                            </Button>
+                                                        </Space>
+                                                    </Card>
+                                                </Space>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {/* </div> */}
                     </TabPanel>
-                    <TabPanel value="2" >
+                    <TabPanel value="2">
                         <div style={{ display: 'flex' }}>
                             <p style={{ fontWeight: 'bold', marginRight: '10px' }}>Describe: </p>
                             <p> An e-commerce platform is an online marketplace where
