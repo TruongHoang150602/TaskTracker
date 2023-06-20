@@ -18,6 +18,8 @@ import Schedule from './pages/schedule/schedule';
 import Task from './pages/task/task';
 import Project from './pages/project/project';
 import ProjectDetail from './pages/projectdetail/ProjectDetail';
+import ProfilePage from './pages/profile/profile';
+import Settings from './pages/settings_p/notificaitons';
 
 // ----------------------------------------------------------------------
 
@@ -33,6 +35,8 @@ export default function Router() {
         { path: 'task', element: <Task /> },
         { path: 'project', element: <Project /> },
         { path: 'projectdetail', element: <ProjectDetail /> },
+        { path: 'profile', element: <ProfilePage /> },
+        { path: 'setting', element: <Settings /> },
       ],
     },
     {
