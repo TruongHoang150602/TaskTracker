@@ -9,7 +9,7 @@ import Iconify from '../../components/iconify';
 import account from '../../_mock/account';
 // sections
 import {
-  AppTasks,
+  // AppTasks,
   // AppNewsUpdate,
   // AppOrderTimeline,
   // AppCurrentVisits,
@@ -84,7 +84,7 @@ export default function DashboardAppPage() {
 
           
 
-          <Grid item xs={12} md={6} lg={8}  >
+          {/* <Grid item xs={12} md={6} lg={8}  >
             <AppTasks
               title="Tasks"
               list={[
@@ -95,7 +95,7 @@ export default function DashboardAppPage() {
                 { id: '5', label: 'Sprint Showcase' },
               ]}
             />
-          </Grid>
+          </Grid> */}
        
 
         <Grid item xs={12} md={6} lg={8}>

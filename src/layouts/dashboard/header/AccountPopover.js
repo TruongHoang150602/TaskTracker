@@ -127,14 +127,17 @@ const MENU_OPTIONS = [
   {
     label: 'Home',
     icon: 'eva:home-fill',
+    link: 'dashboard'
   },
   {
     label: 'Profile',
     icon: 'eva:person-fill',
+    link: 'profile'
   },
   {
     label: 'Settings',
     icon: 'eva:settings-2-fill',
+    link: 'setting'
   },
 ];
 
@@ -204,11 +207,9 @@ export default function AccountPopover() {
 
         <Stack sx={{ p: 1 }}>
           {MENU_OPTIONS.map((option) => (
-            <MenuItem key={option.label} onClick={handleClose}>
-              {option.label}
-            </MenuItem>
+            <MenuItem component={Link} to={option.link} onClick={handleClose}>{option.label}</MenuItem>
           ))}
-          <MenuItem component={Link} to="/profile" onClick={handleClose}>Profile</MenuItem>
+        
         </Stack>
 
         <Divider sx={{ borderStyle: 'dashed' }} />

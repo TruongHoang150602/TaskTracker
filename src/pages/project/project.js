@@ -4,7 +4,6 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Helmet } from 'react-helmet-async';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
@@ -75,9 +74,6 @@ export default function Project() {
 
   return (
     <div style={{ maxWidth: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
-      <Helmet>
-        <title> Project | TaskTracker+ </title>
-      </Helmet>
       <h2 style={{ margin: '0 0 30px 0', fontSize: '40px' }}>Project</h2>
       <div
         style={{

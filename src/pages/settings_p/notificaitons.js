@@ -85,7 +85,7 @@ import {
   Tab,
   Tabs,
 } from '@mui/material';
-import { Event, Description, FormatListBulleted, Email } from '@mui/icons-material';
+// import { Event, Description, FormatListBulleted, Email } from '@mui/icons-material';
 import Iconify from '../../components/iconify';
 
 export default function Settings() {

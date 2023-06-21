@@ -1,18 +1,14 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-
 import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-
+import {Box, Paper, Grid, Tabs, Tab, Typography,  Container} from '@mui/material'
 import data from './data';
 import TaskItem from './TaskItem';
 import TaskDetail from './TaskDetail';
 import style from "../../assets/css/task.module.css";
+import HeaderBreadcrumbs from "../../components/HeaderBreadcrumbs";
+import Page from "../../components/Page"
+import Filter from "../../components/Filter";
 
 const completedTask = data.filter((item) => item.status === 'completed');
 const newTask = data.filter((item) => item.status === 'newTask');
@@ -74,23 +70,26 @@ const Task = () => {
     setValue(newValue);
   };
   return (  
-    <Box className="" sx={{ flexGrow: 1 }}>
-      <Grid className="px-[24px] pt-[0px] " container spacing={2}>
-        <Grid item xs={12} className=''>
-          <Item className="text-[28px] py-[0px] w-[100%]">
-            <h4 className="text-left text-[black] w-[100%] bg-[white] font-[600] my-[0]">Task</h4>
-          </Item>
-        </Grid>
+    <Page title="Task">
+      <Container >
+        <HeaderBreadcrumbs
+          heading="Task"
+          links={[{ name: 'Dashboard', href: '' }, { name: 'Task' }]}
+          action={
+             
+             <Filter  />   
+          }
+        />
+        <Grid  container spacing={2}>
         <Grid  style={{paddingTop:"0px"}} item xs={12}>
-          <Box sx={{ width: '100%' }}>
-            <Box  className="bg-[white] w-[100%]" sx={{ borderBottom: 1, borderColor: 'divider' }}>
+           
               <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                 <Tab label="New Task" {...a11yProps(0)} />
                 <Tab label="In process" {...a11yProps(1)} />
                 <Tab label="Submited" {...a11yProps(2)} />
                 <Tab label="Completed" {...a11yProps(3)} />
               </Tabs>
-            </Box>
+           
             <TabPanel className={`h-[490px] overflow-y-scroll overflow-y-hidden ${style.nonescroll}`} value={value} index={0}>
               {newTask.map((item, index) => (
                 <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
@@ -111,14 +110,14 @@ const Task = () => {
                 <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
               ))}
             </TabPanel>
-          </Box>
         </Grid>
         <Grid item xs={12}>
           <TaskDetail data={item}  handleClose={handleClose} handleOpen={handleOpen} open={open} />
         </Grid>
       </Grid>
 
-    </Box>
+      </Container>
+    </Page>
   );
 };
 
