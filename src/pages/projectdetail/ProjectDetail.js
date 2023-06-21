@@ -6,20 +6,22 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { useState, useEffect } from 'react';
 import './styles.css';
-import { Card, Space, Avatar, Tooltip } from 'antd';
 import Muuri from 'muuri';
-import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
-import { AntDesignOutlined, UserOutlined } from '@ant-design/icons';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Stack, Button } from '@mui/material';
 import Iconify from '../../components/iconify';
 import Filter from '../../components/Filter';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 import Overview from './Overview';
 import { CardHigh, CardSub, CardCompleted, CardMedium, CardEasy } from './Card';
-
+import NewTask from './NewTask';
 
 export default function ProjectDetail() {
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    }
+    const handleClose = () => setOpen(false);
 
     const handleAddTask = () => {
         console.log("add task");
@@ -94,10 +96,11 @@ export default function ProjectDetail() {
                             <Button
                                 variant="contained"
                                 startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
-                                onClick={handleAddTask}
+                                onClick={handleOpen}
                             >
                                 New Task
                             </Button>
+
                         ) : (
                             <Button
                                 variant="contained"
@@ -120,6 +123,9 @@ export default function ProjectDetail() {
                             <Tab label="Overview" value="2" />
                         </TabList>
                     </Box>
+
+                    <NewTask data={null} handleClose={handleClose} handleOpen={handleOpen} open={open} />
+
                     <TabPanel value="1" style={{ padding: '0px', paddingTop: '20px' }}>
                         <div className="board">
                             <div className="board-column new">
