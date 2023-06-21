@@ -92,7 +92,7 @@ body {
     padding: 8px;
     background: #bfb9ff;
     height: calc(100vh - 90px);
-    overflow-y: auto;
+    overflow-y: scroll;
     border-radius: 0 0 5px 5px;
 }
 
@@ -141,12 +141,9 @@ body {
     }
 }
 
-/* .custom-card .ant-card-head-title {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  } */
+
 .custom-button {
+    margin-left: 70px;
     border-radius: 20px;
     opacity: 1;
 }
-
