@@ -1,16 +1,20 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import LinearProgress from '@mui/material/LinearProgress';
-import Box from '@mui/material/Box';
-import { TextField } from '@mui/material';
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+  LinearProgress,
+  Box,
+  TextField,
+  Stack,
+} from '@mui/material';
 
 import { useNavigate } from 'react-router-dom';
+import * as React from 'react';
 import { useState } from 'react';
 
+import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 import Iconify from '../../components/iconify/Iconify';
 import Filter from '../../components/Filter';
 import { project } from '../../_mock/project_data';
@@ -27,6 +31,31 @@ function LinearProgressWithLabel(props) {
     </Box>
   );
 }
+
+const filterOptions = [
+  {
+    label: 'Progress',
+    color: '#00AB55',
+  },
+  {
+    label: 'Quality',
+    color: '#FF4842',
+  },
+];
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 800,
+  height: 600,
+  bgcolor: 'background.paper',
+  // border: '0px solid #000',
+  // boxShadow: 1,
+  p: 24,
+  padding: '4px',
+};
 
 export default function Project() {
   const navigate = useNavigate();
@@ -74,29 +103,27 @@ export default function Project() {
 
   return (
     <div style={{ maxWidth: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
-      <h2 style={{ margin: '0 0 30px 0', fontSize: '40px' }}>Project</h2>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          width: '270px',
-          marginLeft: 'auto',
-          alignItems: 'center',
-          marginBottom: '30px',
-          fontSize: '14px',
-        }}
-      >
-        <Filter data={['task', 'team']} />
-        <Button
-          variant="contained"
-          startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
-          onClick={handleNewProjectClick}
-        >
-          New Project
-        </Button>
-      </div>
+      <HeaderBreadcrumbs
+        heading="Project"
+        links={[{ name: 'Dashboard', href: '' }, { name: 'Calendar' }]}
+        action={
+          <Stack direction="row" spacing={2}>
+            <Filter data={filterOptions} />
+
+            <Button
+              variant="contained"
+              startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
+              onClick={handleNewProjectClick}
+            >
+              New Project
+            </Button>
+          </Stack>
+        }
+      />
+
       {showCreateProject && (
-        <Card
+        <Box
+          // sx={style}
           style={{
             position: 'fixed',
             top: '55%',
@@ -108,6 +135,7 @@ export default function Project() {
             zIndex: 2,
             width: '400px',
             margin: '0 auto',
+            borderRadius: '14px',
           }}
         >
           <h3>New Project</h3>
@@ -140,7 +168,7 @@ export default function Project() {
               </Button>
             </div>
           </div>
-        </Card>
+        </Box>
       )}
       <div style={{ position: 'relative', zIndex: 1 }}>
         <div
