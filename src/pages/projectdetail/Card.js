@@ -27,7 +27,7 @@ export function CardHigh(title, deadline) {
                 size="small"
                 title={title}
                 style={{
-                    width: 'calc(100% - 20px)'
+                    width: 'calc(100% - 25px)'
                 }}
             >
                 <Avatar.Group>
@@ -100,7 +100,7 @@ export function CardSub(title, deadline) {
                 size="small"
                 title={title}
                 style={{
-                    width: 'calc(100% - 20px)'
+                    width: 'calc(100% - 25px)'
                 }}
             >
                 <Avatar.Group>
@@ -165,7 +165,7 @@ export function CardCompleted(title, point) {
                 size="small"
                 title={title}
                 style={{
-                    width: 'calc(100% - 20px)'
+                    width: 'calc(100% - 25px)'
                 }}
             >
                 <Avatar.Group>
@@ -230,7 +230,7 @@ export function CardMedium(title, deadline) {
                 size="small"
                 title={title}
                 style={{
-                    width: 'calc(100% - 20px)'
+                    width: 'calc(100% - 25px)'
                 }}
             >
                 <Avatar.Group>
@@ -295,7 +295,7 @@ export function CardEasy(title, deadline) {
                 size="small"
                 title={title}
                 style={{
-                    width: 'calc(100% - 20px)'
+                    width: 'calc(100% - 25px)'
                 }}
             >
                 <Avatar.Group>
