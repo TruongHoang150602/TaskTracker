@@ -139,7 +139,6 @@ export default function CalendarForm({event}) {
               select
               label="Repeat"
               defaultValue={initEvent.repeat}
-              // defaultValue={'None'}
               fullWidth
             >
               <MenuItem value={'None'}>None</MenuItem>
@@ -154,7 +153,6 @@ export default function CalendarForm({event}) {
               id="outlined-select-currency"
               select
               label="Alert"
-              // defaultValue={'None'}
               defaultValue={initEvent.alert}
               fullWidth
             >
