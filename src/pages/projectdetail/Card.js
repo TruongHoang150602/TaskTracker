@@ -24,10 +24,11 @@ export function CardHigh(title, deadline) {
     return (
         <Space className="board-item-content" direction="vertical" size={16}>
             <Card
+                onClick={handleOpen}
                 size="small"
                 title={title}
                 style={{
-                    width: 'calc(100% - 20px)'
+                    width: '100%'
                 }}
             >
                 <Avatar.Group>
@@ -74,11 +75,8 @@ export function CardHigh(title, deadline) {
                         High
                     </Button>
                 </Space>
-                <Grid item xs={12}>
-                    <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
-                </Grid>
-
             </Card>
+            <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
         </Space>
     )
 }
@@ -100,7 +98,7 @@ export function CardSub(title, deadline) {
                 size="small"
                 title={title}
                 style={{
-                    width: 'calc(100% - 20px)'
+                    width: '100%'
                 }}
             >
                 <Avatar.Group>
@@ -165,7 +163,7 @@ export function CardCompleted(title, point) {
                 size="small"
                 title={title}
                 style={{
-                    width: 'calc(100% - 20px)'
+                    width: '100%'
                 }}
             >
                 <Avatar.Group>
@@ -230,7 +228,7 @@ export function CardMedium(title, deadline) {
                 size="small"
                 title={title}
                 style={{
-                    width: 'calc(100% - 20px)'
+                    width: '100%'
                 }}
             >
                 <Avatar.Group>
@@ -295,7 +293,7 @@ export function CardEasy(title, deadline) {
                 size="small"
                 title={title}
                 style={{
-                    width: 'calc(100% - 20px)'
+                    width: '100%'
                 }}
             >
                 <Avatar.Group>

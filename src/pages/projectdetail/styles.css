@@ -108,7 +108,7 @@ body {
 }
 
 .board-item.muuri-item-releasing {
-    z-index: 9998;
+    z-index: 999;
 }
 
 .board-item.muuri-item-dragging {
@@ -140,7 +140,6 @@ body {
         display: none;
     }
 }
-
 
 .custom-button {
     margin-left: 70px;

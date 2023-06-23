@@ -12,10 +12,7 @@ import { DateTimePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
-import dayjs from 'dayjs';
-import SendIcon from '@mui/icons-material/Send';
 import css from "../../assets/css/task.module.css";
-import Comment from '../task/Comment';
 
 
 const style = {
@@ -42,7 +39,7 @@ const COLOR_OPTIONS = [
     '#7A0C2E', // theme.palette.error.darker
 ];
 
-export default function NewTask({ handleClose, handleOpen, open, data }) {
+export default function NewTask({ handleClose, handleOpen, open }) {
     const addMember = () => {
         console.log("Add member");
     }
@@ -217,10 +214,10 @@ export default function NewTask({ handleClose, handleOpen, open, data }) {
                             <div style={{
                                 display: 'flex', justifyContent: 'flex-end', gap: '5px'
                             }}>
-                                <Button variant="outlined" color="error">
+                                <Button variant="outlined" color="error" onClick={handleClose}>
                                     Cancel
                                 </Button>
-                                <Button variant="contained" size="medium">
+                                <Button variant="contained" size="medium" onClick={handleClose}>
                                     Add Task
                                 </Button>
                             </div>
