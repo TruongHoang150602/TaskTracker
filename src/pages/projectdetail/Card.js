@@ -1,11 +1,26 @@
+import * as React from 'react';
+import { useState } from 'react';
+
 import { Card, Space, Avatar, Tooltip } from 'antd';
 import { AntDesignOutlined, UserOutlined } from '@ant-design/icons';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Button } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import TaskDetail from '../task/TaskDetail';
 
 
 export function CardHigh(title, deadline) {
+    const [open, setOpen] = useState(false);
+    const [item, setItem] = useState({
+        name: ''
+    });
+    const handleOpen = () => {
+        item.name = title;
+        setOpen(true);
+        setItem(item);
+    }
+    const handleClose = () => setOpen(false);
     return (
         <Space className="board-item-content" direction="vertical" size={16}>
             <Card
@@ -55,16 +70,30 @@ export function CardHigh(title, deadline) {
                 </Avatar.Group>
                 <Space wrap>
                     <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>{deadline}</p>
-                    <Button style={{ backgroundColor: 'red', color: 'white' }} className="custom-button">
+                    <Button onClick={handleOpen} style={{ backgroundColor: 'red', color: 'white' }} className="custom-button">
                         High
                     </Button>
                 </Space>
+                <Grid item xs={12}>
+                    <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
+                </Grid>
+
             </Card>
         </Space>
     )
 }
 
 export function CardSub(title, deadline) {
+    const [open, setOpen] = useState(false);
+    const [item, setItem] = useState({
+        name: ''
+    });
+    const handleOpen = () => {
+        item.name = title;
+        setOpen(true);
+        setItem(item);
+    }
+    const handleClose = () => setOpen(false);
     return (
         <Space className="board-item-content" direction="vertical" size={16}>
             <Card
@@ -107,16 +136,29 @@ export function CardSub(title, deadline) {
                 </Avatar.Group>
                 <Space wrap>
                     <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>{deadline}</p>
-                    <Button style={{ backgroundColor: '#6f6f6f', color: 'white', borderRadius: '20px', marginLeft: '50px' }}>
+                    <Button onClick={handleOpen} style={{ backgroundColor: '#6f6f6f', color: 'white', borderRadius: '20px', marginLeft: '50px' }}>
                         Submitted
                     </Button>
                 </Space>
+                <Grid item xs={12}>
+                    <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
+                </Grid>
             </Card>
         </Space>
     )
 }
 
 export function CardCompleted(title, point) {
+    const [open, setOpen] = useState(false);
+    const [item, setItem] = useState({
+        name: ''
+    });
+    const handleOpen = () => {
+        item.name = title;
+        setOpen(true);
+        setItem(item);
+    }
+    const handleClose = () => setOpen(false);
     return (
         <Space className="board-item-content" direction="vertical" size={16}>
             <Card
@@ -159,16 +201,29 @@ export function CardCompleted(title, point) {
                 </Avatar.Group>
                 <Space wrap>
                     <CheckCircleOutlineIcon style={{ color: 'green' }} /> <p style={{ color: 'green' }}>FINISHED!</p>
-                    <Button style={{ backgroundColor: '#48409e', color: 'white', borderRadius: '20px', marginLeft: '90px' }}>
+                    <Button onClick={handleOpen} style={{ backgroundColor: '#48409e', color: 'white', borderRadius: '20px', marginLeft: '90px' }}>
                         {point}
                     </Button>
                 </Space>
+                <Grid item xs={12}>
+                    <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
+                </Grid>
             </Card>
         </Space>
     )
 }
 
 export function CardMedium(title, deadline) {
+    const [open, setOpen] = useState(false);
+    const [item, setItem] = useState({
+        name: ''
+    });
+    const handleOpen = () => {
+        item.name = title;
+        setOpen(true);
+        setItem(item);
+    }
+    const handleClose = () => setOpen(false);
     return (
         <Space className="board-item-content" direction="vertical" size={16}>
             <Card
@@ -211,16 +266,29 @@ export function CardMedium(title, deadline) {
                 </Avatar.Group>
                 <Space wrap>
                     <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>{deadline}</p>
-                    <Button style={{ backgroundColor: '#ffba53', color: 'white' }} className="custom-button">
+                    <Button onClick={handleOpen} style={{ backgroundColor: '#ffba53', color: 'white' }} className="custom-button">
                         Medium
                     </Button>
                 </Space>
+                <Grid item xs={12}>
+                    <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
+                </Grid>
             </Card>
         </Space>
     )
 }
 
 export function CardEasy(title, deadline) {
+    const [open, setOpen] = useState(false);
+    const [item, setItem] = useState({
+        name: ''
+    });
+    const handleOpen = () => {
+        item.name = title;
+        setOpen(true);
+        setItem(item);
+    }
+    const handleClose = () => setOpen(false);
     return (
         <Space className="board-item-content" direction="vertical" size={16}>
             <Card
@@ -263,10 +331,13 @@ export function CardEasy(title, deadline) {
                 </Avatar.Group>
                 <Space wrap>
                     <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>{deadline}</p>
-                    <Button style={{ backgroundColor: '#68da6c', color: 'white' }} className="custom-button">
+                    <Button onClick={handleOpen} style={{ backgroundColor: '#68da6c', color: 'white' }} className="custom-button">
                         Easy
                     </Button>
                 </Space>
+                <Grid item xs={12}>
+                    <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
+                </Grid>
             </Card>
         </Space>
     )
