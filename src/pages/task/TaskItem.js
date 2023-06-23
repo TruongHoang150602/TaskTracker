@@ -14,8 +14,8 @@ const colors = {
 const TaskItem = ({data, show}) => {
 
   return (
-    <Card onClick={show} className='ml-[80px] my-[20px]' sx={{ maxWidth: 700 }}>
-      <CardActionArea>
+    <Card style={{height: 180}} onClick={show} className=' my-[20px] mx-[20px]' sx={{ width: 320  }}>
+      <CardActionArea style={{height: 180}}>
         <CardContent >
           <Typography  gutterBottom variant="h5" component="div">
             {data.name}
@@ -24,8 +24,8 @@ const TaskItem = ({data, show}) => {
             {data.project}
           </Typography>
           <Typography className='flex justify-between items-center' variant="body2" color="text.secondary">
-            <div className='leading-[30px]'><AccessTimeIcon className='text-[16px]'/> {data.date}</div>
-            <div className={`w-[80px] bg-[${colors[data.quanlity]}] h-[30px] text-center leading-[30px] rounded-[15px]`}>{data.quanlity}</div>
+            <div className='flex items-center leading-[30px] text-[#FF7979]'><AccessTimeIcon className='text-[16px] leading-[30px] text-[#FF7979]'/> <p className='m-[0px] leading-[30px]'>{data.date}</p></div>
+            <div className={`w-[80px] bg-[#FF7979] bg-[${colors[data.quality]}] h-[30px] text-center leading-[30px] rounded-[15px]`}>{data.quality}</div>
           </Typography>
         </CardContent>
       </CardActionArea>

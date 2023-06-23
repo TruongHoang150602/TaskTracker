@@ -28,7 +28,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography className='flex flex-wrap'>{children}</Typography>
         </Box>
       )}
     </div>
@@ -90,22 +90,22 @@ const Task = () => {
                 <Tab label="Completed" {...a11yProps(3)} />
               </Tabs>
            
-            <TabPanel className={`h-[490px] overflow-y-scroll overflow-y-hidden ${style.nonescroll}`} value={value} index={0}>
-              {newTask.map((item, index) => (
-                <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
-              ))}
+            <TabPanel className={`flex w-[100%]`} value={value} index={0}>
+                {newTask.map((item, index) => (
+                  <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
+                ))}
             </TabPanel>
-            <TabPanel value={value} index={1} className="h-[490px]">
+            <TabPanel value={value} index={1} className="">
               {inProcessTask.map((item, index) => (
                 <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
               ))}
             </TabPanel>
-            <TabPanel className="h-[490px]" value={value} index={2}>
+            <TabPanel className="" value={value} index={2}>
               {submitedTask.map((item, index) => (
                 <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
               ))}
             </TabPanel>
-            <TabPanel className="h-[490px]" value={value} index={3}>
+            <TabPanel className="" value={value} index={3}>
               {completedTask.map((item, index) => (
                 <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
               ))}

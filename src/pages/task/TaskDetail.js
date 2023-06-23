@@ -10,7 +10,9 @@ import { Grid, TextField, ToggleButton, Tooltip } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import AttachmentIcon from '@mui/icons-material/Attachment';
 import dayjs from 'dayjs';
+import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import css from "../../assets/css/task.module.css";
@@ -79,6 +81,20 @@ export default function TaskDetail({ handleClose, handleOpen, open, data }) {
             </Typography>
             <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
               <h6 className="text-[#6F6F6F] mt-[0px] mb-[10px] text-[16px]">Asignee</h6>
+              <div className='flex'>
+                <img className='mx-[5px] w-[30px] h-[30px] bg-[red] rounded-[15px]' src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1687536908~exp=1687537508~hmac=1d8eabbd2975fdc967567e1aa85e8c7187fe7a2735da839427935bea25d5d08a' alt=""/>
+                <img className='w-[30px] mx-[5px] h-[30px] bg-[red] rounded-[15px]' src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1687536908~exp=1687537508~hmac=1d8eabbd2975fdc967567e1aa85e8c7187fe7a2735da839427935bea25d5d08a' alt=""/>
+                <img className='w-[30px] mx-[5px] h-[30px] bg-[red] rounded-[15px]' src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1687536908~exp=1687537508~hmac=1d8eabbd2975fdc967567e1aa85e8c7187fe7a2735da839427935bea25d5d08a' alt=""/>
+                <img className='w-[30px] mx-[5px] h-[30px] bg-[red] rounded-[15px]' src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1687536908~exp=1687537508~hmac=1d8eabbd2975fdc967567e1aa85e8c7187fe7a2735da839427935bea25d5d08a' alt=""/>
+                <img className='w-[30px] mx-[5px] h-[30px] bg-[red] rounded-[15px]' src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1687536908~exp=1687537508~hmac=1d8eabbd2975fdc967567e1aa85e8c7187fe7a2735da839427935bea25d5d08a' alt=""/>
+              </div>
+            </Typography>
+            <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
+              <h6 className="text-[#6F6F6F] mt-[0px] mb-[10px] text-[16px]">Attachment</h6>
+              <div className='flex pb-[40px]'>
+                <AttachmentIcon className='mr-[20px]'/>
+                <CreateNewFolderIcon/>
+              </div>
             </Typography>
             <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
               <Grid className="" container spacing={2}>
@@ -115,20 +131,6 @@ export default function TaskDetail({ handleClose, handleOpen, open, data }) {
                   />
                 </Grid>
               </Grid>
-            </Typography>
-            <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
-              <Stack direction="row" spacing={0.5}>
-                {COLOR_OPTIONS.map((color) => (
-                  <Tooltip key={color} title={color}>
-                    <ToggleButton
-                      value={color}
-                      // selected={color === view}
-                      // onChange={() => onChangeView(viewOption.value)}
-                      sx={{ width: 32, height: 32, padding: 0, border: 0, borderRadius: '50%', background: color }}
-                    />
-                  </Tooltip>
-                ))}
-              </Stack>
             </Typography>
             <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
               <h2>Comment</h2>
