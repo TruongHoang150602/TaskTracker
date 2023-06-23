@@ -116,6 +116,7 @@ export default function Calendar() {
   };
 
   const handleAddEvent = () => {
+    setSelectedEvent(null);
     setOpen(true);
   };
 

@@ -46,26 +46,26 @@ const COLOR_OPTIONS = [
 CalendarForm.propTypes = {
   event: PropTypes.object,
 };
-
 const defaultStartDate = new Date();
 const defaultEndDate = new Date(defaultStartDate.getTime() + 60 * 60 * 1000);
 
+const getInitialValues = (event) => {
+  const _event = {
+    title: event ? event.title : 'Please enter the task title!',
+    description: event ? event.description : 'Add a description',
+    color: event ? event.color : '#00AB55',
+    allDay: event ? event.allDay : false,
+    start:  event ? event.start : defaultStartDate,
+    end: event ? event.end : defaultEndDate,
+    repeat: event ? event.repeat : 'None',
+    alert: event ? event.alert : 'None',
+  };
+  return _event;
+
+};
 export default function CalendarForm({event}) {
 
-  const [initEvent, setInitEvent] = React.useState({
-    title: 'Please enter the task title!',
-    allday: false,
-    start: defaultStartDate,
-    end: defaultEndDate,
-    repeat: 'None',
-    alert: 'None',
-    description: 'Add a description'
-  })
-
-  // console.log(event)
-  console.log(initEvent)
-
-  if(event != null) setInitEvent(event);
+  const initEvent = getInitialValues(event);
 
   const [eventColor, setEventColor] = React.useState('#00AB55');
 
@@ -185,7 +185,6 @@ export default function CalendarForm({event}) {
                   sx={{ width: 32, height: 32, padding: 0, border: 0 , borderRadius: '50%' , background: option.color}}
                   >
                   {option.color === eventColor && <Iconify sx = {{color: '#000'}} icon={'teenyicons:tick-small-outline'}/>}
-                  
                 </IconButton>
               </Tooltip>
             ))}
