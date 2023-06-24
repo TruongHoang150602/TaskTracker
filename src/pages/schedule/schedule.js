@@ -4,10 +4,10 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import timelinePlugin from '@fullcalendar/timeline';
 import interactionPlugin from '@fullcalendar/interaction';
-//
-import { useState, useRef, useEffect } from 'react';
+
+import { Fragment,useState, useRef, useEffect } from 'react';
 // @mui
-import { Card, Button, Container, DialogTitle, DialogActions, Stack } from '@mui/material';
+import { Card,IconButton, Button, Container, DialogTitle, DialogActions, Stack , Snackbar, Alert} from '@mui/material';
 import useResponsive from '../../hooks/useResponsive';
 
 // components
@@ -57,7 +57,15 @@ const COLOR_OPTIONS = [
 
 export default function Calendar() {
 
-  const [open, setOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+
+  const [openAlert, setOpenAlert] = useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'right',
+  });
+
+  const { vertical, horizontal, open } = openAlert;
 
   const isDesktop = useResponsive('up', 'sm');
 
@@ -117,16 +125,21 @@ export default function Calendar() {
 
   const handleAddEvent = () => {
     setSelectedEvent(null);
-    setOpen(true);
+    setOpenModal(true);
   };
 
   const handleCloseModal = () => {
-    setOpen(false);
+    setOpenAlert({ ...openAlert, open: true });
+    setOpenModal(false);
+  };
+
+  const handleCloseAlert = () => {
+    setOpenAlert({ ...openAlert, open: false });
   };
 
   const handleSelectEvent = (info) => {
     setSelectedEvent(events[info.event.id]);
-    setOpen(true);
+    setOpenModal(true);
   };
     
 
@@ -189,7 +202,7 @@ export default function Calendar() {
         </Card>
 
           {/* Add event model */}
-        <DialogAnimate open={open} onClose={handleCloseModal} >
+        <DialogAnimate open={openModal} onClose={handleCloseModal} >
           <DialogTitle  variant='h3'  sx = {{  fontStyle: 'normal', color: '#48409E',}}>
             {selectedEvent == null && 'Event detail' ||'New event'}
           </DialogTitle>
@@ -199,7 +212,31 @@ export default function Calendar() {
             <Button variant="outlined" onClick={handleCloseModal}>Save change</Button>
           </DialogActions>
         </DialogAnimate>
-
+        <Snackbar 
+          anchorOrigin={{ vertical, horizontal }}
+          open={open} 
+          autoHideDuration={6000} 
+          onClose={handleCloseAlert}
+          key={vertical + horizontal}
+          action={
+            <>
+              <Button color="secondary" size="small" >
+                UNDO
+              </Button>
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                sx={{ p: 0.5 }}
+              >
+              <Iconify icon = 'eva:undo-fill' />
+              </IconButton>
+            </>
+          }
+        >
+        <Alert onClose={handleCloseAlert} severity="success" sx={{ width: '100%' }}>
+          Thao tác thành công
+        </Alert>
+      </Snackbar>
       </Container>
     </Page>
   );

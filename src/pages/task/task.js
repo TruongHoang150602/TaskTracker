@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import {Box, Paper, Grid, Tabs, Tab, Typography,  Container} from '@mui/material'
+import {Box, Paper, Grid, Tabs, Tab, Typography,  Container, Badge} from '@mui/material'
 import data from './data';
 import TaskItem from './TaskItem';
 import TaskDetail from './TaskDetail';
@@ -84,10 +84,21 @@ const Task = () => {
         <Grid  style={{paddingTop:"0px"}} item xs={12}>
            
               <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="New Task" {...a11yProps(0)} />
+                <Badge badgeContent={0} color="secondary">  
+                 <Tab label="New Task" {...a11yProps(0)} />  
+                </Badge>
+                <Badge badgeContent={0} color="secondary">  
                 <Tab label="In process" {...a11yProps(1)} />
+                </Badge>
+                <Badge badgeContent={2} color="secondary">  
                 <Tab label="Submited" {...a11yProps(2)} />
+                </Badge>
+                <Badge badgeContent={0} color="secondary">  
                 <Tab label="Completed" {...a11yProps(3)} />
+                </Badge>
+               
+                
+                
               </Tabs>
            
             <TabPanel className={`h-[490px] overflow-y-scroll overflow-y-hidden ${style.nonescroll}`} value={value} index={0}>
