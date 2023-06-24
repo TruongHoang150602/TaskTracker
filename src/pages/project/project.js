@@ -201,7 +201,11 @@ export default function Project() {
           }}
         >
           {projects.map((p, index) => (
-            <Card sx={{ width: 300, marginBottom: '20px' }} key={index}>
+            <Card
+              sx={{ cursor: 'pointer', width: 300, marginBottom: '20px' }}
+              key={index}
+              onClick={() => navigate('/projectdetail')}
+            >
               <CardContent style={{ paddingBottom: '0' }}>
                 <Typography gutterBottom variant="h5" component="div">
                   {p.name}
@@ -216,7 +220,7 @@ export default function Project() {
                 <LinearProgressWithLabel value={p.quality} />
               </CardContent>
               <CardActions style={{ margin: '10px 24px 24px 24px', padding: '0' }}>
-                <Button onClick={() => navigate('/projectdetail')} variant="contained" size="small">
+                <Button variant="contained" size="small">
                   {p.workspace}
                 </Button>
               </CardActions>
