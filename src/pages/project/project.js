@@ -8,7 +8,13 @@ import {
   Box,
   TextField,
   Stack,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  Alert,
 } from '@mui/material';
+import { message } from 'antd';
 
 import { useNavigate } from 'react-router-dom';
 import * as React from 'react';
@@ -43,25 +49,14 @@ const filterOptions = [
   },
 ];
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 800,
-  height: 600,
-  bgcolor: 'background.paper',
-  // border: '0px solid #000',
-  // boxShadow: 1,
-  p: 24,
-  padding: '4px',
-};
+const workspaceOptions = ['School', 'Home', 'Company'];
 
 export default function Project() {
   const navigate = useNavigate();
   const [showCreateProject, setShowCreateProject] = useState(false);
   const [projectName, setProjectName] = useState('');
   const [projectDescription, setProjectDescription] = useState('');
+  const [projectWorkspace, setProjectWorkspace] = useState('');
   const [projects, setProjects] = useState(project);
 
   const handleNewProjectClick = () => {
@@ -76,6 +71,10 @@ export default function Project() {
     setProjectDescription(event.target.value);
   };
 
+  const handleProjectWorkspaceChange = (event) => {
+    setProjectWorkspace(event.target.value);
+  };
+
   const handleCancelClick = () => {
     setShowCreateProject(false);
   };
@@ -83,6 +82,7 @@ export default function Project() {
   const handleCreateProjectClick = () => {
     const newProject = {
       name: projectName,
+      workspace: projectWorkspace,
       progress: 0, // Set initial progress value
       quality: 0, // Set initial quality value
     };
@@ -93,19 +93,16 @@ export default function Project() {
     // Reset the form fields
     setProjectName('');
     setProjectDescription('');
+    setProjectWorkspace('');
 
     // Close the create project popup
     setShowCreateProject(false);
-
-    // After successfully creating the project, navigate to the project detail page
-    // navigate('/projectdetail');
   };
 
   return (
     <div style={{ maxWidth: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
       <HeaderBreadcrumbs
         heading="Project"
-        links={[{ name: 'Dashboard', href: '' }, { name: 'Calendar' }]}
         action={
           <Stack direction="row" spacing={2}>
             <Filter data={filterOptions} />
@@ -123,7 +120,6 @@ export default function Project() {
 
       {showCreateProject && (
         <Box
-          // sx={style}
           style={{
             position: 'fixed',
             top: '55%',
@@ -148,7 +144,33 @@ export default function Project() {
               value={projectName}
               onChange={handleProjectNameChange}
             />
-            <TextField style={{ marginBottom: '10px' }} required id="projectMember" label="Member" />
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <FormControl style={{ width: '200px' }}>
+                <InputLabel id="demo-simple-select-helper-label">Workspace</InputLabel>
+                <Select
+                  style={{ marginBottom: '10px' }}
+                  labelId="demo-simple-select-helper-label"
+                  id="demo-simple-select-helper"
+                  label="Workspace"
+                  value={projectWorkspace}
+                  onChange={handleProjectWorkspaceChange}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  {workspaceOptions.map((option) => (
+                    <MenuItem value={option}>{option}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+
+              <TextField
+                placeholder="Or type here..."
+                style={{ marginLeft: '10px', marginBottom: '10px' }}
+                value={projectWorkspace}
+                onChange={handleProjectWorkspaceChange}
+              />
+            </div>
             <TextField
               style={{ marginBottom: '10px' }}
               required
@@ -195,7 +217,7 @@ export default function Project() {
               </CardContent>
               <CardActions style={{ margin: '10px 24px 24px 24px', padding: '0' }}>
                 <Button onClick={() => navigate('/projectdetail')} variant="contained" size="small">
-                  View Details
+                  {p.workspace}
                 </Button>
               </CardActions>
             </Card>

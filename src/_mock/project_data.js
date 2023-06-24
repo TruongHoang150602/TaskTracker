@@ -1,16 +1,19 @@
 export const project = [
   {
     name: 'E-Commerce Website',
+    workspace: 'School',
     progress: 50,
     quality: 70,
   },
   {
     name: 'Messaging Application',
+    workspace: 'School',
     progress: 70,
     quality: 80,
   },
   {
     name: 'AI Chat Application',
+    workspace: 'School',
     progress: 30,
     quality: 90,
   },
