@@ -17,11 +17,11 @@ import NewTask from './NewTask';
 
 export default function ProjectDetail() {
 
-    const [open, setOpen] = useState(false);
+    const [openNewTask, setOpenNewTask] = useState(false);
     const handleOpen = () => {
-        setOpen(true);
+        setOpenNewTask(true);
     }
-    const handleClose = () => setOpen(false);
+    const handleClose = () => setOpenNewTask(false);
 
     const handleAddTask = () => {
         console.log("add task");
@@ -124,7 +124,7 @@ export default function ProjectDetail() {
                         </TabList>
                     </Box>
 
-                    <NewTask data={null} handleClose={handleClose} handleOpen={handleOpen} open={open} />
+                    <NewTask handleClose={handleClose} handleOpen={handleOpen} open={openNewTask} />
 
                     <TabPanel value="1" style={{ padding: '0px', paddingTop: '20px' }}>
                         <div className="board">
