@@ -127,6 +127,7 @@ export default function ProjectDetail() {
                     <NewTask handleClose={handleClose} handleOpen={handleOpen} open={openNewTask} />
 
                     <TabPanel value="1" style={{ padding: '0px', paddingTop: '20px' }}>
+                        <div className="drag-container"> <p>abc</p> </div>
                         <div className="board">
                             <div className="board-column new">
                                 <div className="board-column-container ">
@@ -134,10 +135,15 @@ export default function ProjectDetail() {
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
                                             <div className="board-item">
-                                                {CardHigh("Shopping cart interface code", "June 22, 2023")}
+                                                <div className='board-item-content'>
+                                                    {CardHigh("Shopping cart interface code", "June 22, 2023")}
+                                                </div>
                                             </div>
                                             <div className="board-item">
-                                                {CardMedium("Write API for shopping cart interface", "June 22, 2023")}
+                                                <div className='board-item-content'>
+
+                                                    {CardMedium("Write API for shopping cart interface", "June 22, 2023")}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -150,13 +156,22 @@ export default function ProjectDetail() {
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
                                             <div className="board-item">
-                                                {CardHigh("Code for login and registration interface", "June 15, 2023")}
+                                                <div className='board-item-content'>
+
+                                                    {CardHigh("Code for login, registration interface", "June 15, 2023")}
+                                                </div>
                                             </div>
                                             <div className="board-item">
-                                                {CardEasy("Write API for login and registration", "June 16, 2023")}
+                                                <div className='board-item-content'>
+
+                                                    {CardEasy("Write API for login and registration", "June 16, 2023")}
+                                                </div>
                                             </div>
                                             <div className="board-item">
-                                                {CardHigh("Home page interface code", "June 18, 2023")}
+                                                <div className='board-item-content'>
+
+                                                    {CardHigh("Home page interface code", "June 18, 2023")}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -169,10 +184,16 @@ export default function ProjectDetail() {
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
                                             <div className="board-item">
-                                                {CardSub("Database design", "June 01, 2023")}
+                                                <div className='board-item-content'>
+
+                                                    {CardSub("Database design", "June 01, 2023")}
+                                                </div>
                                             </div>
                                             <div className="board-item">
-                                                {CardSub("Add data to the database", "June 01, 2023")}
+                                                <div className='board-item-content'>
+
+                                                    {CardSub("Add data to the database", "June 01, 2023")}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -184,13 +205,22 @@ export default function ProjectDetail() {
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
                                             <div className="board-item">
-                                                {CardCompleted("Write a specification for the project", "100")}
+                                                <div className='board-item-content'>
+
+                                                    {CardCompleted("Write a specification for the project", "100")}
+                                                </div>
                                             </div>
                                             <div className="board-item">
-                                                {CardCompleted("Design the interface of all websites", "90")}
+                                                <div className='board-item-content'>
+
+                                                    {CardCompleted("Design the interface of all websites", "90")}
+                                                </div>
                                             </div>
                                             <div className="board-item">
-                                                {CardCompleted("API design", "95")}
+                                                <div className='board-item-content'>
+
+                                                    {CardCompleted("API design", "95")}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

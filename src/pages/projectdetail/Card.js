@@ -98,7 +98,15 @@ export function CardSub(title, deadline) {
                 size="small"
                 title={title}
                 style={{
-                    width: '100%'
+                    width: '100%',
+                    position: 'relative',
+                    padding: '2px',
+                    background: '#fff',
+                    borderRadius: '10px',
+                    fontSize: '14px',
+                    cursor: 'pointer',
+                    boxShadow: '0px 1px 3px 0 rgba(0, 0, 0, 0.2)',
+                    WebkitBoxShadow: '0px 1px 3px 0 rgba(0, 0, 0, 0.2)',
                 }}
             >
                 <Avatar.Group>
@@ -134,7 +142,7 @@ export function CardSub(title, deadline) {
                 </Avatar.Group>
                 <Space wrap>
                     <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>{deadline}</p>
-                    <Button onClick={handleOpen} style={{ backgroundColor: '#6f6f6f', color: 'white', borderRadius: '20px', marginLeft: '50px' }}>
+                    <Button onClick={handleOpen} style={{ backgroundColor: '#6f6f6f', color: 'white', borderRadius: '20px', marginLeft: '10px' }}>
                         Submitted
                     </Button>
                 </Space>
@@ -199,7 +207,7 @@ export function CardCompleted(title, point) {
                 </Avatar.Group>
                 <Space wrap>
                     <CheckCircleOutlineIcon style={{ color: 'green' }} /> <p style={{ color: 'green' }}>FINISHED!</p>
-                    <Button onClick={handleOpen} style={{ backgroundColor: '#48409e', color: 'white', borderRadius: '20px', marginLeft: '90px' }}>
+                    <Button onClick={handleOpen} style={{ backgroundColor: '#48409e', color: 'white', borderRadius: '20px', marginLeft: '40px' }}>
                         {point}
                     </Button>
                 </Space>
