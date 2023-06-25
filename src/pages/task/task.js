@@ -48,6 +48,15 @@ function a11yProps(index) {
   };
 }
 
+
+const map = {
+  "submited": 10,
+  "completed": 20,
+  "inProcess": 30,
+  "newTask": 40,
+}
+
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -60,7 +69,29 @@ const Task = () => {
 
   const [open, setOpen] = React.useState(false);
   const [item, setItem] = React.useState(null);
+
+
+  const [age1, setAge1] = React.useState("");
+  const [open1, setOpen1] = React.useState(false);
+
+  const handleChange1 = (event) => {
+    console.log(event.target.value)
+    setAge1(event.target.value);
+  };
+
+  const handleClose1 = () => {
+    setOpen1(false);
+  };
+
+  const handleOpen1 = () => {
+    setOpen1(true);
+  };
+
+
   const handleOpen = (item) =>{
+    // console.log(item)
+    console.log(map[item.status]);
+    setAge1(map[item.status]);
     setOpen(true);
     setItem(item);
   } 
@@ -112,7 +143,7 @@ const Task = () => {
             </TabPanel>
         </Grid>
         <Grid item xs={12}>
-          <TaskDetail data={item}  handleClose={handleClose} handleOpen={handleOpen} open={open} />
+          <TaskDetail data={item} age1={age1} handleClose={handleClose} handleOpen={handleOpen} open={open} setAge1={setAge1} open1={open1} setOpen1={setOpen1} handleChange1={handleChange1} handleClose1={handleClose1} handleOpen1={handleOpen1}/>
         </Grid>
       </Grid>
 
