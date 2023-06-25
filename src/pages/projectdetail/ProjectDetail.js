@@ -13,8 +13,28 @@ import Iconify from '../../components/iconify';
 import Filter from '../../components/Filter';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 import Overview from './Overview';
-import { CardHigh, CardSub, CardCompleted, CardMedium, CardEasy } from './Card';
+import { CardTask, CardSub, CardCompleted } from './TaskCard';
 import NewTask from './NewTask';
+import { projectDetail } from '../../_mock/project_data';
+
+console.log(projectDetail[0].task);
+const newTask = projectDetail[0].task.filter((option) => (
+    option.status === "New Task"
+))
+
+const inProcess = projectDetail[0].task.filter((option) => (
+    option.status === "In Progress"
+))
+
+const submitted = projectDetail[0].task.filter((option) => (
+    option.status === "Submitted"
+))
+
+const finished = projectDetail[0].task.filter((option) => (
+    option.status === "Completed"
+))
+
+console.log(newTask,inProcess,submitted, finished)
 
 export default function ProjectDetail() {
 
@@ -144,12 +164,12 @@ export default function ProjectDetail() {
                                     <div className="board-column-header">New Task</div>
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
-                                            <div className="board-item">
-                                                {CardHigh("Shopping cart interface code", "June 22, 2023")}
-                                            </div>
-                                            <div className="board-item">
-                                                {CardMedium("Write API for shopping cart interface", "June 22, 2023")}
-                                            </div>
+                                            {newTask.map((option) => (
+                                                <div className="board-item">
+                                                    {CardTask(option.name, option.assignee, option.priority, option.end)}
+                                                </div>
+                                            ))}
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -160,15 +180,12 @@ export default function ProjectDetail() {
                                     <div className="board-column-header">In Progress</div>
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
-                                            <div className="board-item">
-                                                {CardHigh("Code for login, registration interface", "June 15, 2023")}
-                                            </div>
-                                            <div className="board-item">
-                                                {CardEasy("Write API for login and registration", "June 16, 2023")}
-                                            </div>
-                                            <div className="board-item">
-                                                {CardHigh("Home page interface code", "June 18, 2023")}
-                                            </div>
+                    
+                                        {inProcess.map((option) => (
+                                                <div className="board-item">
+                                                    {CardTask(option.name, option.assignee, option.priority, option.end)}
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
@@ -179,12 +196,12 @@ export default function ProjectDetail() {
                                     <div className="board-column-header">Submitted</div>
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
-                                            <div className="board-item">
-                                                {CardSub("Database design", "June 01, 2023")}
-                                            </div>
-                                            <div className="board-item">
-                                                {CardSub("Add data to the database", "June 01, 2023")}
-                                            </div>
+        
+                                            {submitted.map((option) => (
+                                                <div className="board-item">
+                                                    {CardSub(option.name, option.end)}
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
@@ -194,15 +211,11 @@ export default function ProjectDetail() {
                                     <div className="board-column-header">Completed</div>
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
-                                            <div className="board-item">
-                                                {CardCompleted("Write a specification for the project", "100")}
-                                            </div>
-                                            <div className="board-item">
-                                                {CardCompleted("Design the interface of all websites", "90")}
-                                            </div>
-                                            <div className="board-item">
-                                                {CardCompleted("API design", "95")}
-                                            </div>
+                                            {finished.map((option) => (
+                                                <div className="board-item">
+                                                    {CardCompleted(option.name, 80)}
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
