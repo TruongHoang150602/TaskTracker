@@ -1,3 +1,28 @@
+function randomTimeRange() {
+  const currentDate = new Date(); // Lấy ngày hiện tại
+
+  // Sinh ngẫu nhiên một số từ 0 đến 6 để đại diện cho các ngày trong tuần (0: Chủ nhật, 1: Thứ 2, 2: Thứ 3, ...)
+  const randomDayOfWeek = Math.floor(Math.random() * 7);
+
+  // Tính toán ngày bắt đầu và kết thúc dựa trên ngày hiện tại và randomDayOfWeek
+  const startDay = currentDate.getDate() + randomDayOfWeek;
+  const endDay = startDay;
+
+  // Lấy thời gian bắt đầu trong ngày
+  const startHour = Math.floor(Math.random() * 24); // Giờ bắt đầu (0-23)
+  const startMinute = Math.floor(Math.random() * 60); // Phút bắt đầu (0-59)
+  const startTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), startDay, startHour, startMinute);
+
+  // Lấy thời gian kết thúc trong ngày
+  const endHour = startHour + Math.floor(Math.random() * (24 - startHour)); // Giờ kết thúc lớn hơn hoặc bằng giờ bắt đầu
+  const endMinute = Math.floor(Math.random() * 60); // Phút kết thúc (0-59)
+  const endTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), endDay, endHour, endMinute);
+
+  return {
+    start: startTime,
+    end: endTime
+  };
+}
 export const project = [
   {
     name: 'E-Commerce Website',
@@ -51,12 +76,14 @@ export const projectDetail = [
         status: 'Completed',
         detail: 'Rename the files and folders. Improve code structure and organization.',
         assignee: ['Lê Duy Quý', 'Tống Văn Phúc'],
+        point: 80,
         comment: [
           {
             name: 'Hoàng Vân Trường',
             detail: 'Clean code!!!',
           },
         ],
+        ... randomTimeRange()
       },
       {
         name: 'Database design',
@@ -64,12 +91,15 @@ export const projectDetail = [
         status: 'Submitted',
         detail: 'Design the database schema. Optimize data storage and retrieval.',
         assignee: ['Hoàng Vân Trường', 'Trần Khắc Tuân'],
+        start: "",
+        end: "",
         comment: [
           {
             name: 'Nguyễn Trọng Quang',
             detail: 'Great work! Looking forward to working with this design.',
           },
         ],
+        ... randomTimeRange()
       },
       {
         name: 'Payment integration',
@@ -78,6 +108,7 @@ export const projectDetail = [
         detail: 'Integrate payment gateway for secure and seamless transactions. Handle different payment methods.',
         assignee: ['Tống Văn Phúc'],
         comment: [],
+        ... randomTimeRange()
       },
       {
         name: 'Product listing page',
@@ -87,6 +118,7 @@ export const projectDetail = [
           'Create a page to display products with proper filtering and sorting functionality. Enhance user experience.',
         assignee: ['Nguyễn Trọng Quang'],
         comment: [],
+        ... randomTimeRange()
       },
       {
         name: 'User authentication',
@@ -95,6 +127,7 @@ export const projectDetail = [
         detail: 'Implement user registration and login system. Manage user roles and permissions.',
         assignee: ['Trần Khắc Tuân'],
         comment: [],
+        ... randomTimeRange()
       },
       {
         name: 'Shopping cart functionality',
@@ -108,6 +141,7 @@ export const projectDetail = [
             detail: 'The shopping cart is working perfectly!',
           },
         ],
+        ... randomTimeRange()
       },
       {
         name: 'Order management system',
@@ -121,6 +155,7 @@ export const projectDetail = [
             detail: 'I think there is something wrong, check my note in the code',
           },
         ],
+        ... randomTimeRange()
       },
       {
         name: 'Inventory management',
@@ -134,6 +169,7 @@ export const projectDetail = [
             detail: 'If you need help, contact me',
           },
         ],
+        ... randomTimeRange()
       },
       {
         name: 'Search functionality',
@@ -151,6 +187,7 @@ export const projectDetail = [
             detail: 'Nice job on the search implementation.',
           },
         ],
+        ... randomTimeRange()
       },
       {
         name: 'Responsive design',
@@ -159,6 +196,7 @@ export const projectDetail = [
         detail: 'Ensure the website works well on different devices and screen sizes. Optimize for mobile and tablets.',
         assignee: ['Trần Khắc Tuân'],
         comment: [],
+        ... randomTimeRange()
       },
     ],
   },
