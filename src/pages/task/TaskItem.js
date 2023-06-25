@@ -40,7 +40,7 @@ const TaskItem = ({ data, show }) => {
           ) : (
             <Typography className="flex justify-between items-center" variant="body2" color="text.secondary">
               <div className="flex items-center leading-[30px] text-[#FF7979]">
-                <FileUploadOutlinedIcon className="text-[16px] leading-[30px] text-[#FF7979]" />{' '}
+                <FileUploadOutlinedIcon className="text-[24px] leading-[30px] text-[#FF7979]" />{' '}
                 <p className="m-[0px] leading-[30px]">{data.date}</p>
               </div>
               <div
