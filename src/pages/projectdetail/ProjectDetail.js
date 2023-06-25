@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import './styles.css';
 import Muuri from 'muuri';
 import { Stack, Button } from '@mui/material';
+import Page from '../../components/Page';
 import Iconify from '../../components/iconify';
 import Filter from '../../components/Filter';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
@@ -85,7 +86,7 @@ export default function ProjectDetail() {
     };
 
     return (
-        <div>
+        <Page>
             <HeaderBreadcrumbs
                 heading="E-Commerce Website"
                 action={
@@ -233,6 +234,6 @@ export default function ProjectDetail() {
                     </TabPanel>
                 </TabContext>
             </Box>
-        </div>
+        </Page>
     );
 }

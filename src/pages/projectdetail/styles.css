@@ -91,14 +91,16 @@ body {
     position: relative;
     padding: 8px;
     background: #bfb9ff;
-    height: calc(100vh - 90px);
-    overflow-y: scroll;
+    min-height: calc(100vh - 90px);
+    height: auto;
+    /* overflow-y: scroll; */
+    overflow: hidden;
     border-radius: 0 0 5px 5px;
 }
 
 .board-column-content {
     position: relative;
-    min-height: 100%;
+    
 }
 
 .board-item {

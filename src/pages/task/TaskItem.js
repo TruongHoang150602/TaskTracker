@@ -12,7 +12,7 @@ const colors = {
 }
 
 const TaskItem = ({data, show}) => {
-
+  
   return (
     <Card style={{height: 180}} onClick={show} className=' my-[20px] mx-[20px]' sx={{ width: 320  }}>
       <CardActionArea style={{height: 180}}>
