@@ -92,7 +92,7 @@ body {
     padding: 8px;
     background: #bfb9ff;
     height: calc(100vh - 90px);
-    overflow-y: scroll;
+    overflow-y: auto;
     border-radius: 0 0 5px 5px;
 }
 
@@ -142,7 +142,7 @@ body {
 }
 
 .custom-button {
-    margin-left: 30px;
+    /* margin-left: 30px; */
     border-radius: 20px;
     opacity: 1;
 }

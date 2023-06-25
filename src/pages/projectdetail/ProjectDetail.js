@@ -23,65 +23,74 @@ export default function ProjectDetail() {
     }
     const handleClose = () => setOpenNewTask(false);
 
-    const handleAddTask = () => {
-        console.log("add task");
-    }
     const handleAddMember = () => {
         console.log("add member");
     }
 
+    const [value1, setValue1] = useState(0);
+
     useEffect(() => {
-        const dragContainer = document.querySelector('.drag-container');
-        const itemContainers = Array.from(document.querySelectorAll('.board-column-content'));
-        const columnGrids = [];
-        let boardGrid;
+        const initializeGrids = () => {
+            const dragContainer = document.querySelector('.drag-container');
+            const itemContainers = Array.from(document.querySelectorAll('.board-column-content'));
+            const columnGrids = [];
+            let boardGrid;
 
-        // Init the column grids so we can drag those items around.
-        itemContainers.forEach((container) => {
-            const grid = new Muuri(container, {
-                items: '.board-item',
+            // Init the column grids so we can drag those items around.
+            itemContainers.forEach((container) => {
+                const grid = new Muuri(container, {
+                    items: '.board-item',
+                    dragEnabled: true,
+                    dragSort: () => columnGrids,
+                    dragContainer,
+                    dragAutoScroll: {
+                        targets: (item) => [
+                            { element: window, priority: 0 },
+                            { element: item.getGrid().getElement().parentNode, priority: 1 },
+                        ],
+                    },
+                })
+                    .on('dragInit', (item) => {
+                        item.getElement().style.width = `${item.getWidth()}px`;
+                        item.getElement().style.height = `${item.getHeight()}px`;
+                    })
+                    .on('dragReleaseEnd', (item) => {
+                        item.getElement().style.width = '';
+                        item.getElement().style.height = '';
+                        item.getGrid().refreshItems([item]);
+                    })
+                    .on('layoutStart', () => {
+                        boardGrid.refreshItems().layout();
+                    });
+
+                columnGrids.push(grid);
+            });
+
+            // Init board grid so we can drag those columns around.
+            boardGrid = new Muuri('.board', {
                 dragEnabled: true,
-                dragSort: () => columnGrids,
-                dragContainer,
-                dragAutoScroll: {
-                    targets: (item) => [
-                        { element: window, priority: 0 },
-                        { element: item.getGrid().getElement().parentNode, priority: 1 },
-                    ],
-                },
-            })
-                .on('dragInit', (item) => {
-                    item.getElement().style.width = `${item.getWidth()}px`;
-                    item.getElement().style.height = `${item.getHeight()}px`;
-                })
-                .on('dragReleaseEnd', (item) => {
-                    item.getElement().style.width = '';
-                    item.getElement().style.height = '';
-                    item.getGrid().refreshItems([item]);
-                })
-                .on('layoutStart', () => {
-                    boardGrid.refreshItems().layout();
-                });
+                dragHandle: '.board-column-header',
+            });
 
-            columnGrids.push(grid);
-        });
+            // Clean up
+            return () => {
+                columnGrids.forEach((grid) => grid.destroy());
+                boardGrid.destroy();
+            };
+        }
+        initializeGrids();
+    }, [value1]);
 
-        // Init board grid so we can drag those columns around.
-        boardGrid = new Muuri('.board', {
-            dragEnabled: true,
-            dragHandle: '.board-column-header',
-        });
-
-        // Clean up
-        return () => {
-            columnGrids.forEach((grid) => grid.destroy());
-            boardGrid.destroy();
-        };
-    }, []);
     const [value, setValue] = useState('1');
 
-    const handleChange = (event, newValue) => {
+    const handleChange = async (event, newValue) => {
         setValue(newValue);
+        console.log(newValue);
+        if (newValue === '1') {
+            //     await initializeGrids();
+            await setValue1(value1 + 1);
+        }
+        console.log(value1);
     };
 
     return (
@@ -135,15 +144,10 @@ export default function ProjectDetail() {
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
                                             <div className="board-item">
-                                                <div className='board-item-content'>
-                                                    {CardHigh("Shopping cart interface code", "June 22, 2023")}
-                                                </div>
+                                                {CardHigh("Shopping cart interface code", "June 22, 2023")}
                                             </div>
                                             <div className="board-item">
-                                                <div className='board-item-content'>
-
-                                                    {CardMedium("Write API for shopping cart interface", "June 22, 2023")}
-                                                </div>
+                                                {CardMedium("Write API for shopping cart interface", "June 22, 2023")}
                                             </div>
                                         </div>
                                     </div>
@@ -156,22 +160,13 @@ export default function ProjectDetail() {
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
                                             <div className="board-item">
-                                                <div className='board-item-content'>
-
-                                                    {CardHigh("Code for login, registration interface", "June 15, 2023")}
-                                                </div>
+                                                {CardHigh("Code for login, registration interface", "June 15, 2023")}
                                             </div>
                                             <div className="board-item">
-                                                <div className='board-item-content'>
-
-                                                    {CardEasy("Write API for login and registration", "June 16, 2023")}
-                                                </div>
+                                                {CardEasy("Write API for login and registration", "June 16, 2023")}
                                             </div>
                                             <div className="board-item">
-                                                <div className='board-item-content'>
-
-                                                    {CardHigh("Home page interface code", "June 18, 2023")}
-                                                </div>
+                                                {CardHigh("Home page interface code", "June 18, 2023")}
                                             </div>
                                         </div>
                                     </div>
@@ -184,16 +179,10 @@ export default function ProjectDetail() {
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
                                             <div className="board-item">
-                                                <div className='board-item-content'>
-
-                                                    {CardSub("Database design", "June 01, 2023")}
-                                                </div>
+                                                {CardSub("Database design", "June 01, 2023")}
                                             </div>
                                             <div className="board-item">
-                                                <div className='board-item-content'>
-
-                                                    {CardSub("Add data to the database", "June 01, 2023")}
-                                                </div>
+                                                {CardSub("Add data to the database", "June 01, 2023")}
                                             </div>
                                         </div>
                                     </div>
@@ -205,22 +194,13 @@ export default function ProjectDetail() {
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
                                             <div className="board-item">
-                                                <div className='board-item-content'>
-
-                                                    {CardCompleted("Write a specification for the project", "100")}
-                                                </div>
+                                                {CardCompleted("Write a specification for the project", "100")}
                                             </div>
                                             <div className="board-item">
-                                                <div className='board-item-content'>
-
-                                                    {CardCompleted("Design the interface of all websites", "90")}
-                                                </div>
+                                                {CardCompleted("Design the interface of all websites", "90")}
                                             </div>
                                             <div className="board-item">
-                                                <div className='board-item-content'>
-
-                                                    {CardCompleted("API design", "95")}
-                                                </div>
+                                                {CardCompleted("API design", "95")}
                                             </div>
                                         </div>
                                     </div>
