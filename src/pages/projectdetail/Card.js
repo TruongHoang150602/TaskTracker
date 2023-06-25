@@ -7,8 +7,8 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
+import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import TaskDetail from '../task/TaskDetail';
-
 
 export function CardHigh(title, deadline) {
     const [open, setOpen] = useState(false);
@@ -28,7 +28,9 @@ export function CardHigh(title, deadline) {
                 size="small"
                 title={title}
                 style={{
-                    width: '100%'
+                    width: '220px',
+                    position: 'relative',
+                    padding: '2px',
                 }}
             >
                 <Avatar.Group>
@@ -69,11 +71,20 @@ export function CardHigh(title, deadline) {
                         </Avatar>
                     </Tooltip>
                 </Avatar.Group>
-                <Space wrap>
-                    <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>{deadline}</p>
-                    <Button onClick={handleOpen} style={{ backgroundColor: 'red', color: 'white' }} className="custom-button">
-                        High
-                    </Button>
+                <Space wrap style={{ display: 'flex' }}>
+                    <div style={{ flex: 2, flexWrap: 'nowrap' }}>
+
+                        <AccessAlarmIcon style={{ color: 'red' }} />
+                    </div>
+                    <div style={{ flex: 5 }}>
+                        <p style={{ color: 'red' }}>{deadline}</p>
+                    </div>
+                    <div style={{ flex: 3 }}>
+
+                        <Button onClick={handleOpen} style={{ backgroundColor: 'red', color: 'white' }} className="custom-button">
+                            High
+                        </Button>
+                    </div>
                 </Space>
             </Card>
             <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
@@ -98,15 +109,9 @@ export function CardSub(title, deadline) {
                 size="small"
                 title={title}
                 style={{
-                    width: '100%',
+                    width: '220px',
                     position: 'relative',
                     padding: '2px',
-                    background: '#fff',
-                    borderRadius: '10px',
-                    fontSize: '14px',
-                    cursor: 'pointer',
-                    boxShadow: '0px 1px 3px 0 rgba(0, 0, 0, 0.2)',
-                    WebkitBoxShadow: '0px 1px 3px 0 rgba(0, 0, 0, 0.2)',
                 }}
             >
                 <Avatar.Group>
@@ -140,11 +145,18 @@ export function CardSub(title, deadline) {
                         />
                     </Tooltip>
                 </Avatar.Group>
-                <Space wrap>
-                    <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>{deadline}</p>
-                    <Button onClick={handleOpen} style={{ backgroundColor: '#6f6f6f', color: 'white', borderRadius: '20px', marginLeft: '10px' }}>
-                        Submitted
-                    </Button>
+                <Space wrap style={{ display: 'flex' }}>
+                    <div style={{ flex: 2, flexWrap: 'nowrap' }}>
+                        <FileUploadOutlinedIcon style={{ color: 'black' }} />
+                    </div>
+                    <div style={{ flex: 5 }}>
+                        <p style={{ color: 'black' }}>{deadline}</p>
+                    </div>
+                    <div style={{ flex: 3 }}>
+                        <Button onClick={handleOpen} style={{ backgroundColor: '#6f6f6f', color: 'white', borderRadius: '20px', fontSize: '10px' }}>
+                            Submitted
+                        </Button>
+                    </div>
                 </Space>
                 <Grid item xs={12}>
                     <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
@@ -171,7 +183,9 @@ export function CardCompleted(title, point) {
                 size="small"
                 title={title}
                 style={{
-                    width: '100%'
+                    width: '220px',
+                    position: 'relative',
+                    padding: '2px',
                 }}
             >
                 <Avatar.Group>
@@ -205,11 +219,20 @@ export function CardCompleted(title, point) {
                         />
                     </Tooltip>
                 </Avatar.Group>
-                <Space wrap>
-                    <CheckCircleOutlineIcon style={{ color: 'green' }} /> <p style={{ color: 'green' }}>FINISHED!</p>
-                    <Button onClick={handleOpen} style={{ backgroundColor: '#48409e', color: 'white', borderRadius: '20px', marginLeft: '40px' }}>
-                        {point}
-                    </Button>
+                <Space wrap style={{ display: 'flex' }}>
+                    <div style={{ flex: 2, flexWrap: 'nowrap' }}>
+
+                        <CheckCircleOutlineIcon style={{ color: 'green' }} />
+                    </div>
+                    <div style={{ flex: 5 }}>
+                        <p style={{ color: 'green' }}>FINISHED!</p>
+                    </div>
+                    <div style={{ flex: 3 }}>
+
+                        <Button onClick={handleOpen} style={{ backgroundColor: '#48409e', color: 'white', borderRadius: '20px', marginLeft: '10px' }}>
+                            {point}
+                        </Button>
+                    </div>
                 </Space>
                 <Grid item xs={12}>
                     <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
@@ -236,7 +259,9 @@ export function CardMedium(title, deadline) {
                 size="small"
                 title={title}
                 style={{
-                    width: '100%'
+                    width: '220px',
+                    position: 'relative',
+                    padding: '2px',
                 }}
             >
                 <Avatar.Group>
@@ -270,11 +295,21 @@ export function CardMedium(title, deadline) {
                         />
                     </Tooltip>
                 </Avatar.Group>
-                <Space wrap>
-                    <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>{deadline}</p>
-                    <Button onClick={handleOpen} style={{ backgroundColor: '#ffba53', color: 'white' }} className="custom-button">
-                        Medium
-                    </Button>
+                <Space wrap style={{ display: 'flex' }}>
+                    <div style={{ flex: 2, flexWrap: 'nowrap' }}>
+
+                        <AccessAlarmIcon style={{ color: 'red' }} />
+                    </div>
+                    <div style={{ flex: 5 }}>
+
+                        <p style={{ color: 'red' }}>{deadline}</p>
+                    </div>
+                    <div style={{ flex: 3 }}>
+
+                        <Button onClick={handleOpen} style={{ backgroundColor: '#ffba53', color: 'white', fontSize: '12px' }} className="custom-button">
+                            Medium
+                        </Button>
+                    </div>
                 </Space>
                 <Grid item xs={12}>
                     <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
@@ -301,7 +336,9 @@ export function CardEasy(title, deadline) {
                 size="small"
                 title={title}
                 style={{
-                    width: '100%'
+                    width: '220px',
+                    position: 'relative',
+                    padding: '2px',
                 }}
             >
                 <Avatar.Group>
@@ -335,11 +372,21 @@ export function CardEasy(title, deadline) {
                         />
                     </Tooltip>
                 </Avatar.Group>
-                <Space wrap>
-                    <AccessAlarmIcon style={{ color: 'red' }} /> <p style={{ color: 'red' }}>{deadline}</p>
-                    <Button onClick={handleOpen} style={{ backgroundColor: '#68da6c', color: 'white' }} className="custom-button">
-                        Easy
-                    </Button>
+                <Space wrap style={{ display: 'flex' }}>
+                    <div style={{ flex: 2, flexWrap: 'nowrap' }}>
+
+                        <AccessAlarmIcon style={{ color: 'red' }} />
+                    </div>
+                    <div style={{ flex: 5 }}>
+
+                        <p style={{ color: 'red' }}>{deadline}</p>
+                    </div>
+                    <div style={{ flex: 3 }}>
+
+                        <Button onClick={handleOpen} style={{ backgroundColor: '#68da6c', color: 'white' }} className="custom-button">
+                            Easy
+                        </Button>
+                    </div>
                 </Space>
                 <Grid item xs={12}>
                     <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
