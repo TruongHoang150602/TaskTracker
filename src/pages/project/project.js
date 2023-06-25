@@ -13,6 +13,7 @@ import {
   FormControl,
   Select,
   Alert,
+  Container,
 } from '@mui/material';
 import { message } from 'antd';
 
@@ -23,6 +24,7 @@ import { useState } from 'react';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 import Iconify from '../../components/iconify/Iconify';
 import Filter from '../../components/Filter';
+import Page from '../../components/Page';
 import { project } from '../../_mock/project_data';
 
 function LinearProgressWithLabel(props) {
@@ -63,6 +65,12 @@ export default function Project() {
     setShowCreateProject(true);
   };
 
+  const [selection, setSelection] = useState('');
+
+  const handleSelectionChange = (event) => {
+    setSelection(event.target.value);
+  };
+
   const handleProjectNameChange = (event) => {
     setProjectName(event.target.value);
   };
@@ -100,23 +108,24 @@ export default function Project() {
   };
 
   return (
-    <div style={{ maxWidth: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
-      <HeaderBreadcrumbs
-        heading="Project"
-        action={
-          <Stack direction="row" spacing={2}>
-            <Filter data={filterOptions} />
+    <Page>
+      <Container>
+        <HeaderBreadcrumbs
+          heading="Project"
+          action={
+            <Stack direction="row" spacing={2}>
+              <Filter data={filterOptions} />
 
-            <Button
-              variant="contained"
-              startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
-              onClick={handleNewProjectClick}
-            >
-              New Project
-            </Button>
-          </Stack>
-        }
-      />
+              <Button
+                variant="contained"
+                startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
+                onClick={handleNewProjectClick}
+              >
+                New Project
+              </Button>
+            </Stack>
+          }
+        />
 
       {showCreateProject && (
         <Box
@@ -161,9 +170,9 @@ export default function Project() {
                   {workspaceOptions.map((option) => (
                     <MenuItem value={option}>{option}</MenuItem>
                   ))}
+                  <TextField />
                 </Select>
               </FormControl>
-
               <TextField
                 placeholder="Or type here..."
                 style={{ marginLeft: '10px', marginBottom: '10px' }}
@@ -241,6 +250,7 @@ export default function Project() {
           />
         )}
       </div>
-    </div>
+      </Container>
+    </Page>
   );
 }
