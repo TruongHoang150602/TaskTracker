@@ -65,10 +65,22 @@ export default function Project() {
     setShowCreateProject(true);
   };
 
-  const [selection, setSelection] = useState('');
+  const handleProjectWorkspaceStopPropagation = (event) => {
+    event.stopPropagation();
+  };
 
-  const handleSelectionChange = (event) => {
-    setSelection(event.target.value);
+  const handleProjectWorkspaceKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault(); // Prevent form submission on Enter key press
+      handleProjectWorkspaceChange(event); // Call the workspace change function
+    }
+  };
+
+  const handleProjectWorkspaceType = (event) => {
+    event.stopPropagation();
+    if (event.key === 'Enter') {
+      setProjectWorkspace(event.target.value);
+    }
   };
 
   const handleProjectNameChange = (event) => {
@@ -84,10 +96,17 @@ export default function Project() {
   };
 
   const handleCancelClick = () => {
+    setProjectName('');
+    setProjectDescription('');
+    setProjectWorkspace('');
     setShowCreateProject(false);
   };
 
   const handleCreateProjectClick = () => {
+    if (!projectName || !projectDescription || !projectWorkspace) {
+      message.error('Please try again!');
+      return;
+    }
     const newProject = {
       name: projectName,
       workspace: projectWorkspace,
@@ -127,129 +146,131 @@ export default function Project() {
           }
         />
 
-      {showCreateProject && (
-        <Box
-          style={{
-            position: 'fixed',
-            top: '55%',
-            left: '57.5%',
-            transform: 'translate(-50%, -50%)',
-            backgroundColor: '#fff',
-            boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)',
-            padding: '20px',
-            zIndex: 2,
-            width: '400px',
-            margin: '0 auto',
-            borderRadius: '14px',
-          }}
-        >
-          <h3>New Project</h3>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <TextField
-              style={{ marginBottom: '10px' }}
-              required
-              id="projectName"
-              label="Project Name"
-              value={projectName}
-              onChange={handleProjectNameChange}
-            />
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <FormControl style={{ width: '200px' }}>
-                <InputLabel id="demo-simple-select-helper-label">Workspace</InputLabel>
-                <Select
-                  style={{ marginBottom: '10px' }}
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  label="Workspace"
-                  value={projectWorkspace}
-                  onChange={handleProjectWorkspaceChange}
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  {workspaceOptions.map((option) => (
-                    <MenuItem value={option}>{option}</MenuItem>
-                  ))}
-                  <TextField />
-                </Select>
-              </FormControl>
-              <TextField
-                placeholder="Or type here..."
-                style={{ marginLeft: '10px', marginBottom: '10px' }}
-                value={projectWorkspace}
-                onChange={handleProjectWorkspaceChange}
-              />
-            </div>
-            <TextField
-              style={{ marginBottom: '10px' }}
-              required
-              id="projectDescription"
-              label="Project Description"
-              multiline
-              rows={7}
-              value={projectDescription}
-              onChange={handleProjectDescriptionChange}
-            />
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <Button variant="outlined" onClick={handleCancelClick} style={{ marginRight: '10px' }}>
-                Cancel
-              </Button>
-              <Button variant="contained" onClick={handleCreateProjectClick}>
-                Create Project
-              </Button>
-            </div>
-          </div>
-        </Box>
-      )}
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, 300px)',
-            justifyContent: 'space-between',
-          }}
-        >
-          {projects.map((p, index) => (
-            <Card
-              sx={{ cursor: 'pointer', width: 300, marginBottom: '20px' }}
-              key={index}
-              onClick={() => navigate('/projectdetail')}
-            >
-              <CardContent style={{ paddingBottom: '0' }}>
-                <Typography gutterBottom variant="h5" component="div">
-                  {p.name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Progress
-                </Typography>
-                <LinearProgressWithLabel value={p.progress} />
-                <Typography variant="body2" color="text.secondary">
-                  Quality
-                </Typography>
-                <LinearProgressWithLabel value={p.quality} />
-              </CardContent>
-              <CardActions style={{ margin: '10px 24px 24px 24px', padding: '0' }}>
-                <Button variant="contained" size="small">
-                  {p.workspace}
-                </Button>
-              </CardActions>
-            </Card>
-          ))}
-        </div>
         {showCreateProject && (
-          <div
+          <Box
             style={{
               position: 'fixed',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
-              zIndex: 1,
+              top: '55%',
+              left: '57.5%',
+              transform: 'translate(-50%, -50%)',
+              backgroundColor: '#fff',
+              boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)',
+              padding: '20px',
+              zIndex: 2,
+              width: '400px',
+              margin: '0 auto',
+              borderRadius: '14px',
             }}
-          />
+          >
+            <h3>New Project</h3>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <TextField
+                style={{ marginBottom: '10px' }}
+                required
+                id="projectName"
+                label="Project Name"
+                value={projectName}
+                onChange={handleProjectNameChange}
+              />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <FormControl style={{ width: '100%' }}>
+                  <InputLabel id="demo-simple-select-helper-label">Workspace</InputLabel>
+                  <Select
+                    style={{ marginBottom: '10px' }}
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    label="Workspace"
+                    value={projectWorkspace}
+                    onChange={handleProjectWorkspaceChange}
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    {workspaceOptions.map((option) => (
+                      <MenuItem key={option} value={option}>
+                        {option}
+                      </MenuItem>
+                    ))}
+                    <MenuItem>
+                      <TextField
+                        onClick={handleProjectWorkspaceStopPropagation}
+                        onChange={handleProjectWorkspaceType}
+                        style={{ width: '100%' }}
+                      />
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+              <TextField
+                style={{ marginBottom: '10px' }}
+                required
+                id="projectDescription"
+                label="Project Description"
+                multiline
+                rows={7}
+                value={projectDescription}
+                onChange={handleProjectDescriptionChange}
+              />
+              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button variant="outlined" onClick={handleCancelClick} style={{ marginRight: '10px' }}>
+                  Cancel
+                </Button>
+                <Button variant="contained" onClick={handleCreateProjectClick}>
+                  Create Project
+                </Button>
+              </div>
+            </div>
+          </Box>
         )}
-      </div>
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, 300px)',
+              justifyContent: 'space-between',
+            }}
+          >
+            {projects.map((p, index) => (
+              <Card
+                sx={{ cursor: 'pointer', width: 300, marginBottom: '20px' }}
+                key={index}
+                onClick={() => navigate('/projectdetail')}
+              >
+                <CardContent style={{ paddingBottom: '0' }}>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {p.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Progress
+                  </Typography>
+                  <LinearProgressWithLabel value={p.progress} />
+                  <Typography variant="body2" color="text.secondary">
+                    Quality
+                  </Typography>
+                  <LinearProgressWithLabel value={p.quality} />
+                </CardContent>
+                <CardActions style={{ margin: '10px 24px 24px 24px', padding: '0' }}>
+                  <Button variant="contained" size="small">
+                    {p.workspace}
+                  </Button>
+                </CardActions>
+              </Card>
+            ))}
+          </div>
+          {showCreateProject && (
+            <div
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                zIndex: 1,
+              }}
+            />
+          )}
+        </div>
       </Container>
     </Page>
   );
