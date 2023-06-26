@@ -40,19 +40,50 @@ const EVENT_NAME = [
     'Xem phim',
     'Gặp bạn bè'
 ];
-const EVENT_COLOR = ['#00AB55', '#000000', '#FFFFFF', '#FFC0CB', '#FF4842', '#1890FF', '#94D82D', '#FFC107'];
+// const EVENT_COLOR = ['#00AB55', '#000000', '#FFFFFF', '#FFC0CB', '#FF4842', '#1890FF', '#94D82D', '#FFC107'];
 
 // ----------------------------------------------------------------------
+const COLOR_OPTIONS = [
+  {
+    label: 'Việc nhà',
+    color: '#00AB55'
+  }, 
+  {
+    label: 'Nghỉ ngơi',
+    color:  '#FF4842'
+  }, 
+  {
+    label: 'Cuộc gặp',
+    color: '#1890FF'
+  }, 
+  {
+    label: 'Ăn uống',
+    color: '#54D62C'
+  },
+  {
+    label: 'Công việc',
+    color:  '#FFC107'
+  },
+  {
+    label: 'Học tập',
+    color:  '#04297A'
+  },
+  {
+    label: 'Quan trọng',
+    color:  '#7A0C2E'
+  }
+];
 
 const events = [...Array(10)].map((_, index) => ({
     id: index,
     title: EVENT_NAME[index],
-    color: sample(EVENT_COLOR),
+    color: sample(COLOR_OPTIONS).color,
     allDay: sample(true, false),
     repeat: sample(['none', 'Every day', 'Every week', 'Every month']),
     alert: sample(['none', 'Every day', 'Every week', 'Every month']),
     description: "",
     ... randomTimeRange()
-  }));
+}));
 
 export default events;
+

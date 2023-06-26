@@ -18,12 +18,18 @@ import { DialogAnimate } from '../../components/animate';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 // // sections
 import {  CalendarForm, CalendarStyle, CalendarToolbar } from '../../sections/@dashboard/calendar';
-import events from '../../_mock/events'; 
+import events from '../../_mock/events';
+
+
 // ----------------------------------------------------------------------
 
 
 // ----------------------------------------------------------------------
 const COLOR_OPTIONS = [
+  {
+    label: 'None',
+    color: '#fff'
+  },
   {
     label: 'Việc nhà',
     color: '#00AB55'
@@ -56,6 +62,8 @@ const COLOR_OPTIONS = [
 
 
 export default function Calendar() {
+
+  const [event, setEvent] = useState(events);
 
   const [open, setOpen] = useState(false);
 
@@ -129,6 +137,11 @@ export default function Calendar() {
     setOpen(true);
   };
     
+  const filter = (color) => {
+    
+    setEvent(events.filter((event) => (event.color === color) ));
+    if(color === '#fff') setEvent(events);
+  };
 
   return (
     <Page title="Calendar">
@@ -139,7 +152,7 @@ export default function Calendar() {
           action={
             <Stack direction="row" spacing={2}>
              
-             <Filter data = {COLOR_OPTIONS} />
+             <Filter data = {COLOR_OPTIONS} onClickColor={(event) => filter(event)} />
 
               <Button
                 variant="contained"
@@ -168,7 +181,7 @@ export default function Calendar() {
               editable
               droppable
               selectable
-              events={events}
+              events={event}
               ref={calendarRef}
               rerenderDelay={10}
               initialDate={date}
