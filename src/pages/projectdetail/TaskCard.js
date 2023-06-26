@@ -2,11 +2,9 @@ import * as React from 'react';
 import { useState } from 'react';
 
 import { Card, Space, Avatar, Tooltip } from 'antd';
-import { AntDesignOutlined, UserOutlined } from '@ant-design/icons';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Button } from '@mui/material';
-import Grid from '@mui/material/Grid';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import TaskDetail from '../task/TaskDetail';
 import { fDate } from '../../utils/formatTime';
@@ -18,7 +16,7 @@ const PRIORITY = {
 }
 
 
-export function CardTask(title,assignee,priority, deadline) {
+export function CardTask(title, assignee, priority, deadline) {
     const [open, setOpen] = useState(false);
     const [item, setItem] = useState({
         name: ''
@@ -30,15 +28,8 @@ export function CardTask(title,assignee,priority, deadline) {
     }
     const handleClose = () => setOpen(false);
 
-    // const currentDate = new Date();
-
-    // let deadlineColor = "green";
-    // if(calculateDateDifference(deadline, currentDate) < 2 ) deadlineColor = "red";
-    // else if (calculateDateDifference(deadline, currentDate) < 5) deadlineColor = "#ffba53";
-
-
     return (
-        <Space className="board-item-content" direction="vertical" size={16}>
+        <Space size={16} style={{ gap: '0px' }}>
             <Card
                 onClick={handleOpen}
                 size="small"
@@ -52,14 +43,14 @@ export function CardTask(title,assignee,priority, deadline) {
                 <Avatar.Group>
                     {assignee.map((option) => (
                         <Tooltip title={option}>
-                        <Avatar
-                            style={{
-                                backgroundColor: '#f56a00',
-                            }}
-                        >
-                            T
-                        </Avatar>
-                    </Tooltip> 
+                            <Avatar
+                                style={{
+                                    backgroundColor: '#f56a00',
+                                }}
+                            >
+                                T
+                            </Avatar>
+                        </Tooltip>
                     ))}
                 </Avatar.Group>
                 <Space wrap style={{ display: 'flex' }}>
@@ -72,7 +63,7 @@ export function CardTask(title,assignee,priority, deadline) {
                     <div style={{ flex: 3 }}>
 
                         <Button onClick={handleOpen} style={{ backgroundColor: PRIORITY[priority], color: 'white' }} className="custom-button">
-                           {priority}
+                            {priority}
                         </Button>
                     </div>
                 </Space>
@@ -82,7 +73,7 @@ export function CardTask(title,assignee,priority, deadline) {
     )
 }
 
-export function CardSub(title, deadline) {
+export function CardSub(title, assignee, priority, deadline) {
     const [open, setOpen] = useState(false);
     const [item, setItem] = useState({
         name: ''
@@ -93,9 +84,11 @@ export function CardSub(title, deadline) {
         setItem(item);
     }
     const handleClose = () => setOpen(false);
+
     return (
-        <Space className="board-item-content" direction="vertical" size={16}>
+        <Space size={16} style={{ gap: '0px' }}>
             <Card
+                onClick={handleOpen}
                 size="small"
                 title={title}
                 style={{
@@ -105,35 +98,17 @@ export function CardSub(title, deadline) {
                 }}
             >
                 <Avatar.Group>
-                    <Tooltip title="Hoàng Trường">
-                        <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
-                    </Tooltip>
-                    <Tooltip title="Văn Phúc">
-                        <Avatar
-                            style={{
-                                backgroundColor: '#f56a00',
-                            }}
-                        >
-                            K
-                        </Avatar>
-                    </Tooltip>
-                    <Tooltip title="Khắc Tuân" placement="top">
-                        <Avatar
-                            style={{
-                                backgroundColor: '#87d068',
-                            }}
-                            icon={<UserOutlined />}
-                        />
-                    </Tooltip>
-                    <Tooltip title="Duy Quý" placement="top">
-
-                        <Avatar
-                            style={{
-                                backgroundColor: '#1677ff',
-                            }}
-                            icon={<AntDesignOutlined />}
-                        />
-                    </Tooltip>
+                    {assignee.map((option) => (
+                        <Tooltip title={option}>
+                            <Avatar
+                                style={{
+                                    backgroundColor: '#f56a00',
+                                }}
+                            >
+                                T
+                            </Avatar>
+                        </Tooltip>
+                    ))}
                 </Avatar.Group>
                 <Space wrap style={{ display: 'flex' }}>
                     <div style={{ flex: 2, flexWrap: 'nowrap' }}>
@@ -143,20 +118,21 @@ export function CardSub(title, deadline) {
                         <p style={{ color: 'black' }}>{fDate(deadline)}</p>
                     </div>
                     <div style={{ flex: 3 }}>
-                        <Button onClick={handleOpen} style={{ backgroundColor: '#6f6f6f', color: 'white', borderRadius: '20px', fontSize: '10px' }}>
-                            Submitted
-                        </Button>
+
+                        <div style={{ flex: 3 }}>
+                            <Button onClick={handleOpen} style={{ backgroundColor: '#6f6f6f', color: 'white', borderRadius: '20px', fontSize: '10px' }}>
+                                Submitted
+                            </Button>
+                        </div>
                     </div>
                 </Space>
-                <Grid item xs={12}>
-                    <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
-                </Grid>
             </Card>
+            <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
         </Space>
     )
 }
 
-export function CardCompleted(title, point) {
+export function CardCompleted(title, assignee, point) {
     const [open, setOpen] = useState(false);
     const [item, setItem] = useState({
         name: ''
@@ -167,9 +143,11 @@ export function CardCompleted(title, point) {
         setItem(item);
     }
     const handleClose = () => setOpen(false);
+
     return (
-        <Space className="board-item-content" direction="vertical" size={16}>
+        <Space size={16} style={{ gap: '0px' }}>
             <Card
+                onClick={handleOpen}
                 size="small"
                 title={title}
                 style={{
@@ -179,39 +157,20 @@ export function CardCompleted(title, point) {
                 }}
             >
                 <Avatar.Group>
-                    <Tooltip title="Hoàng Trường">
-                        <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
-                    </Tooltip>
-                    <Tooltip title="Văn Phúc">
-                        <Avatar
-                            style={{
-                                backgroundColor: '#f56a00',
-                            }}
-                        >
-                            K
-                        </Avatar>
-                    </Tooltip>
-                    <Tooltip title="Khắc Tuân" placement="top">
-                        <Avatar
-                            style={{
-                                backgroundColor: '#87d068',
-                            }}
-                            icon={<UserOutlined />}
-                        />
-                    </Tooltip>
-                    <Tooltip title="Duy Quý" placement="top">
-
-                        <Avatar
-                            style={{
-                                backgroundColor: '#1677ff',
-                            }}
-                            icon={<AntDesignOutlined />}
-                        />
-                    </Tooltip>
+                    {assignee.map((option) => (
+                        <Tooltip title={option}>
+                            <Avatar
+                                style={{
+                                    backgroundColor: '#f56a00',
+                                }}
+                            >
+                                T
+                            </Avatar>
+                        </Tooltip>
+                    ))}
                 </Avatar.Group>
                 <Space wrap style={{ display: 'flex' }}>
                     <div style={{ flex: 2, flexWrap: 'nowrap' }}>
-
                         <CheckCircleOutlineIcon style={{ color: 'green' }} />
                     </div>
                     <div style={{ flex: 5 }}>
@@ -219,16 +178,15 @@ export function CardCompleted(title, point) {
                     </div>
                     <div style={{ flex: 3 }}>
 
-                        <Button onClick={handleOpen} style={{ backgroundColor: '#48409e', color: 'white', borderRadius: '20px', marginLeft: '10px' }}>
-                            {point}
-                        </Button>
+                        <div style={{ flex: 3 }}>
+                            <Button onClick={handleOpen} style={{ backgroundColor: '#48409e', color: 'white', borderRadius: '20px', marginLeft: '10px' }}>
+                                {point}
+                            </Button>
+                        </div>
                     </div>
                 </Space>
-                <Grid item xs={12}>
-                    <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
-                </Grid>
             </Card>
+            <TaskDetail data={item} handleClose={handleClose} handleOpen={handleOpen} open={open} />
         </Space>
     )
 }
-

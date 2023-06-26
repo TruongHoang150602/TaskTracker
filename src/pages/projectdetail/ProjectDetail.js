@@ -5,6 +5,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './styles.css';
 import Muuri from 'muuri';
 import { Stack, Button } from '@mui/material';
@@ -17,26 +18,30 @@ import { CardTask, CardSub, CardCompleted } from './TaskCard';
 import NewTask from './NewTask';
 import { projectDetail } from '../../_mock/project_data';
 
-console.log(projectDetail[0].task);
-const newTask = projectDetail[0].task.filter((option) => (
-    option.status === "New Task"
-))
-
-const inProcess = projectDetail[0].task.filter((option) => (
-    option.status === "In Progress"
-))
-
-const submitted = projectDetail[0].task.filter((option) => (
-    option.status === "Submitted"
-))
-
-const finished = projectDetail[0].task.filter((option) => (
-    option.status === "Completed"
-))
-
-console.log(newTask,inProcess,submitted, finished)
-
 export default function ProjectDetail() {
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const id = searchParams.get('id');
+    // id = 1;
+    console.log(projectDetail[id].task);
+    const newTask = projectDetail[id].task.filter((option) => (
+        option.status === "New Task"
+    ))
+
+    const inProcess = projectDetail[id].task.filter((option) => (
+        option.status === "In Progress"
+    ))
+
+    const submitted = projectDetail[id].task.filter((option) => (
+        option.status === "Submitted"
+    ))
+
+    const finished = projectDetail[id].task.filter((option) => (
+        option.status === "Completed"
+    ))
+
+    console.log(newTask, inProcess, submitted, finished)
+
 
     const [openNewTask, setOpenNewTask] = useState(false);
     const handleOpen = () => {
@@ -108,7 +113,6 @@ export default function ProjectDetail() {
         setValue(newValue);
         console.log(newValue);
         if (newValue === '1') {
-            //     await initializeGrids();
             await setValue1(value1 + 1);
         }
         console.log(value1);
@@ -117,7 +121,7 @@ export default function ProjectDetail() {
     return (
         <Page>
             <HeaderBreadcrumbs
-                heading="E-Commerce Website"
+                heading={projectDetail[id].name}
                 action={
                     <Stack direction="row" spacing={2}>
 
@@ -165,11 +169,11 @@ export default function ProjectDetail() {
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
                                             {newTask.map((option) => (
-                                                <div className="board-item">
+                                                <div key={option.id} className="board-item">
                                                     {CardTask(option.name, option.assignee, option.priority, option.end)}
                                                 </div>
                                             ))}
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -180,9 +184,9 @@ export default function ProjectDetail() {
                                     <div className="board-column-header">In Progress</div>
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
-                    
-                                        {inProcess.map((option) => (
-                                                <div className="board-item">
+
+                                            {inProcess.map((option) => (
+                                                <div key={option.id} className="board-item">
                                                     {CardTask(option.name, option.assignee, option.priority, option.end)}
                                                 </div>
                                             ))}
@@ -196,10 +200,9 @@ export default function ProjectDetail() {
                                     <div className="board-column-header">Submitted</div>
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
-        
                                             {submitted.map((option) => (
-                                                <div className="board-item">
-                                                    {CardSub(option.name, option.end)}
+                                                <div key={option.id} className="board-item">
+                                                    {CardSub(option.name, option.assignee, option.priority, option.end)}
                                                 </div>
                                             ))}
                                         </div>
@@ -212,8 +215,8 @@ export default function ProjectDetail() {
                                     <div className="board-column-content-wrapper">
                                         <div className="board-column-content">
                                             {finished.map((option) => (
-                                                <div className="board-item">
-                                                    {CardCompleted(option.name, 80)}
+                                                <div key={option.id} className="board-item">
+                                                    {CardCompleted(option.name, option.assignee, option.point)}
                                                 </div>
                                             ))}
                                         </div>

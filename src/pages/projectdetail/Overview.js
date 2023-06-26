@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { DataGrid } from '@mui/x-data-grid';
 import NativeSelect from '@mui/material/NativeSelect';
+import Button from '@mui/material/Button';
 
 function Overview() {
 
@@ -110,6 +111,9 @@ function Overview() {
                     />
 
                 </div>
+            </div>
+            <div style={{float:'right'}}>
+                <Button variant="contained">Save</Button>
             </div>
         </div>
     );
