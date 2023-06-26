@@ -3,19 +3,53 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { DataGrid } from '@mui/x-data-grid';
-
+import NativeSelect from '@mui/material/NativeSelect';
+import Button from '@mui/material/Button';
 
 function Overview() {
+
+    const [selectedRowId, setSelectedRowId] = useState(null);
+    const [selectedPositions, setSelectedPositions] = useState({});
+    const positionOptions = [
+        { value: 'Administrator', label: 'Administrator' },
+        { value: 'Implementer', label: 'Implementer' },
+        { value: 'Viewer', label: 'Viewer' },
+    ];
+    const renderPositionCell = (params) => {
+        const { id } = params.row;
+        const handleChange = (event) => {
+            setSelectedPositions((prevState) => ({
+                ...prevState,
+                [id]: event.target.value,
+            }));
+        };
+
+        if (selectedRowId === id) {
+            return (
+                <NativeSelect value={selectedPositions[id] || ''} onChange={handleChange}>
+                    {positionOptions.map((option) => (
+                        <option value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </NativeSelect>
+            );
+        }
+        return params.value;
+    }
 
     const handleIconClick = (rows, row) => {
         console.log(row.id);
         removeItem(row.id);
     }
+    const handleRowClick = (id) => {
+        setSelectedRowId(id);
+    }
     const columns = [
         { field: 'id', headerName: 'No.', width: 70 },
         { field: 'name', headerName: 'Name', width: 200 },
         { field: 'email', headerName: 'E-Mail', width: 250 },
-        { field: 'position', headerName: 'Position', width: 150 },
+        { field: 'position', headerName: 'Position', width: 150, renderCell: renderPositionCell, onClick: (params) => handleRowClick(params.row.id) },
         {
             field: 'actions',
             headerName: 'Actions',
@@ -30,6 +64,7 @@ function Overview() {
                     </IconButton>
                     <IconButton
                         color="primary"
+                        onClick={() => handleRowClick(params.row.id)}
                     >
                         <EditIcon />
                     </IconButton>
@@ -50,7 +85,6 @@ function Overview() {
     const removeItem = (id) => {
         const updatedRows = rows.filter(row => row.id !== id);
         setRows(updatedRows);
-        // Cập nhật state hoặc thực hiện các thao tác khác với mảng mới updatedRows
     }
 
     return (
@@ -77,6 +111,9 @@ function Overview() {
                     />
 
                 </div>
+            </div>
+            <div style={{float:'right'}}>
+                <Button variant="contained">Save</Button>
             </div>
         </div>
     );

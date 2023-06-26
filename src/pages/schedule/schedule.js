@@ -4,10 +4,10 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import timelinePlugin from '@fullcalendar/timeline';
 import interactionPlugin from '@fullcalendar/interaction';
-
-import { Fragment,useState, useRef, useEffect } from 'react';
+//
+import { useState, useRef, useEffect } from 'react';
 // @mui
-import { Card,IconButton, Button, Container, DialogTitle, DialogActions, Stack , Snackbar, Alert} from '@mui/material';
+import { Card, Button, Container, DialogTitle, DialogActions, Stack } from '@mui/material';
 import useResponsive from '../../hooks/useResponsive';
 
 // components
@@ -18,12 +18,18 @@ import { DialogAnimate } from '../../components/animate';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 // // sections
 import {  CalendarForm, CalendarStyle, CalendarToolbar } from '../../sections/@dashboard/calendar';
-import events from '../../_mock/events'; 
+import events from '../../_mock/events';
+
+
 // ----------------------------------------------------------------------
 
 
 // ----------------------------------------------------------------------
 const COLOR_OPTIONS = [
+  {
+    label: 'None',
+    color: '#fff'
+  },
   {
     label: 'Việc nhà',
     color: '#00AB55'
@@ -57,15 +63,9 @@ const COLOR_OPTIONS = [
 
 export default function Calendar() {
 
-  const [openModal, setOpenModal] = useState(false);
+  const [event, setEvent] = useState(events);
 
-  const [openAlert, setOpenAlert] = useState({
-    open: false,
-    vertical: 'top',
-    horizontal: 'right',
-  });
-
-  const { vertical, horizontal, open } = openAlert;
+  const [open, setOpen] = useState(false);
 
   const isDesktop = useResponsive('up', 'sm');
 
@@ -125,23 +125,23 @@ export default function Calendar() {
 
   const handleAddEvent = () => {
     setSelectedEvent(null);
-    setOpenModal(true);
+    setOpen(true);
   };
 
   const handleCloseModal = () => {
-    setOpenAlert({ ...openAlert, open: true });
-    setOpenModal(false);
-  };
-
-  const handleCloseAlert = () => {
-    setOpenAlert({ ...openAlert, open: false });
+    setOpen(false);
   };
 
   const handleSelectEvent = (info) => {
     setSelectedEvent(events[info.event.id]);
-    setOpenModal(true);
+    setOpen(true);
   };
     
+  const filter = (color) => {
+    
+    setEvent(events.filter((event) => (event.color === color) ));
+    if(color === '#fff') setEvent(events);
+  };
 
   return (
     <Page title="Calendar">
@@ -152,7 +152,7 @@ export default function Calendar() {
           action={
             <Stack direction="row" spacing={2}>
              
-             <Filter data = {COLOR_OPTIONS} />
+             <Filter data = {COLOR_OPTIONS} onClickColor={(event) => filter(event)} />
 
               <Button
                 variant="contained"
@@ -181,7 +181,7 @@ export default function Calendar() {
               editable
               droppable
               selectable
-              events={events}
+              events={event}
               ref={calendarRef}
               rerenderDelay={10}
               initialDate={date}
@@ -202,7 +202,7 @@ export default function Calendar() {
         </Card>
 
           {/* Add event model */}
-        <DialogAnimate open={openModal} onClose={handleCloseModal} >
+        <DialogAnimate open={open} onClose={handleCloseModal} >
           <DialogTitle  variant='h3'  sx = {{  fontStyle: 'normal', color: '#48409E',}}>
             {selectedEvent == null && 'Event detail' ||'New event'}
           </DialogTitle>
@@ -212,31 +212,7 @@ export default function Calendar() {
             <Button variant="outlined" onClick={handleCloseModal}>Save change</Button>
           </DialogActions>
         </DialogAnimate>
-        <Snackbar 
-          anchorOrigin={{ vertical, horizontal }}
-          open={open} 
-          autoHideDuration={6000} 
-          onClose={handleCloseAlert}
-          key={vertical + horizontal}
-          action={
-            <>
-              <Button color="secondary" size="small" >
-                UNDO
-              </Button>
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                sx={{ p: 0.5 }}
-              >
-              <Iconify icon = 'eva:undo-fill' />
-              </IconButton>
-            </>
-          }
-        >
-        <Alert onClose={handleCloseAlert} severity="success" sx={{ width: '100%' }}>
-          Thao tác thành công
-        </Alert>
-      </Snackbar>
+
       </Container>
     </Page>
   );

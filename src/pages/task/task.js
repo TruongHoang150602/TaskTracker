@@ -28,7 +28,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography className='flex flex-wrap'>{children}</Typography>
         </Box>
       )}
     </div>
@@ -48,6 +48,15 @@ function a11yProps(index) {
   };
 }
 
+
+const map = {
+  "submited": 10,
+  "completed": 20,
+  "inProcess": 30,
+  "newTask": 40,
+}
+
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -60,7 +69,29 @@ const Task = () => {
 
   const [open, setOpen] = React.useState(false);
   const [item, setItem] = React.useState(null);
+
+
+  const [age1, setAge1] = React.useState("");
+  const [open1, setOpen1] = React.useState(false);
+
+  const handleChange1 = (event) => {
+    console.log(event.target.value)
+    setAge1(event.target.value);
+  };
+
+  const handleClose1 = () => {
+    setOpen1(false);
+  };
+
+  const handleOpen1 = () => {
+    setOpen1(true);
+  };
+
+
   const handleOpen = (item) =>{
+    // console.log(item)
+    console.log(map[item.status]);
+    setAge1(map[item.status]);
     setOpen(true);
     setItem(item);
   } 
@@ -101,29 +132,29 @@ const Task = () => {
                 
               </Tabs>
            
-            <TabPanel className={`h-[490px] overflow-y-scroll overflow-y-hidden ${style.nonescroll}`} value={value} index={0}>
-              {newTask.map((item, index) => (
-                <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
-              ))}
+            <TabPanel className={`flex w-[100%]`} value={value} index={0}>
+                {newTask.map((item, index) => (
+                  <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
+                ))}
             </TabPanel>
-            <TabPanel value={value} index={1} className="h-[490px]">
+            <TabPanel value={value} index={1} className="">
               {inProcessTask.map((item, index) => (
                 <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
               ))}
             </TabPanel>
-            <TabPanel className="h-[490px]" value={value} index={2}>
+            <TabPanel className="" value={value} index={2}>
               {submitedTask.map((item, index) => (
                 <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
               ))}
             </TabPanel>
-            <TabPanel className="h-[490px]" value={value} index={3}>
+            <TabPanel className="" value={value} index={3}>
               {completedTask.map((item, index) => (
                 <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
               ))}
             </TabPanel>
         </Grid>
         <Grid item xs={12}>
-          <TaskDetail data={item}  handleClose={handleClose} handleOpen={handleOpen} open={open} />
+          <TaskDetail data={item} age1={age1} handleClose={handleClose} handleOpen={handleOpen} open={open} setAge1={setAge1} open1={open1} setOpen1={setOpen1} handleChange1={handleChange1} handleClose1={handleClose1} handleOpen1={handleOpen1}/>
         </Grid>
       </Grid>
 

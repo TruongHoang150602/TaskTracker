@@ -1,16 +1,26 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import LinearProgress from '@mui/material/LinearProgress';
-import Box from '@mui/material/Box';
-import { TextField } from '@mui/material';
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+  LinearProgress,
+  Box,
+  TextField,
+  Stack,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  Alert,
+} from '@mui/material';
+import { message } from 'antd';
 
 import { useNavigate } from 'react-router-dom';
+import * as React from 'react';
 import { useState } from 'react';
 
+import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 import Iconify from '../../components/iconify/Iconify';
 import Filter from '../../components/Filter';
 import { project } from '../../_mock/project_data';
@@ -28,11 +38,25 @@ function LinearProgressWithLabel(props) {
   );
 }
 
+const filterOptions = [
+  {
+    label: 'Progress',
+    color: '#00AB55',
+  },
+  {
+    label: 'Quality',
+    color: '#FF4842',
+  },
+];
+
+const workspaceOptions = ['School', 'Home', 'Company'];
+
 export default function Project() {
   const navigate = useNavigate();
   const [showCreateProject, setShowCreateProject] = useState(false);
   const [projectName, setProjectName] = useState('');
   const [projectDescription, setProjectDescription] = useState('');
+  const [projectWorkspace, setProjectWorkspace] = useState('');
   const [projects, setProjects] = useState(project);
 
   const handleNewProjectClick = () => {
@@ -47,6 +71,10 @@ export default function Project() {
     setProjectDescription(event.target.value);
   };
 
+  const handleProjectWorkspaceChange = (event) => {
+    setProjectWorkspace(event.target.value);
+  };
+
   const handleCancelClick = () => {
     setShowCreateProject(false);
   };
@@ -54,6 +82,7 @@ export default function Project() {
   const handleCreateProjectClick = () => {
     const newProject = {
       name: projectName,
+      workspace: projectWorkspace,
       progress: 0, // Set initial progress value
       quality: 0, // Set initial quality value
     };
@@ -64,39 +93,33 @@ export default function Project() {
     // Reset the form fields
     setProjectName('');
     setProjectDescription('');
+    setProjectWorkspace('');
 
     // Close the create project popup
     setShowCreateProject(false);
-
-    // After successfully creating the project, navigate to the project detail page
-    // navigate('/projectdetail');
   };
 
   return (
     <div style={{ maxWidth: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
-      <h2 style={{ margin: '0 0 30px 0', fontSize: '40px' }}>Project</h2>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          width: '270px',
-          marginLeft: 'auto',
-          alignItems: 'center',
-          marginBottom: '30px',
-          fontSize: '14px',
-        }}
-      >
-        <Filter data={['task', 'team']} />
-        <Button
-          variant="contained"
-          startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
-          onClick={handleNewProjectClick}
-        >
-          New Project
-        </Button>
-      </div>
+      <HeaderBreadcrumbs
+        heading="Project"
+        action={
+          <Stack direction="row" spacing={2}>
+            <Filter data={filterOptions} />
+
+            <Button
+              variant="contained"
+              startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
+              onClick={handleNewProjectClick}
+            >
+              New Project
+            </Button>
+          </Stack>
+        }
+      />
+
       {showCreateProject && (
-        <Card
+        <Box
           style={{
             position: 'fixed',
             top: '55%',
@@ -108,6 +131,7 @@ export default function Project() {
             zIndex: 2,
             width: '400px',
             margin: '0 auto',
+            borderRadius: '14px',
           }}
         >
           <h3>New Project</h3>
@@ -120,7 +144,33 @@ export default function Project() {
               value={projectName}
               onChange={handleProjectNameChange}
             />
-            <TextField style={{ marginBottom: '10px' }} required id="projectMember" label="Member" />
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <FormControl style={{ width: '200px' }}>
+                <InputLabel id="demo-simple-select-helper-label">Workspace</InputLabel>
+                <Select
+                  style={{ marginBottom: '10px' }}
+                  labelId="demo-simple-select-helper-label"
+                  id="demo-simple-select-helper"
+                  label="Workspace"
+                  value={projectWorkspace}
+                  onChange={handleProjectWorkspaceChange}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  {workspaceOptions.map((option) => (
+                    <MenuItem value={option}>{option}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+
+              <TextField
+                placeholder="Or type here..."
+                style={{ marginLeft: '10px', marginBottom: '10px' }}
+                value={projectWorkspace}
+                onChange={handleProjectWorkspaceChange}
+              />
+            </div>
             <TextField
               style={{ marginBottom: '10px' }}
               required
@@ -140,7 +190,7 @@ export default function Project() {
               </Button>
             </div>
           </div>
-        </Card>
+        </Box>
       )}
       <div style={{ position: 'relative', zIndex: 1 }}>
         <div
@@ -151,7 +201,11 @@ export default function Project() {
           }}
         >
           {projects.map((p, index) => (
-            <Card sx={{ width: 300, marginBottom: '20px' }} key={index}>
+            <Card
+              sx={{ cursor: 'pointer', width: 300, marginBottom: '20px' }}
+              key={index}
+              onClick={() => navigate('/projectdetail')}
+            >
               <CardContent style={{ paddingBottom: '0' }}>
                 <Typography gutterBottom variant="h5" component="div">
                   {p.name}
@@ -166,8 +220,8 @@ export default function Project() {
                 <LinearProgressWithLabel value={p.quality} />
               </CardContent>
               <CardActions style={{ margin: '10px 24px 24px 24px', padding: '0' }}>
-                <Button onClick={() => navigate('/projectdetail')} variant="contained" size="small">
-                  View Details
+                <Button variant="contained" size="small">
+                  {p.workspace}
                 </Button>
               </CardActions>
             </Card>
