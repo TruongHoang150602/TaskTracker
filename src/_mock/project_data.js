@@ -23,6 +23,7 @@ function randomTimeRange() {
     end: endTime
   };
 }
+
 export const project = [
   {
     name: 'E-Commerce Website',
