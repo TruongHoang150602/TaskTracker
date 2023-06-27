@@ -13,6 +13,7 @@ import {
   // AppNewsUpdate,
   // AppOrderTimeline,
   // AppCurrentVisits,
+  CustomizedTimeline,
   AppWebsiteVisits,
   AppTrafficBySite,
   AppWidgetSummary,
@@ -58,27 +59,9 @@ export default function DashboardAppPage() {
 
          
 
-          <Grid item xs={12} md={6} lg={4} >
-          <Card>
-          <CalendarStyle>
-            <FullCalendar
-              weekends
-              editable
-              droppable
-              selectable
-              events={events}
-              rerenderDelay={10}
-              initialDate={new Date()}
-              initialView='listWeek'
-              dayMaxEventRows={3}
-              eventDisplay="block"
-              headerToolbar={false}
-              allDayMaintainDuration
-              eventResizableFromStart
-              plugins={[listPlugin,]}
-              height={ '330px'}
-            />
-          </CalendarStyle>
+          <Grid item xs={12} md={6} lg={5} >
+          <Card sx={{height:'100%', paddingTop:'46px'}}>
+          <CustomizedTimeline />
         </Card>
           </Grid>
 
@@ -98,7 +81,7 @@ export default function DashboardAppPage() {
           </Grid> */}
        
 
-        <Grid item xs={12} md={6} lg={8}>
+        <Grid item xs={12} md={6} lg={7}>
             <AppWebsiteVisits
               title="Schedule"
               subheader="(-30%) than last week"
@@ -123,34 +106,6 @@ export default function DashboardAppPage() {
                   type: 'area',
                   fill: 'gradient',
                   data: [44, 55, 41, 67, 22, 43, 21],
-                },
-              ]}
-            />
-          </Grid>
-
-        <Grid item xs={6} mt={6} lg={4}>
-            <AppTrafficBySite
-              title="Traffic by Site"
-              list={[
-                {
-                  name: 'Google Calendar',
-                  value: 5,
-                  icon: <Iconify icon={'logos:google-calendar'} color="#1877F2" width={32} />,
-                },
-                {
-                  name: 'Notion',
-                  value: 3,
-                  icon: <Iconify icon={'logos:notion-icon'} color="#DF3E30" width={32} />,
-                },
-                {
-                  name: 'Todoist',
-                  value: 411213,
-                  icon: <Iconify icon={'logos:todoist'} color="#006097" width={32} />,
-                },
-                {
-                  name: 'Twitter',
-                  value: 443232,
-                  icon: <Iconify icon={'eva:twitter-fill'} color="#1C9CEA" width={32} />,
                 },
               ]}
             />
