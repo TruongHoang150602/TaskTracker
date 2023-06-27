@@ -243,6 +243,7 @@ export const projectDetail = [
                 detail: 'Improve the code structure for better readability and maintainability. Remove code duplication.',
                 priority: 'Medium',
                 status: 'Completed',
+                point: '95',
                 assignee: ['Lê Duy Quý', 'Tống Văn Phúc'],
                 comment: [
                     {
@@ -265,6 +266,7 @@ export const projectDetail = [
                         detail: 'The UI is looking great so far! I love the new design!',
                     },
                 ],
+                ...randomTimeRange(),
             },
             {
                 id: 3,
@@ -280,6 +282,7 @@ export const projectDetail = [
                         detail: 'This is a critical feature, we need to get it done soon!',
                     },
                 ],
+                ...randomTimeRange(),
             },
             {
                 id: 4,
@@ -288,6 +291,7 @@ export const projectDetail = [
                 priority: 'Medium',
                 status: 'Completed',
                 assignee: ['Hoàng Vân Trường'],
+                point: '90',
                 comment: [
                     {
                         name: 'Nguyễn Trọng Quang',
@@ -309,6 +313,8 @@ export const projectDetail = [
                         detail: 'This is a complex task, but it is important to get it right! I am confident that we can do it.',
                     },
                 ],
+                ...randomTimeRange(),
+
             },
             {
                 id: 6,
@@ -318,12 +324,15 @@ export const projectDetail = [
                 priority: 'Medium',
                 status: 'Completed',
                 assignee: ['Nguyễn Trọng Quang'],
+                point: '95',
                 comment: [
                     {
                         name: 'Hoàng Vân Trường',
                         detail: 'The notification system is working great! I am so glad we were able to get it done.',
                     },
                 ],
+                ...randomTimeRange(),
+
             },
             {
                 id: 7,
@@ -338,6 +347,8 @@ export const projectDetail = [
                         detail: 'This is a low priority task, but it would be nice to have it eventually.',
                     },
                 ],
+                ...randomTimeRange(),
+
             },
             {
                 id: 8,
@@ -353,6 +364,8 @@ export const projectDetail = [
                         detail: 'This is a medium priority task, but it would be nice to have it soon.',
                     },
                 ],
+                ...randomTimeRange(),
+
             },
             {
                 id: 9,
@@ -368,6 +381,8 @@ export const projectDetail = [
                         detail: 'I can help you with this task if you need.',
                     },
                 ],
+                ...randomTimeRange(),
+
             },
             {
                 id: 10,
@@ -382,6 +397,8 @@ export const projectDetail = [
                         detail: 'This is a critical task, we need to get it done as soon as possible!',
                     },
                 ],
+                ...randomTimeRange(),
+
             },
         ],
     },
@@ -417,6 +434,7 @@ export const projectDetail = [
                 priority: 'Medium',
                 status: 'Completed',
                 assignee: ['Lê Duy Quý', 'Tống Văn Phúc'],
+                point: '80',
                 comment: [
                     {
                         name: 'Hoàng Vân Trường',
@@ -438,6 +456,7 @@ export const projectDetail = [
                         detail: 'Good progress so far.',
                     },
                 ],
+                ...randomTimeRange(),
             },
             {
                 id: 3,
@@ -453,6 +472,8 @@ export const projectDetail = [
                         detail: "Let's start working on this task.",
                     },
                 ],
+                ...randomTimeRange(),
+
             },
             {
                 id: 4,
@@ -469,6 +490,8 @@ export const projectDetail = [
                             'Good work on the intent recognition algorithm. A few more tweaks and it should be ready for release.',
                     },
                 ],
+                ...randomTimeRange(),
+
             },
             {
                 id: 5,
@@ -478,6 +501,7 @@ export const projectDetail = [
                 priority: 'Low',
                 status: 'Completed',
                 assignee: ['Trần Khắc Tuân'],
+                point: '75',
                 comment: [
                     {
                         name: 'Hoàng Vân Trường',
@@ -500,6 +524,8 @@ export const projectDetail = [
                         detail: "This is a critical feature for our chatbot. We need to make sure it's done right.",
                     },
                 ],
+                ...randomTimeRange(),
+
             },
             {
                 id: 7,
@@ -510,6 +536,8 @@ export const projectDetail = [
                 status: 'Submitted',
                 assignee: ['Lê Duy Quý', 'Trần Khắc Tuân'],
                 comment: [],
+                ...randomTimeRange(),
+
             },
             {
                 id: 8,
@@ -520,6 +548,8 @@ export const projectDetail = [
                 status: 'New Task',
                 assignee: ['Nguyễn Trọng Quang'],
                 comment: [],
+                ...randomTimeRange(),
+
             },
             {
                 id: 9,
@@ -530,6 +560,8 @@ export const projectDetail = [
                 status: 'In Progress',
                 assignee: ['Tống Văn Phúc', 'Trần Khắc Tuân'],
                 comment: [],
+                ...randomTimeRange(),
+
             },
             {
                 id: 10,
@@ -539,6 +571,7 @@ export const projectDetail = [
                 priority: 'High',
                 status: 'Completed',
                 assignee: ['Lê Duy Quý', 'Hoàng Vân Trường'],
+                point: '70',
                 comment: [
                     {
                         name: 'Nguyễn Trọng Quang',

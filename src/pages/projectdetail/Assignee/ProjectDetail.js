@@ -9,20 +9,20 @@ import { useLocation } from 'react-router-dom';
 import './styles.css';
 import Muuri from 'muuri';
 import { Stack, Button } from '@mui/material';
-import Page from '../../components/Page';
-import Iconify from '../../components/iconify';
-import Filter from '../../components/Filter';
-import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
+import Page from '../../../components/Page';
+import Iconify from '../../../components/iconify';
+import Filter from '../../../components/Filter';
+import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 import Overview from './Overview';
-import { CardTask, CardSub, CardCompleted } from './Card';
+import { CardTask, CardSub, CardCompleted } from './TaskCard';
 import NewTask from './NewTask';
-import { projectDetail } from '../../_mock/project_data';
+import { projectDetail } from '../../../_mock/project_data';
 
 export default function ProjectDetail() {
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const id = searchParams.get('id');
-    // id = 1;
+    // const location = useLocation();
+    // const searchParams = new URLSearchParams(location.search);
+    // const id = searchParams.get('id');
+    const id = 2;
     console.log(projectDetail[id].task);
     const newTask = projectDetail[id].task.filter((option) => (
         option.status === "New Task"
@@ -136,13 +136,14 @@ export default function ProjectDetail() {
                             </Button>
 
                         ) : (
-                            <Button
-                                variant="contained"
-                                startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
-                                onClick={handleAddMember}
-                            >
-                                Add Member
-                            </Button>
+                        //     <Button
+                        //         variant="contained"
+                        //         startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
+                        //         onClick={handleAddMember}
+                        //     >
+                        //         Add Member
+                        //     </Button>
+                        <div />
                         )}
 
                     </Stack>

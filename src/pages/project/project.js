@@ -23,7 +23,7 @@ import { useState } from 'react';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 import Iconify from '../../components/iconify/Iconify';
 import Filter from '../../components/Filter';
-import { project } from '../../_mock/project_data_Old';
+import { project } from '../../_mock/project_data';
 
 function LinearProgressWithLabel(props) {
   return (
