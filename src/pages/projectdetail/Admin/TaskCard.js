@@ -6,8 +6,8 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Button } from '@mui/material';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
-import TaskDetail from '../task/TaskDetail';
-import { fDate } from '../../utils/formatTime';
+import TaskDetail from '../../task/TaskDetail';
+import { fDate } from '../../../utils/formatTime';
 
 const PRIORITY = {
     High: 'red',
@@ -21,7 +21,8 @@ export function CardTask(title, assignee, priority, deadline) {
     const [item, setItem] = useState({
         name: ''
     });
-    const handleOpen = () => {
+    const handleOpen = (e) => {
+        e.stopPropagation()
         item.name = title;
         setOpen(true);
         setItem(item);
@@ -78,7 +79,8 @@ export function CardSub(title, assignee, priority, deadline) {
     const [item, setItem] = useState({
         name: ''
     });
-    const handleOpen = () => {
+    const handleOpen = (e) => {
+        e.stopPropagation()
         item.name = title;
         setOpen(true);
         setItem(item);
@@ -137,7 +139,8 @@ export function CardCompleted(title, assignee, point) {
     const [item, setItem] = useState({
         name: ''
     });
-    const handleOpen = () => {
+    const handleOpen = (e) => {
+        e.stopPropagation()
         item.name = title;
         setOpen(true);
         setItem(item);
@@ -190,3 +193,4 @@ export function CardCompleted(title, assignee, point) {
         </Space>
     )
 }
+
