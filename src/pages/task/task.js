@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import {Box, Paper, Grid, Tabs, Tab, Typography,  Container} from '@mui/material'
+import {Box, Paper, Grid, Tabs, Tab, Typography,  Container, Badge} from '@mui/material'
 import data from './data';
 import TaskItem from './TaskItem';
 import TaskDetail from './TaskDetail';
@@ -48,6 +48,15 @@ function a11yProps(index) {
   };
 }
 
+
+const map = {
+  "submited": 10,
+  "completed": 20,
+  "inProcess": 30,
+  "newTask": 40,
+}
+
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -60,7 +69,29 @@ const Task = () => {
 
   const [open, setOpen] = React.useState(false);
   const [item, setItem] = React.useState(null);
+
+
+  const [age1, setAge1] = React.useState("");
+  const [open1, setOpen1] = React.useState(false);
+
+  const handleChange1 = (event) => {
+    console.log(event.target.value)
+    setAge1(event.target.value);
+  };
+
+  const handleClose1 = () => {
+    setOpen1(false);
+  };
+
+  const handleOpen1 = () => {
+    setOpen1(true);
+  };
+
+
   const handleOpen = (item) =>{
+    // console.log(item)
+    console.log(map[item.status]);
+    setAge1(map[item.status]);
     setOpen(true);
     setItem(item);
   } 
@@ -84,10 +115,21 @@ const Task = () => {
         <Grid  style={{paddingTop:"0px"}} item xs={12}>
            
               <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="New Task" {...a11yProps(0)} />
+                <Badge badgeContent={0} color="secondary">  
+                 <Tab label="New Task" {...a11yProps(0)} />  
+                </Badge>
+                <Badge badgeContent={0} color="secondary">  
                 <Tab label="In process" {...a11yProps(1)} />
+                </Badge>
+                <Badge badgeContent={2} color="secondary">  
                 <Tab label="Submited" {...a11yProps(2)} />
+                </Badge>
+                <Badge badgeContent={0} color="secondary">  
                 <Tab label="Completed" {...a11yProps(3)} />
+                </Badge>
+               
+                
+                
               </Tabs>
            
             <TabPanel className={`flex w-[100%]`} value={value} index={0}>
@@ -112,7 +154,7 @@ const Task = () => {
             </TabPanel>
         </Grid>
         <Grid item xs={12}>
-          <TaskDetail data={item}  handleClose={handleClose} handleOpen={handleOpen} open={open} />
+          <TaskDetail data={item} age1={age1} handleClose={handleClose} handleOpen={handleOpen} open={open} setAge1={setAge1} open1={open1} setOpen1={setOpen1} handleChange1={handleChange1} handleClose1={handleClose1} handleOpen1={handleOpen1}/>
         </Grid>
       </Grid>
 

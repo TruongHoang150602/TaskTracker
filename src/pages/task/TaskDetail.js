@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
+import InputLabel from '@mui/material/InputLabel';
 import { Close } from '@mui/icons-material';
 import { Grid, TextField, ToggleButton, Tooltip } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -15,7 +16,13 @@ import dayjs from 'dayjs';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
-import css from "../../assets/css/task.module.css";
+import { useTheme } from '@mui/material/styles';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+import css from '../../assets/css/task.module.css';
 import Comment from './Comment';
 
 const style = {
@@ -42,7 +49,13 @@ const COLOR_OPTIONS = [
   '#7A0C2E', // theme.palette.error.darker
 ];
 
-export default function TaskDetail({ handleClose, handleOpen, open, data }) {
+const names = ['Submited', 'Completed', 'In progress', 'New task'];
+
+
+
+export default function TaskDetail({ handleClose, handleOpen, open, data, age1, setAge1, open1, setOpen1, handleChange1, handleClose1, handleOpen1 }) {
+
+  
   return (
     <div>
       <Modal
@@ -52,8 +65,29 @@ export default function TaskDetail({ handleClose, handleOpen, open, data }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography className="text-right" id="modal-modal-title" variant="h6" component="h2">
-            <Close className="cursor-pointer hover:bg-[#EDEFF1]" onClick={handleClose} />
+          <Typography className="flex justify-between" id="modal-modal-title" variant="h6" component="h2">
+            <div>
+              <FormControl sx={{ m: 1, minWidth: 140 }}>
+                <InputLabel id="demo-controlled-open-select-label">Status</InputLabel>
+                <Select
+                  labelId="demo-controlled-open-select-label"
+                  id="demo-controlled-open-select"
+                  open={open1}
+                  onClose={handleClose1}
+                  onOpen={handleOpen1}
+                  value={age1}
+                  label="Status"
+                  onChange={handleChange1}
+                  style={{height: 40}}
+                >
+                  <MenuItem value={10}>Submited</MenuItem>
+                  <MenuItem value={20}>Completed</MenuItem>
+                  <MenuItem value={30}>In progress</MenuItem>
+                  <MenuItem value={40}>New task</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+            <Close className="cursor-pointer hover:bg-[#EDEFF1] mt-[4px]" onClick={handleClose} />
           </Typography>
           <Typography className={`h-[560px] overflow-y-scroll overflow-y-hidden ${css.nonescroll}`}>
             <Typography
@@ -81,19 +115,39 @@ export default function TaskDetail({ handleClose, handleOpen, open, data }) {
             </Typography>
             <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
               <h6 className="text-[#6F6F6F] mt-[0px] mb-[10px] text-[16px]">Asignee</h6>
-              <div className='flex'>
-                <img className='mx-[5px] w-[30px] h-[30px] bg-[red] rounded-[15px]' src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1687536908~exp=1687537508~hmac=1d8eabbd2975fdc967567e1aa85e8c7187fe7a2735da839427935bea25d5d08a' alt=""/>
-                <img className='w-[30px] mx-[5px] h-[30px] bg-[red] rounded-[15px]' src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1687536908~exp=1687537508~hmac=1d8eabbd2975fdc967567e1aa85e8c7187fe7a2735da839427935bea25d5d08a' alt=""/>
-                <img className='w-[30px] mx-[5px] h-[30px] bg-[red] rounded-[15px]' src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1687536908~exp=1687537508~hmac=1d8eabbd2975fdc967567e1aa85e8c7187fe7a2735da839427935bea25d5d08a' alt=""/>
-                <img className='w-[30px] mx-[5px] h-[30px] bg-[red] rounded-[15px]' src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1687536908~exp=1687537508~hmac=1d8eabbd2975fdc967567e1aa85e8c7187fe7a2735da839427935bea25d5d08a' alt=""/>
-                <img className='w-[30px] mx-[5px] h-[30px] bg-[red] rounded-[15px]' src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1687536908~exp=1687537508~hmac=1d8eabbd2975fdc967567e1aa85e8c7187fe7a2735da839427935bea25d5d08a' alt=""/>
+              <div className="flex">
+                <img
+                  className="mx-[5px] w-[30px] h-[30px] bg-[red] rounded-[15px]"
+                  src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1687536908~exp=1687537508~hmac=1d8eabbd2975fdc967567e1aa85e8c7187fe7a2735da839427935bea25d5d08a"
+                  alt=""
+                />
+                <img
+                  className="w-[30px] mx-[5px] h-[30px] bg-[red] rounded-[15px]"
+                  src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1687536908~exp=1687537508~hmac=1d8eabbd2975fdc967567e1aa85e8c7187fe7a2735da839427935bea25d5d08a"
+                  alt=""
+                />
+                <img
+                  className="w-[30px] mx-[5px] h-[30px] bg-[red] rounded-[15px]"
+                  src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1687536908~exp=1687537508~hmac=1d8eabbd2975fdc967567e1aa85e8c7187fe7a2735da839427935bea25d5d08a"
+                  alt=""
+                />
+                <img
+                  className="w-[30px] mx-[5px] h-[30px] bg-[red] rounded-[15px]"
+                  src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1687536908~exp=1687537508~hmac=1d8eabbd2975fdc967567e1aa85e8c7187fe7a2735da839427935bea25d5d08a"
+                  alt=""
+                />
+                <img
+                  className="w-[30px] mx-[5px] h-[30px] bg-[red] rounded-[15px]"
+                  src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1687536908~exp=1687537508~hmac=1d8eabbd2975fdc967567e1aa85e8c7187fe7a2735da839427935bea25d5d08a"
+                  alt=""
+                />
               </div>
             </Typography>
             <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
               <h6 className="text-[#6F6F6F] mt-[0px] mb-[10px] text-[16px]">Attachment</h6>
-              <div className='flex pb-[40px]'>
-                <AttachmentIcon className='mr-[20px]'/>
-                <CreateNewFolderIcon/>
+              <div className="flex pb-[40px]">
+                <AttachmentIcon className="mr-[20px]" />
+                <CreateNewFolderIcon />
               </div>
             </Typography>
             <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
@@ -134,13 +188,13 @@ export default function TaskDetail({ handleClose, handleOpen, open, data }) {
             </Typography>
             <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
               <h2>Comment</h2>
-              <div className='text-right'>
-                <TextField className='w-[100%]' id="filled-basic" label="Write comment" variant="filled" />
-                <Button className='my-[10px]' variant="contained" endIcon={<SendIcon />}>
+              <div className="text-right">
+                <TextField className="w-[100%]" id="filled-basic" label="Write comment" variant="filled" />
+                <Button className="my-[10px]" variant="contained" endIcon={<SendIcon />}>
                   Comment
                 </Button>
               </div>
-              <Comment/>
+              <Comment />
             </Typography>
           </Typography>
         </Box>

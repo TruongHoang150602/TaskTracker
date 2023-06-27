@@ -13,19 +13,28 @@ const task = [
         quality: "MEDIUM",
         status: "newTask"
     },
+    // {
+    //     name : "Design interface component",
+    //     project: "UIUX",
+    //     date: "June 22, 2023",
+    //     quality: "MEDIUM",
+    //     status: "completed"
+    // },
     {
-        name : "Design interface component",
-        project: "UIUX",
+        name : "Write tic toc toe game",
+        project: "AI",
         date: "June 22, 2023",
         quality: "MEDIUM",
-        status: "completed"
+        status: "completed",
+        score: 100
     },
     {
         name : "Write tic toc toe game",
         project: "AI",
         date: "June 22, 2023",
         quality: "MEDIUM",
-        status: "submited"
+        status: "submited",
+        score: 100
     },
     {
         name : "Kaiwa with friends",

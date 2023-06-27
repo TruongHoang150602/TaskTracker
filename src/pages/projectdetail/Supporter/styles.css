@@ -98,7 +98,7 @@ body {
 
 .board-column-content {
     position: relative;
-    min-height: 100%;
+    
 }
 
 .board-item {
