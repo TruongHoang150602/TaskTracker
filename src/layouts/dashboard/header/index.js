@@ -11,7 +11,7 @@ import Searchbar from './Searchbar';
 import AccountPopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 import NotificationsPopover from './NotificationsPopover';
-
+import ChatFQA from './ChatBoxPopover';
 // ----------------------------------------------------------------------
 
 const NAV_WIDTH = 280;
@@ -69,6 +69,7 @@ export default function Header({ onOpenNav }) {
           }}
         >
           <LanguagePopover />
+          <ChatFQA />
           <NotificationsPopover />
           <AccountPopover />
         </Stack>

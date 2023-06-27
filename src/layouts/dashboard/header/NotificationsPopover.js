@@ -41,19 +41,28 @@ const NOTIFICATIONS = [
   {
     id: faker.datatype.uuid(),
     title: faker.name.fullName(),
-    description: 'answered to your comment',
-    avatar: '/assets/images/avatars/avatar_2.jpg',
+    description: 'sent you a invite request to join',
+    avatar: '/assets/images/avatars/avatar_3.jpg',
     type: 'friend_interactive',
-    createdAt: sub(new Date(), { hours: 3, minutes: 30 }),
+    createdAt: sub(new Date(), { hours: 12, minutes: 45 }),
     isUnRead: true,
   },
+  // {
+  //   id: faker.datatype.uuid(),
+  //   title: faker.name.fullName(),
+  //   description: 'answered to your comment',
+  //   avatar: '/assets/images/avatars/avatar_2.jpg',
+  //   type: 'friend_cmt',
+  //   createdAt: sub(new Date(), {days: 2,  hours: 3, minutes: 30 }),
+  //   isUnRead: true,
+  // },
   {
     id: faker.datatype.uuid(),
     title: 'You have tasks that are due',
     description: '2 tasks are due soon',
     avatar: null,
     type: 'chat_message',
-    createdAt: sub(new Date(), { days: 1, hours: 3, minutes: 30 }),
+    createdAt: sub(new Date(), { days: 3, hours: 3, minutes: 30 }),
     isUnRead: false,
   },
   {
@@ -62,7 +71,7 @@ const NOTIFICATIONS = [
     description: 'sent from Guido Padberg',
     avatar: null,
     type: 'mail',
-    createdAt: sub(new Date(), { days: 2, hours: 3, minutes: 30 }),
+    createdAt: sub(new Date(), { days: 5, hours: 3, minutes: 30 }),
     isUnRead: false,
   },
   {
@@ -74,6 +83,7 @@ const NOTIFICATIONS = [
     createdAt: sub(new Date(), { days: 3, hours: 3, minutes: 30 }),
     isUnRead: false,
   },
+  
 ];
 
 export default function NotificationsPopover() {
@@ -131,7 +141,7 @@ export default function NotificationsPopover() {
           </Box>
 
           {totalUnRead > 0 && (
-            <Tooltip title=" Mark all as read">
+            <Tooltip title="Mark all as read">
               <IconButton color="primary" onClick={handleMarkAllAsRead}>
                 <Iconify icon="eva:done-all-fill" />
               </IconButton>
@@ -197,24 +207,36 @@ NotificationItem.propTypes = {
 
 function NotificationItem({ notification }) {
   const { avatar, title } = renderContent(notification);
+  const [actionText, setActionText] = useState('');
+  const [isUnRead, setIsUnRead] = useState(notification.isUnRead);
 
+  const handleAccept = () => {
+    setIsUnRead(false);
+    setActionText('Accepted invite request');
+  };
+
+  const handleDecline = () => {
+    setIsUnRead(false);
+    setActionText('Declined invite request');
+  };
   return (
     <ListItemButton
-      sx={{
-        py: 1.5,
-        px: 2.5,
-        mt: '1px',
-        ...(notification.isUnRead && {
-          bgcolor: 'action.selected',
-        }),
-      }}
-    >
-      <ListItemAvatar>
+    sx={{
+      py: 1.5,
+      px: 2.5,
+      mt: '1px',
+      ...(notification.isUnRead && {
+        bgcolor: 'action.selected',
+      }),
+    }}
+  >
+    <ListItemAvatar>
         <Avatar sx={{ bgcolor: 'background.neutral' }}>{avatar}</Avatar>
       </ListItemAvatar>
-      <ListItemText
-        primary={title}
-        secondary={
+    <ListItemText
+      primary={title}
+      secondary={
+        <>
           <Typography
             variant="caption"
             sx={{
@@ -227,8 +249,39 @@ function NotificationItem({ notification }) {
             <Iconify icon="eva:clock-outline" sx={{ mr: 0.5, width: 16, height: 16 }} />
             {fToNow(notification.createdAt)}
           </Typography>
-        }
-      />
+          {notification.type === 'friend_interactive' && (
+            <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              mt: 0.5,
+            }}
+          >
+            {actionText ? (
+              <Typography variant="body2" color="text.secondary">
+                {actionText}
+              </Typography>
+            ) : (
+              <>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  onClick={handleAccept}
+                  sx={{ bgcolor: 'primary.main', color: 'primary.contrastText' }}
+                >
+                  Accept
+                </Button>
+                <Button variant="outlined" size="small" onClick={handleDecline}>
+                  Decline
+                </Button>
+              </>
+            )}
+            </Box>
+          )}
+        </>
+      }
+    />
     </ListItemButton>
   );
 }
@@ -236,6 +289,19 @@ function NotificationItem({ notification }) {
 // ----------------------------------------------------------------------
 
 function renderContent(notification) {
+  // const title = (
+  //   <Typography variant="subtitle2">
+  //     {notification.type === 'friend_interactive' && (
+  //       <>
+  //         <Typography component="span">{notification.title}</Typography>
+  //         <Typography component="span" variant="body2" sx={{ color: 'text.secondary' }}>
+  //           &nbsp; {noCase(notification.description)}
+  //         </Typography>
+  //       </>
+  //     )}
+  //     {notification.type !== 'friend_interactive' && notification.title}
+  //   </Typography>
+  // );
   const title = (
     <Typography variant="subtitle2">
       {notification.title}
@@ -269,8 +335,18 @@ function renderContent(notification) {
       title,
     };
   }
+  if (notification.type === 'friend_interactive') {
+    return {
+      avatar: (
+        <Avatar alt={notification.title} src={notification.avatar} sx={{ width: 36, height: 36 }} />
+      ),
+      title,
+    };
+  }
   return {
-    avatar: notification.avatar ? <img alt={notification.title} src={notification.avatar} /> : null,
+    avatar: notification.avatar ? (
+      <Avatar alt={notification.title} src={notification.avatar} />
+    ) : null,
     title,
   };
 }

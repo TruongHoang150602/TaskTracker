@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import { DataGrid } from '@mui/x-data-grid';
 import NativeSelect from '@mui/material/NativeSelect';
+import Button from '@mui/material/Button';
 
 function Overview() {
 
@@ -37,10 +35,6 @@ function Overview() {
         return params.value;
     }
 
-    const handleIconClick = (rows, row) => {
-        console.log(row.id);
-        removeItem(row.id);
-    }
     const handleRowClick = (id) => {
         setSelectedRowId(id);
     }
@@ -49,27 +43,6 @@ function Overview() {
         { field: 'name', headerName: 'Name', width: 200 },
         { field: 'email', headerName: 'E-Mail', width: 250 },
         { field: 'position', headerName: 'Position', width: 150, renderCell: renderPositionCell, onClick: (params) => handleRowClick(params.row.id) },
-        {
-            field: 'actions',
-            headerName: 'Actions',
-            width: 120,
-            renderCell: (params) => (
-                <div>
-                    <IconButton
-                        color="primary"
-                        onClick={() => handleIconClick(rows, params.row)}
-                    >
-                        <DeleteIcon />
-                    </IconButton>
-                    <IconButton
-                        color="primary"
-                        onClick={() => handleRowClick(params.row.id)}
-                    >
-                        <EditIcon />
-                    </IconButton>
-                </div>
-            ),
-        },
     ];
 
     const [rows, setRows] = useState([
@@ -80,11 +53,6 @@ function Overview() {
         { id: 5, name: 'Lê Duy Quý', email: 'quy.ld205018@sis.hust.edu.vn', position: 'Implementer' },
         { id: 6, name: 'Nguyễn Thị Quỳnh Nga', email: 'nga.ntq204734@sis.hust.edu.vn', position: 'Viewer' },
     ]);
-
-    const removeItem = (id) => {
-        const updatedRows = rows.filter(row => row.id !== id);
-        setRows(updatedRows);
-    }
 
     return (
         <div>
@@ -110,6 +78,9 @@ function Overview() {
                     />
 
                 </div>
+            </div>
+            <div style={{float:'right'}}>
+                <Button variant="contained">Save</Button>
             </div>
         </div>
     );
