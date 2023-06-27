@@ -41,7 +41,7 @@ const NOTIFICATIONS = [
   {
     id: faker.datatype.uuid(),
     title: faker.name.fullName(),
-    description: 'sent you a friend request',
+    description: 'sent you a invite request to join',
     avatar: '/assets/images/avatars/avatar_3.jpg',
     type: 'friend_interactive',
     createdAt: sub(new Date(), { hours: 12, minutes: 45 }),
