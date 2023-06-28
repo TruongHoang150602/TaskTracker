@@ -20,6 +20,7 @@ import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 import {  CalendarForm, CalendarStyle, CalendarToolbar } from '../../sections/@dashboard/calendar';
 import events from '../../_mock/events';
 
+console.log(events)
 
 // ----------------------------------------------------------------------
 
@@ -40,7 +41,7 @@ const COLOR_OPTIONS = [
   }, 
   {
     label: 'Cuộc gặp',
-    color: '#1890FF'
+    color: '#7A0C2E'
   }, 
   {
     label: 'Ăn uống',
@@ -55,8 +56,8 @@ const COLOR_OPTIONS = [
     color:  '#04297A'
   },
   {
-    label: 'Quan trọng',
-    color:  '#7A0C2E'
+    label: 'Thể thao',
+    color:  '#1890FF'
   }
 ];
 

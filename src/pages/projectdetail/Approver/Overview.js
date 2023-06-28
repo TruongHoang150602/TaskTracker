@@ -10,7 +10,9 @@ function Overview() {
     const positionOptions = [
         { value: 'Administrator', label: 'Administrator' },
         { value: 'Implementer', label: 'Implementer' },
-        { value: 'Viewer', label: 'Viewer' },
+        { value: 'Approver', label: 'Approver' },
+        { value: 'Supporter', label: 'Supporter' },
+        { value: 'Assignee', label: 'Assignee' },
     ];
     const renderPositionCell = (params) => {
         const { id } = params.row;
@@ -47,36 +49,15 @@ function Overview() {
         { field: 'name', headerName: 'Name', width: 200 },
         { field: 'email', headerName: 'E-Mail', width: 250 },
         { field: 'position', headerName: 'Position', width: 150, renderCell: renderPositionCell, onClick: (params) => handleRowClick(params.row.id) },
-        // {
-        //     field: 'actions',
-        //     headerName: 'Actions',
-        //     width: 120,
-        //     renderCell: (params) => (
-        //         <div>
-        //             <IconButton
-        //                 color="primary"
-        //                 onClick={() => handleIconClick(rows, params.row)}
-        //             >
-        //                 <DeleteIcon />
-        //             </IconButton>
-        //             <IconButton
-        //                 color="primary"
-        //                 onClick={() => handleRowClick(params.row.id)}
-        //             >
-        //                 <EditIcon />
-        //             </IconButton>
-        //         </div>
-        //     ),
-        // },
     ];
 
     const [rows, setRows] = useState([
         { id: 1, name: 'Nguyễn Trọng Quang', email: 'quang.nt205118@sis.hust.edu.vn', position: 'Administrator' },
         { id: 2, name: 'Hoàng Vân Trường', email: 'truong.hv205034@sis.hust.edu.vn', position: 'Implementer' },
         { id: 3, name: 'Tống Văn Phúc', email: 'phuc.tv200409@sis.hust.edu.vn', position: 'Implementer' },
-        { id: 4, name: 'Trần Khắc Tuân', email: 'tuan.tk200440@sis.hust.edu.vn', position: 'Implementer' },
-        { id: 5, name: 'Lê Duy Quý', email: 'quy.ld205018@sis.hust.edu.vn', position: 'Implementer' },
-        { id: 6, name: 'Nguyễn Thị Quỳnh Nga', email: 'nga.ntq204734@sis.hust.edu.vn', position: 'Viewer' },
+        { id: 4, name: 'Trần Khắc Tuân', email: 'tuan.tk200440@sis.hust.edu.vn', position: 'Assignee' },
+        { id: 5, name: 'Lê Duy Quý', email: 'quy.ld205018@sis.hust.edu.vn', position: 'Approver' },
+        { id: 6, name: 'Nguyễn Thị Quỳnh Nga', email: 'nga.ntq204734@sis.hust.edu.vn', position: 'Supporter' },
     ]);
 
     const removeItem = (id) => {
@@ -109,9 +90,9 @@ function Overview() {
 
                 </div>
             </div>
-            <div style={{float:'right'}}>
+            {/* <div style={{ float: 'right' }}>
                 <Button variant="contained">Save</Button>
-            </div>
+            </div> */}
         </div>
     );
 }
