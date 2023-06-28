@@ -1,14 +1,17 @@
 import { sample } from 'lodash';
 
 // ----------------------------------------------------------------------
+const currentDate = new Date();
 
 function randomTimeRange() {
-    const currentDate = new Date(); // Lấy ngày hiện tại
+    // Lấy ngày hiện tại
   
-    // Sinh ngẫu nhiên một số từ 0 đến 6 để đại diện cho các ngày trong tuần (0: Chủ nhật, 1: Thứ 2, 2: Thứ 3, ...)
-    const randomDayOfWeek = Math.floor(Math.random() * 7);
+    let randomDayOfWeek = Math.floor(Math.random() * 30 - 14) ;
+
+    while(randomDayOfWeek === 0){
+      randomDayOfWeek = Math.floor(Math.random() * 30 - 14) ;
+    }
   
-    // Tính toán ngày bắt đầu và kết thúc dựa trên ngày hiện tại và randomDayOfWeek
     const startDay = currentDate.getDate() + randomDayOfWeek;
     const endDay = startDay;
   
@@ -32,13 +35,16 @@ const EVENT_NAME = [
     'Làm việc văn phòng',
     'Chăm sóc gia đình',
     'Đi mua sắm',
-    'Thể dục buổi sáng',
+    'Thể dục',
     'Học tập',
     'Dọn dẹp nhà cửa',
     'Nấu ăn',
     'Đọc sách',
     'Xem phim',
-    'Gặp bạn bè'
+    'Gặp bạn bè',
+    'Chơi game',
+    'Đá bóng',
+    'Code'
 ];
 // const EVENT_COLOR = ['#00AB55', '#000000', '#FFFFFF', '#FFC0CB', '#FF4842', '#1890FF', '#94D82D', '#FFC107'];
 
@@ -69,14 +75,14 @@ const COLOR_OPTIONS = [
     color:  '#04297A'
   },
   {
-    label: 'Quan trọng',
+    label: 'Thể thao',
     color:  '#7A0C2E'
   }
 ];
 
-const events = [...Array(10)].map((_, index) => ({
+const monthEvents = [...Array(30)].map((_, index) => ({
     id: index,
-    title: EVENT_NAME[index],
+    title: sample(EVENT_NAME),
     color: sample(COLOR_OPTIONS).color,
     allDay: sample(true, false),
     repeat: sample(['none', 'Every day', 'Every week', 'Every month']),
@@ -84,6 +90,67 @@ const events = [...Array(10)].map((_, index) => ({
     description: "",
     ... randomTimeRange()
 }));
+
+
+const todayEvent = [{
+  id: 30,
+  title: 'Thể dục',
+  color: '#1890FF',
+  allDay: sample(true, false),
+  repeat: sample(['none', 'Every day', 'Every week', 'Every month']),
+  alert: sample(['none', 'Every day', 'Every week', 'Every month']),
+  description: "",
+  start: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 7,0),
+  end: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 7,30),
+},
+{
+  id: 31,
+  title: 'Ăn sáng',
+  color: '#54D62C',
+  allDay: sample(true, false),
+  repeat: sample(['none', 'Every day', 'Every week', 'Every month']),
+  alert: sample(['none', 'Every day', 'Every week', 'Every month']),
+  description: "",
+  start: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 8,0),
+  end: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 8,30),
+},
+{
+  id: 32,
+  title: 'Code',
+  color: '#FFC107',
+  allDay: sample(true, false),
+  repeat: sample(['none', 'Every day', 'Every week', 'Every month']),
+  alert: sample(['none', 'Every day', 'Every week', 'Every month']),
+  description: "",
+  start: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 9,0),
+  end: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 11,30),
+},
+{
+  id: 33,
+  title: 'Nghỉ trưa',
+  color: '#FF4842',
+  allDay: sample(true, false),
+  repeat: sample(['none', 'Every day', 'Every week', 'Every month']),
+  alert: sample(['none', 'Every day', 'Every week', 'Every month']),
+  description: "",
+  start: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 12,0),
+  end: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 13,0),
+},
+{
+  id: 34,
+  title: 'Đá bóng',
+  color: '#1890FF',
+  allDay: sample(true, false),
+  repeat: sample(['none', 'Every day', 'Every week', 'Every month']),
+  alert: sample(['none', 'Every day', 'Every week', 'Every month']),
+  description: "",
+  start: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 17,0),
+  end: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 18,30),
+},
+
+]
+
+const events = [...monthEvents, ...todayEvent];
 
 export default events;
 
