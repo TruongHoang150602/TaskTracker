@@ -5,7 +5,6 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import './styles.css';
 import Muuri from 'muuri';
 import { Stack, Button } from '@mui/material';
@@ -17,13 +16,15 @@ import Overview from './Overview';
 import { CardTask, CardSub, CardCompleted } from './TaskCard';
 import NewTask from './NewTask';
 import { projectDetail } from '../../../_mock/project_data';
+import InvitePopup from '../addMember';
 
 export default function ProjectDetail() {
-    // const location = useLocation();
-    // const searchParams = new URLSearchParams(location.search);
-    // const id = searchParams.get('id');
     const id = 0;
     console.log(projectDetail[id].task);
+    const [open, setOpen] = useState(false);
+    const onClose = () => {
+        setOpen(false);
+    }
     const newTask = projectDetail[id].task.filter((option) => (
         option.status === "New Task"
     ))
@@ -51,6 +52,7 @@ export default function ProjectDetail() {
 
     const handleAddMember = () => {
         console.log("add member");
+        setOpen(true);
     }
 
     const [value1, setValue1] = useState(0);
@@ -228,6 +230,7 @@ export default function ProjectDetail() {
                     <TabPanel value="2">
                         <Overview />
                     </TabPanel>
+                    <InvitePopup open={open} onClose={onClose} />
                 </TabContext>
             </Box>
         </Page>
