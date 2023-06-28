@@ -116,7 +116,7 @@ const Task = () => {
            
               <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                 <Tab label="New Task" {...a11yProps(0)} />
-                <Tab label="In process" {...a11yProps(1)} />
+                <Tab label="In progress" {...a11yProps(1)} />
                 <Tab label="Submited" {...a11yProps(2)} />
                 <Tab label="Completed" {...a11yProps(3)} />
               </Tabs>
