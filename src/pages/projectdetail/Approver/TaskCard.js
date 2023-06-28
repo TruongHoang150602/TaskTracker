@@ -6,7 +6,7 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Button } from '@mui/material';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
-import TaskDetail from '../../task/TaskDetail';
+import TaskDetail from './TaskDetail';
 import { fDate } from '../../../utils/formatTime';
 
 const PRIORITY = {

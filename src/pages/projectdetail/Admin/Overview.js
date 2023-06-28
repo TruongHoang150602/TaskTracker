@@ -5,15 +5,21 @@ import EditIcon from '@mui/icons-material/Edit';
 import { DataGrid } from '@mui/x-data-grid';
 import NativeSelect from '@mui/material/NativeSelect';
 import Button from '@mui/material/Button';
+import QuesDialog from '../../../components/toast/quesdialog';
+import AlertDialog from '../../../components/toast/dialog';
 
 function Overview() {
 
+    // const [alter, setAlter] = useState(false);
     const [selectedRowId, setSelectedRowId] = useState(null);
     const [selectedPositions, setSelectedPositions] = useState({});
+    // const [open, setOpen] = useState(false);
     const positionOptions = [
         { value: 'Administrator', label: 'Administrator' },
         { value: 'Implementer', label: 'Implementer' },
-        { value: 'Viewer', label: 'Viewer' },
+        { value: 'Approver', label: 'Approver' },
+        { value: 'Supporter', label: 'Supporter' },
+        { value: 'Assignee', label: 'Assignee' },
     ];
     const renderPositionCell = (params) => {
         const { id } = params.row;
@@ -40,8 +46,14 @@ function Overview() {
 
     const handleIconClick = (rows, row) => {
         console.log(row.id);
+        // setAlter(true);
+        // setOpen(true);
         removeItem(row.id);
     }
+    // const hdlcl = () => {
+    //     setAlter(false);
+    //     setOpen(false);
+    // }
     const handleRowClick = (id) => {
         setSelectedRowId(id);
     }
@@ -61,6 +73,10 @@ function Overview() {
                         onClick={() => handleIconClick(rows, params.row)}
                     >
                         <DeleteIcon />
+                        {/* {
+                            alter &&
+                            <QuesDialog open={open} handleClose={hdlcl} title="Dialog" ques="Do you want to delete ?" />
+                        } */}
                     </IconButton>
                     <IconButton
                         color="primary"
@@ -77,9 +93,9 @@ function Overview() {
         { id: 1, name: 'Nguyễn Trọng Quang', email: 'quang.nt205118@sis.hust.edu.vn', position: 'Administrator' },
         { id: 2, name: 'Hoàng Vân Trường', email: 'truong.hv205034@sis.hust.edu.vn', position: 'Implementer' },
         { id: 3, name: 'Tống Văn Phúc', email: 'phuc.tv200409@sis.hust.edu.vn', position: 'Implementer' },
-        { id: 4, name: 'Trần Khắc Tuân', email: 'tuan.tk200440@sis.hust.edu.vn', position: 'Implementer' },
-        { id: 5, name: 'Lê Duy Quý', email: 'quy.ld205018@sis.hust.edu.vn', position: 'Implementer' },
-        { id: 6, name: 'Nguyễn Thị Quỳnh Nga', email: 'nga.ntq204734@sis.hust.edu.vn', position: 'Viewer' },
+        { id: 4, name: 'Trần Khắc Tuân', email: 'tuan.tk200440@sis.hust.edu.vn', position: 'Assignee' },
+        { id: 5, name: 'Lê Duy Quý', email: 'quy.ld205018@sis.hust.edu.vn', position: 'Approver' },
+        { id: 6, name: 'Nguyễn Thị Quỳnh Nga', email: 'nga.ntq204734@sis.hust.edu.vn', position: 'Supporter' },
     ]);
 
     const removeItem = (id) => {
@@ -109,11 +125,10 @@ function Overview() {
                         }}
                         pageSizeOptions={[5, 10]}
                     />
-
                 </div>
             </div>
-            <div style={{float:'right'}}>
-                <Button variant="contained">Save</Button>
+            <div style={{ float: 'right' }}>
+                <AlertDialog title="Save" ques="Notifications" content="Do you want to save all changes ?" />
             </div>
         </div>
     );
