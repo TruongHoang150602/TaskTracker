@@ -9,11 +9,14 @@ import style from "../../assets/css/task.module.css";
 import HeaderBreadcrumbs from "../../components/HeaderBreadcrumbs";
 import Page from "../../components/Page"
 import Filter from "../../components/Filter";
+import {projectDetail} from "../../_mock/project_data"
 
-const completedTask = data.filter((item) => item.status === 'completed');
-const newTask = data.filter((item) => item.status === 'newTask');
-const inProcessTask = data.filter((item) => item.status === 'inProcess');
-const submitedTask = data.filter((item) => item.status === 'submited');
+
+
+const completedTask = data.filter((item) => item.status === 'Completed');
+const newTask = data.filter((item) => item.status === 'New Task');
+const inProcessTask = data.filter((item) => item.status === 'In Progress');
+const submitedTask = data.filter((item) => item.status === 'Submitted');
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -50,10 +53,10 @@ function a11yProps(index) {
 
 
 const map = {
-  "submited": 10,
-  "completed": 20,
-  "inProcess": 30,
-  "newTask": 40,
+  "Submitted": 10,
+  "Completed": 20,
+  "In Progress": 30,
+  "New Task": 40,
 }
 
 
