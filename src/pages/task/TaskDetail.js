@@ -31,7 +31,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 800,
-  height: 600,
+  height: 628,
   bgcolor: 'background.paper',
   // border: '0px solid #000',
   // boxShadow: 1,
@@ -97,7 +97,7 @@ export default function TaskDetail({ handleClose, handleOpen, open, data, age1, 
               component="h2"
             >
               <div className="text-[28px] text-[#48409E]">{data?.name}</div>
-              <div className="text-[16px] text-[#6F6F6F]">Quanlity: 30{data?.score}</div>
+              <div className="text-[16px] text-[#6F6F6F]">Quality: 30{data?.score}</div>
             </Typography>
             <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
               <h6 className="text-[#6F6F6F] mt-[0px] mb-[10px] text-[16px]">Priority</h6>
