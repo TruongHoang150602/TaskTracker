@@ -95,11 +95,7 @@ export default function TaskDetail({ handleClose, handleOpen, open, data, age1, 
               component="h2"
             >
               <div className="text-[28px] text-[#48409E]">{data?.name}</div>
-              {
-                data?.point ? <div className="text-[16px] text-[#6F6F6F]">Quality: {data?.point}</div>
-                : null 
-              }
-              
+              <div className="text-[16px] text-[#6F6F6F]">Quanlity: 30{data?.score}</div>
             </Typography>
             <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
               <h6 className="text-[#6F6F6F] mt-[0px] mb-[10px] text-[16px]">Priority</h6>
