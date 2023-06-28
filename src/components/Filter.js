@@ -11,11 +11,12 @@ import Iconify from './iconify/Iconify';
 
 Filter.propTypes = {
     data: PropTypes.array,
+    onClickColor: PropTypes.func,
   };
 
 // ----------------------------------------------------------------------
 
-export default function Filter({data = []}) {
+export default function Filter({data = [], onClickColor}) {
   const [open, setOpen] = useState(null);
 
   const handleOpen = (event) => {
@@ -60,9 +61,8 @@ export default function Filter({data = []}) {
 
         <Stack sx={{ p: 1 }}>
           {data.map((option) => (
-            <MenuItem key={option} onClick={handleClose}>
+            <MenuItem key={option.color} value={option.color} onClick={()=>{onClickColor(option.color)}}>
                <IconButton
-                  value={option.label}
                   sx={{ width: 20, height: 20, marginRight: '4px' , padding: 0, border: 0 , borderRadius: '50%' , background: option.color}}
                    />
                 {option.label}

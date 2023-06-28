@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import {Box, Paper, Grid, Tabs, Tab, Typography,  Container} from '@mui/material'
+import {Box, Paper, Grid, Tabs, Tab, Typography,  Container, Badge} from '@mui/material'
 import data from './data';
 import TaskItem from './TaskItem';
 import TaskDetail from './TaskDetail';
@@ -120,7 +120,6 @@ const Task = () => {
                 <Tab label="Submited" {...a11yProps(2)} />
                 <Tab label="Completed" {...a11yProps(3)} />
               </Tabs>
-           
             <TabPanel className={`flex w-[100%]`} value={value} index={0}>
                 {newTask.map((item, index) => (
                   <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />
