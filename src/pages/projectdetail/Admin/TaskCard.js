@@ -17,6 +17,7 @@ const PRIORITY = {
 
 
 export function CardTask(title, assignee, priority, deadline) {
+    // console.log(assignee);
     const [open, setOpen] = useState(false);
     const [item, setItem] = useState({
         name: ''
@@ -49,7 +50,7 @@ export function CardTask(title, assignee, priority, deadline) {
                                     backgroundColor: '#f56a00',
                                 }}
                             >
-                                T
+                                {option[0]}
                             </Avatar>
                         </Tooltip>
                     ))}
@@ -107,7 +108,7 @@ export function CardSub(title, assignee, priority, deadline) {
                                     backgroundColor: '#f56a00',
                                 }}
                             >
-                                T
+                                {option[0]}
                             </Avatar>
                         </Tooltip>
                     ))}
@@ -167,7 +168,7 @@ export function CardCompleted(title, assignee, point) {
                                     backgroundColor: '#f56a00',
                                 }}
                             >
-                                T
+                                {option[0]}
                             </Avatar>
                         </Tooltip>
                     ))}
