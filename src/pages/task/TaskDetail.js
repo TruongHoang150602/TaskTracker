@@ -31,10 +31,8 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 800,
-  height: 628,
+  height: 620,
   bgcolor: 'background.paper',
-  // border: '0px solid #000',
-  // boxShadow: 1,
   p: 24,
   padding: '4px',
 };
@@ -54,8 +52,6 @@ const names = ['Submited', 'Completed', 'In progress', 'New task'];
 
 
 export default function TaskDetail({ handleClose, handleOpen, open, data, age1, setAge1, open1, setOpen1, handleChange1, handleClose1, handleOpen1 }) {
-
-  
   return (
     <div>
       <Modal
@@ -97,7 +93,11 @@ export default function TaskDetail({ handleClose, handleOpen, open, data, age1, 
               component="h2"
             >
               <div className="text-[28px] text-[#48409E]">{data?.name}</div>
-              <div className="text-[16px] text-[#6F6F6F]">Quality: 30{data?.score}</div>
+              {
+                data?.point ? <div className="text-[16px] text-[#6F6F6F]">Quanlity:{data?.point}</div>:
+                null
+              }
+              
             </Typography>
             <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
               <h6 className="text-[#6F6F6F] mt-[0px] mb-[10px] text-[16px]">Priority</h6>
@@ -194,7 +194,11 @@ export default function TaskDetail({ handleClose, handleOpen, open, data, age1, 
                   Comment
                 </Button>
               </div>
-              <Comment />
+              {
+                data?.comment.map((item)=>{
+                  return <Comment comment={item}/>
+                })
+              }
             </Typography>
           </Typography>
         </Box>

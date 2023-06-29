@@ -23,32 +23,32 @@ const TaskItem = ({ data, show }) => {
           <Typography variant="body2" color="text.secondary">
             {data.project}
           </Typography>
-          {data.score == null ? (
+          {data.point == null ? (
             <Typography className="flex justify-between items-center" variant="body2" color="text.secondary">
               <div className="flex items-center leading-[30px] text-[#FF7979]">
                 <AccessTimeIcon className="text-[16px] leading-[30px] text-[#FF7979]" />{' '}
-                <p className="m-[0px] leading-[30px]">{data.date}</p>
+                <p className="m-[0px] leading-[30px]">{data.start}</p>
               </div>
               <div
                 className={`w-[80px] bg-[#FF7979] bg-[${
                   colors[data.quality]
                 }] h-[30px] text-center leading-[30px] rounded-[15px]`}
               >
-                {data.quality}
+                {data.priority}
               </div>
             </Typography>
           ) : (
             <Typography className="flex justify-between items-center" variant="body2" color="text.secondary">
               <div className="flex items-center leading-[30px] text-[#FF7979]">
                 <FileUploadOutlinedIcon className="text-[24px] leading-[30px] text-[#FF7979]" />{' '}
-                <p className="m-[0px] leading-[30px]">{data.date}</p>
+                <p className="m-[0px] leading-[30px]">{data.end}</p>
               </div>
               <div
                 className={`w-[80px] bg-[#FF7979] bg-[${
                   colors[data.quality]
                 }] h-[30px] text-center leading-[30px] rounded-[15px]`}
               >
-                {data.score}
+                {data.point}
               </div>
             </Typography>
           )}
