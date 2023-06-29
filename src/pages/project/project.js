@@ -14,7 +14,6 @@ import {
   Select,
   Alert,
 } from '@mui/material';
-import { message } from 'antd';
 
 import { useNavigate } from 'react-router-dom';
 import * as React from 'react';
@@ -204,7 +203,7 @@ export default function Project() {
             <Card
               sx={{ cursor: 'pointer', width: 300, marginBottom: '20px' }}
               key={index}
-              onClick={() => navigate('/projectdetail')}
+              onClick={() => navigate(`/projectdetailid=${index}`)}
             >
               <CardContent style={{ paddingBottom: '0' }}>
                 <Typography gutterBottom variant="h5" component="div">
