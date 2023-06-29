@@ -19,7 +19,8 @@ const PRIORITY = {
 export function CardTask(title, assignee, priority, deadline) {
     const [open, setOpen] = useState(false);
     const [item, setItem] = useState({
-        name: ''
+        name: '',
+        comment: []
     });
     const handleOpen = (e) => {
         e.stopPropagation()
@@ -77,7 +78,8 @@ export function CardTask(title, assignee, priority, deadline) {
 export function CardSub(title, assignee, priority, deadline) {
     const [open, setOpen] = useState(false);
     const [item, setItem] = useState({
-        name: ''
+        name: '',
+        comment: []
     });
     const handleOpen = (e) => {
         e.stopPropagation()
@@ -137,7 +139,8 @@ export function CardSub(title, assignee, priority, deadline) {
 export function CardCompleted(title, assignee, point) {
     const [open, setOpen] = useState(false);
     const [item, setItem] = useState({
-        name: ''
+        name: '',
+        comment: []
     });
     const handleOpen = (e) => {
         e.stopPropagation()
