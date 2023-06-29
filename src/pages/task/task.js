@@ -9,11 +9,14 @@ import style from "../../assets/css/task.module.css";
 import HeaderBreadcrumbs from "../../components/HeaderBreadcrumbs";
 import Page from "../../components/Page"
 import Filter from "../../components/Filter";
+// import {projectDetail} from "../../_mock/project_data"
 
-const completedTask = data.filter((item) => item.status === 'completed');
-const newTask = data.filter((item) => item.status === 'newTask');
-const inProcessTask = data.filter((item) => item.status === 'inProcess');
-const submitedTask = data.filter((item) => item.status === 'submited');
+
+
+const completedTask = data.filter((item) => item.status === 'Completed');
+const newTask = data.filter((item) => item.status === 'New Task');
+const inProcessTask = data.filter((item) => item.status === 'In Progress');
+const submitedTask = data.filter((item) => item.status === 'Submitted');
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -50,10 +53,10 @@ function a11yProps(index) {
 
 
 const map = {
-  "submited": 10,
-  "completed": 20,
-  "inProcess": 30,
-  "newTask": 40,
+  "Submitted": 10,
+  "Completed": 20,
+  "In Progress": 30,
+  "New Task": 40,
 }
 
 
@@ -115,23 +118,11 @@ const Task = () => {
         <Grid  style={{paddingTop:"0px"}} item xs={12}>
            
               <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                <Badge badgeContent={0} color="secondary">  
-                 <Tab label="New Task" {...a11yProps(0)} />  
-                </Badge>
-                <Badge badgeContent={0} color="secondary">  
-                <Tab label="In process" {...a11yProps(1)} />
-                </Badge>
-                <Badge badgeContent={2} color="secondary">  
+                <Tab label="New Task" {...a11yProps(0)} />
+                <Tab label="In progress" {...a11yProps(1)} />
                 <Tab label="Submited" {...a11yProps(2)} />
-                </Badge>
-                <Badge badgeContent={0} color="secondary">  
                 <Tab label="Completed" {...a11yProps(3)} />
-                </Badge>
-               
-                
-                
               </Tabs>
-           
             <TabPanel className={`flex w-[100%]`} value={value} index={0}>
                 {newTask.map((item, index) => (
                   <TaskItem show={()=>{ handleOpen(item)}} data={item} key={index} />

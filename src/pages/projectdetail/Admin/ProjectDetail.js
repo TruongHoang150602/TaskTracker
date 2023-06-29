@@ -17,10 +17,57 @@ import { CardTask, CardSub, CardCompleted } from './TaskCard';
 import NewTask from './NewTask';
 import { projectDetail } from '../../../_mock/project_data';
 import InvitePopup from '../addMember';
+import events from '../../../_mock/events';
+
+const COLOR_OPTIONS = [
+    {
+        label: 'None',
+        color: '#fff'
+    },
+    {
+        label: 'Low',
+        color: '#00AB55'
+    },
+    {
+        label: 'Medium',
+        color: '#FFBA53'
+    },
+    {
+        label: 'High',
+        color: 'red'
+    },
+];
+
+const COLOR_OPTIONS2 = [
+    {
+        label: 'None',
+        color: '#fff'
+    },
+    {
+        label: 'Administrator',
+        color: '#00AB55'
+    },
+    {
+        label: 'Implementer',
+        color: 'Green'
+    },
+    {
+        label: 'Approver',
+        color: 'red'
+    },
+    {
+        label: 'Assignee',
+        color: '#FFC107'
+    },
+    {
+        label: 'Supporter',
+        color: '#04297A'
+    },
+];
 
 export default function ProjectDetail() {
     const id = 0;
-    console.log(projectDetail[id].task);
+    const [event, setEvent] = useState(events);
     const [open, setOpen] = useState(false);
     const onClose = () => {
         setOpen(false);
@@ -43,6 +90,10 @@ export default function ProjectDetail() {
 
     console.log(newTask, inProcess, submitted, finished)
 
+    const filter = (color) => {
+        setEvent(events.filter((event) => (event.color === color)));
+        if (color === '#fff') setEvent(events);
+    };
 
     const [openNewTask, setOpenNewTask] = useState(false);
     const handleOpen = () => {
@@ -122,35 +173,44 @@ export default function ProjectDetail() {
 
     return (
         <Page>
-            <HeaderBreadcrumbs
-                heading={projectDetail[id].name}
-                action={
-                    <Stack direction="row" spacing={2}>
+            <div>
+                <HeaderBreadcrumbs
+                    heading={projectDetail[id].name}
+                    action={
+                        <Stack direction="row" spacing={2}>
+                            {value === '1' ? (
+                                <div style={{ display: 'flex' }}>
+                                    <div style={{ paddingRight: '10px' }}>
+                                        <Filter data={COLOR_OPTIONS} onClickColor={(event) => filter(event)} />
+                                    </div>
 
-                        <Filter data={['task', 'team']} />
-                        {value === '1' ? (
-                            <Button
-                                variant="contained"
-                                startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
-                                onClick={handleOpen}
-                            >
-                                New Task
-                            </Button>
+                                    <Button
+                                        variant="contained"
+                                        startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
+                                        onClick={handleOpen}
+                                    >
+                                        New Task
+                                    </Button>
+                                </div>
+                            ) : (
+                                <div style={{ display: 'flex' }}>
+                                    <div style={{ paddingRight: '10px' }}>
+                                        <Filter data={COLOR_OPTIONS2} onClickColor={(event) => filter(event)} />
+                                    </div>
 
-                        ) : (
-                            <Button
-                                variant="contained"
-                                startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
-                                onClick={handleAddMember}
-                            >
-                                Add Member
-                            </Button>
-                        )}
-
-                    </Stack>
-
-                }
-            />
+                                    <Button
+                                        variant="contained"
+                                        startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
+                                        onClick={handleAddMember}
+                                    >
+                                        Add Member
+                                    </Button>
+                                </div>
+                            )}
+                        </Stack>
+                    }
+                />
+            </div>
             <Box sx={{ width: '100%', typography: 'body1' }}>
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
