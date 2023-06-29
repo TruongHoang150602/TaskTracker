@@ -33,8 +33,6 @@ const style = {
   width: 800,
   height: 620,
   bgcolor: 'background.paper',
-  // border: '0px solid #000',
-  // boxShadow: 1,
   p: 24,
   padding: '4px',
 };
@@ -197,7 +195,7 @@ export default function TaskDetail({ handleClose, handleOpen, open, data, age1, 
                 </Button>
               </div>
               {
-                data.comment.map((item)=>{
+                data?.comment.map((item)=>{
                   return <Comment comment={item}/>
                 })
               }

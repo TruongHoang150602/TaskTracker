@@ -9,7 +9,7 @@ import style from "../../assets/css/task.module.css";
 import HeaderBreadcrumbs from "../../components/HeaderBreadcrumbs";
 import Page from "../../components/Page"
 import Filter from "../../components/Filter";
-import {projectDetail} from "../../_mock/project_data"
+// import {projectDetail} from "../../_mock/project_data"
 
 
 
