@@ -70,7 +70,7 @@ export default function ProjectDetail() {
     // const location = useLocation();
     // const searchParams = new URLSearchParams(location.search);
     // const id = searchParams.get('id');
-    const id = 0;
+    const id = 4;
     const [event, setEvent] = useState(events);
 
     const newTask = projectDetail[id].task.filter((option) => (
