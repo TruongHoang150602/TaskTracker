@@ -46,8 +46,8 @@ const InvitePopup = ({ open, onClose }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <Typography className={`h-[560px] overflow-y-scroll overflow-y-hidden`}>
+        <Box sx={style} style={{ height: 'auto' }}>
+          <Typography className={`h-[400px] overflow-y-scroll overflow-y-hidden`}>
             <Typography
               className="px-[16px] flex items-center justify-between"
               id="modal-modal-title"
@@ -56,12 +56,12 @@ const InvitePopup = ({ open, onClose }) => {
             >
               <div className="text-[28px] text-[#48409E]">Send Invite</div>
             </Typography>
-            <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
+            {/* <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
               <h2>Full Name</h2>
               <div className="text-right">
                 <TextField className="w-[100%]" id="filled-basic" label="Full Name" variant="filled" />
               </div>
-            </Typography>
+            </Typography> */}
             <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
               <h2>E-Mail</h2>
               <div className="text-right">

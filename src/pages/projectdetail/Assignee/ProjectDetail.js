@@ -17,13 +17,62 @@ import Overview from './Overview';
 import { CardTask, CardSub, CardCompleted } from './TaskCard';
 import NewTask from './NewTask';
 import { projectDetail } from '../../../_mock/project_data';
+import events from '../../../_mock/events';
+
+
+const COLOR_OPTIONS = [
+    {
+        label: 'None',
+        color: '#fff'
+    },
+    {
+        label: 'Low',
+        color: '#00AB55'
+    },
+    {
+        label: 'Medium',
+        color: '#FFBA53'
+    },
+    {
+        label: 'High',
+        color: 'red'
+    },
+];
+
+const COLOR_OPTIONS2 = [
+    {
+        label: 'None',
+        color: '#fff'
+    },
+    {
+        label: 'Administrator',
+        color: '#00AB55'
+    },
+    {
+        label: 'Implementer',
+        color: 'Green'
+    },
+    {
+        label: 'Approver',
+        color: 'red'
+    },
+    {
+        label: 'Assignee',
+        color: '#FFC107'
+    },
+    {
+        label: 'Supporter',
+        color: '#04297A'
+    },
+];
 
 export default function ProjectDetail() {
     // const location = useLocation();
     // const searchParams = new URLSearchParams(location.search);
     // const id = searchParams.get('id');
     const id = 2;
-    console.log(projectDetail[id].task);
+    const [event, setEvent] = useState(events);
+
     const newTask = projectDetail[id].task.filter((option) => (
         option.status === "New Task"
     ))
@@ -52,6 +101,10 @@ export default function ProjectDetail() {
     const handleAddMember = () => {
         console.log("add member");
     }
+    const filter = (color) => {
+        setEvent(events.filter((event) => (event.color === color)));
+        if (color === '#fff') setEvent(events);
+    };
 
     const [value1, setValue1] = useState(0);
 
@@ -66,7 +119,7 @@ export default function ProjectDetail() {
             itemContainers.forEach((container) => {
                 const grid = new Muuri(container, {
                     items: '.board-item',
-                    dragEnabled: true,
+                    dragEnabled: false,
                     dragSort: () => columnGrids,
                     dragContainer,
                     dragAutoScroll: {
@@ -94,7 +147,7 @@ export default function ProjectDetail() {
 
             // Init board grid so we can drag those columns around.
             boardGrid = new Muuri('.board', {
-                dragEnabled: true,
+                dragEnabled: false,
                 dragHandle: '.board-column-header',
             });
 
@@ -125,25 +178,24 @@ export default function ProjectDetail() {
                 action={
                     <Stack direction="row" spacing={2}>
 
-                        <Filter data={['task', 'team']} />
                         {value === '1' ? (
-                            <Button
-                                variant="contained"
-                                startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
-                                onClick={handleOpen}
-                            >
-                                New Task
-                            </Button>
+                            <div style={{ display: 'flex' }}>
+                                <div style={{ paddingRight: '10px' }}>
+                                    <Filter data={COLOR_OPTIONS} onClickColor={(event) => filter(event)} />
+                                </div>
+
+                                <Button
+                                    variant="contained"
+                                    startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
+                                    onClick={handleOpen}
+                                >
+                                    New Task
+                                </Button>
+                            </div>
 
                         ) : (
-                        //     <Button
-                        //         variant="contained"
-                        //         startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
-                        //         onClick={handleAddMember}
-                        //     >
-                        //         Add Member
-                        //     </Button>
-                        <div />
+                            <Filter data={COLOR_OPTIONS2} onClickColor={(event) => filter(event)} />
+
                         )}
 
                     </Stack>
