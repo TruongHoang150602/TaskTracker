@@ -53,12 +53,11 @@ function Overview() {
     ];
 
     const [rows, setRows] = useState([
-        { id: 1, name: 'Nguyễn Trọng Quang', email: 'quang.nt205118@sis.hust.edu.vn', position: 'Administrator' },
-        { id: 2, name: 'Hoàng Vân Trường', email: 'truong.hv205034@sis.hust.edu.vn', position: 'Implementer' },
-        { id: 3, name: 'Tống Văn Phúc', email: 'phuc.tv200409@sis.hust.edu.vn', position: 'Implementer' },
-        { id: 4, name: 'Trần Khắc Tuân', email: 'tuan.tk200440@sis.hust.edu.vn', position: 'Assignee' },
-        { id: 5, name: 'Lê Duy Quý', email: 'quy.ld205018@sis.hust.edu.vn', position: 'Approver' },
-        { id: 6, name: 'Nguyễn Thị Quỳnh Nga', email: 'nga.ntq204734@sis.hust.edu.vn', position: 'Supporter' },
+        { id: 1, name: 'Ava Anderson', email: 'ava.anderson@example.com', position: 'Administrator' },
+        { id: 2, name: 'Noah Thompson', email: 'noah.thompson@example.com', position: 'Implementer' },
+        { id: 3, name: 'Sophia Wilson', email: 'sophia.wilson@example.com', position: 'Implementer' },
+        { id: 4, name: 'Liam Martinez', email: 'liam.martinez@example.com', position: 'Assignee' },
+        { id: 5, name: ' Isabella Taylor', email: 'isabella.taylor@example.com', position: 'Approver' },
     ]);
 
     const removeItem = (id) => {
@@ -70,10 +69,7 @@ function Overview() {
         <div>
             <div style={{ display: 'flex' }}>
                 <p style={{ fontWeight: 'bold', marginRight: '10px' }}>Description: </p>
-                <p> An e-commerce platform is an online marketplace where
-                    sellers and buyers can trade products and services.
-                    It offers convenience, a wide range of options, and
-                    secure transactions.</p>
+                <p> The Sport Tracking Software is a comprehensive application designed to track and monitor various sporting activities. With this software, users can effortlessly record and analyze their performance data, providing valuable insights for athletes, coaches, and fitness enthusiasts.</p>
             </div>
             <div>
                 <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Member </p>

@@ -19,7 +19,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 import css from '../../../assets/css/task.module.css';
-import Comment from '../../task/Comment';
+import Comment from '../Comment';
+import { projectDetail } from '../../../_mock/project_data';
 
 const style = {
     position: 'absolute',
@@ -51,7 +52,7 @@ const names = ['Submited', 'Completed', 'In progress', 'New task'];
 
 export default function TaskDetail({ handleClose, handleOpen, open, data, age1, setAge1, open1, setOpen1, handleChange1, handleClose1, handleOpen1 }) {
 
-
+    console.log(projectDetail[3].task[0].comment);
     return (
         <div>
             <Modal
@@ -191,7 +192,13 @@ export default function TaskDetail({ handleClose, handleOpen, open, data, age1, 
                                     Comment
                                 </Button>
                             </div>
-                            <Comment />
+                            {
+                                projectDetail[3].task[0].comment.map((obj) => (
+
+                                    <Comment comment={obj} />
+                                ))
+
+                            }
                         </Typography>
                         <Typography className="px-[16px]" sx={{ m: 2 }}>
                             <div style={{

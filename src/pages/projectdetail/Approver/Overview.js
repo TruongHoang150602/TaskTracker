@@ -69,10 +69,7 @@ function Overview() {
         <div>
             <div style={{ display: 'flex' }}>
                 <p style={{ fontWeight: 'bold', marginRight: '10px' }}>Description: </p>
-                <p> An e-commerce platform is an online marketplace where
-                    sellers and buyers can trade products and services.
-                    It offers convenience, a wide range of options, and
-                    secure transactions.</p>
+                <p> The To-do List Application is a project aimed at helping users effectively manage and organize their tasks and activities. The application provides a user-friendly interface where users can create, update, and track their to-do items.</p>
             </div>
             <div>
                 <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Member </p>
