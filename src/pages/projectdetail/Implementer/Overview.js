@@ -5,6 +5,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { DataGrid } from '@mui/x-data-grid';
 import NativeSelect from '@mui/material/NativeSelect';
 import Button from '@mui/material/Button';
+import { projectDetail } from '../../../_mock/project_data';
 
 function Overview() {
 
@@ -49,16 +50,10 @@ function Overview() {
         { field: 'id', headerName: 'No.', width: 70 },
         { field: 'name', headerName: 'Name', width: 200 },
         { field: 'email', headerName: 'E-Mail', width: 250 },
-        { field: 'position', headerName: 'Position', width: 150, renderCell: renderPositionCell, onClick: (params) => handleRowClick(params.row.id) },
+        { field: 'role', headerName: 'Role', width: 150, renderCell: renderPositionCell, onClick: (params) => handleRowClick(params.row.id) },
     ];
 
-    const [rows, setRows] = useState([
-        { id: 1, name: 'Alex Johnson', email: 'alex.johnson@example.com', position: 'Administrator' },
-        { id: 2, name: 'Samantha Brown', email: 'samantha.brown@example.com', position: 'Implementer' },
-        { id: 3, name: 'Daniel Wilson', email: ' daniel.wilson@example.com', position: 'Approver' },
-        { id: 4, name: 'Olivia Davis', email: ' olivia.davis@example.com', position: 'Assignee' },
-        { id: 5, name: 'Ethan Smith', email: 'ethan.smith@example.com', position: 'Supporter' },
-    ]);
+    const [rows, setRows] = useState(projectDetail[1].member);
 
     const removeItem = (id) => {
         const updatedRows = rows.filter(row => row.id !== id);
@@ -69,7 +64,7 @@ function Overview() {
         <div>
             <div style={{ display: 'flex' }}>
                 <p style={{ fontWeight: 'bold', marginRight: '10px' }}>Description: </p>
-                <p> The Messaging Application is a software project designed to provide an online platform for users to chat and send messages to each other. It allows users to send and receive text messages, interact with each other, and create personal or group conversations.</p>
+                <p>{projectDetail[1].description}</p>
             </div>
             <div>
                 <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Member </p>
