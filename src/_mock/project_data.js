@@ -75,13 +75,13 @@ export const projectDetail = [
         id: 2,
         name: 'Lê Duy Quý',
         email: 'quy.ld205018@sis.hust.edu.vn',
-        role: 'Implementer',
+        role: 'Supporter',
       },
       {
         id: 3,
         name: 'Tống Văn Phúc',
         email: 'phuc.tv200409@sis.hust.edu.vn',
-        role: 'Implementer',
+        role: 'Approver',
       },
       {
         id: 4,
@@ -247,19 +247,19 @@ export const projectDetail = [
         id: 1,
         name: 'Hoàng Vân Trường',
         email: 'truong.hv205034@sis.hust.edu.vn',
-        role: 'Administrator',
+        role: 'Implementer',
       },
       {
         id: 2,
         name: 'Lê Duy Quý',
         email: 'quy.ld205018@sis.hust.edu.vn',
-        role: 'Implementer',
+        role: 'Administrator',
       },
       {
         id: 3,
         name: 'Tống Văn Phúc',
         email: 'phuc.tv200409@sis.hust.edu.vn',
-        role: 'Implementer',
+        role: 'Approver',
       },
       {
         id: 4,
@@ -271,7 +271,7 @@ export const projectDetail = [
         id: 5,
         name: 'Trần Khắc Tuân',
         email: 'tuan.tk200440@sis.hust.edu.vn',
-        role: 'Implementer',
+        role: 'Supporter',
       },
     ],
     task: [
@@ -331,7 +331,7 @@ export const projectDetail = [
         id: 1,
         name: 'Hoàng Vân Trường',
         email: 'truong.hv205034@sis.hust.edu.vn',
-        role: 'Administrator',
+        role: 'Assignee',
       },
       {
         id: 2,
@@ -355,7 +355,7 @@ export const projectDetail = [
         id: 5,
         name: 'Trần Khắc Tuân',
         email: 'tuan.tk200440@sis.hust.edu.vn',
-        role: 'Implementer',
+        role: 'Administrator',
       },
     ],
     task: [
@@ -518,7 +518,7 @@ export const projectDetail = [
         id: 1,
         name: 'Hoàng Vân Trường',
         email: 'truong.hv205034@sis.hust.edu.vn',
-        role: 'Administrator',
+        role: 'Approver',
       },
       {
         id: 2,
@@ -530,7 +530,7 @@ export const projectDetail = [
         id: 3,
         name: 'Tống Văn Phúc',
         email: 'phuc.tv200409@sis.hust.edu.vn',
-        role: 'Implementer',
+        role: 'Administrator',
       },
       {
         id: 4,
@@ -700,13 +700,13 @@ export const projectDetail = [
         id: 1,
         name: 'Hoàng Vân Trường',
         email: 'truong.hv205034@sis.hust.edu.vn',
-        role: 'Administrator',
+        role: 'Supporter',
       },
       {
         id: 2,
         name: 'Lê Duy Quý',
         email: 'quy.ld205018@sis.hust.edu.vn',
-        role: 'Implementer',
+        role: 'Supporter',
       },
       {
         id: 3,
@@ -724,7 +724,7 @@ export const projectDetail = [
         id: 5,
         name: 'Trần Khắc Tuân',
         email: 'tuan.tk200440@sis.hust.edu.vn',
-        role: 'Implementer',
+        role: 'Administrator',
       },
     ],
     task: [
