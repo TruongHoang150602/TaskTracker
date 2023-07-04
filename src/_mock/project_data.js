@@ -60,25 +60,39 @@ export const project = [
 export const projectDetail = [
   {
     name: 'E-Commerce Website',
+    description: `An e-commerce platform is an online 
+    marketplace where sellers and buyers can trade products and services.
+    It offers convenience, a wide range of options, and
+    secure transactions.`,
     member: [
       {
+        id: 1,
+        email: 'truong.hv205034@sis.hust.edu.vn',
         name: 'Hoàng Vân Trường',
         role: 'Administrator',
       },
       {
+        id: 2,
         name: 'Lê Duy Quý',
+        email: 'quy.ld205018@sis.hust.edu.vn',
         role: 'Implementer',
       },
       {
+        id: 3,
         name: 'Tống Văn Phúc',
+        email: 'phuc.tv200409@sis.hust.edu.vn',
         role: 'Implementer',
       },
       {
+        id: 4,
         name: 'Nguyễn Trọng Quang',
+        email: 'quang.nt205118@sis.hust.edu.vn',
         role: 'Implementer',
       },
       {
+        id: 5,
         name: 'Trần Khắc Tuân',
+        email: 'tuan.tk200440@sis.hust.edu.vn',
         role: 'Implementer',
       },
     ],
@@ -227,25 +241,36 @@ export const projectDetail = [
   },
   {
     name: 'Messaging Application',
+    description: 'The Messaging Application is a software project designed to provide an online platform for users to chat and send messages to each other. It allows users to send and receive text messages, interact with each other, and create personal or group conversations.',
     member: [
       {
+        id: 1,
         name: 'Hoàng Vân Trường',
+        email: 'truong.hv205034@sis.hust.edu.vn',
         role: 'Administrator',
       },
       {
+        id: 2,
         name: 'Lê Duy Quý',
+        email: 'quy.ld205018@sis.hust.edu.vn',
         role: 'Implementer',
       },
       {
+        id: 3,
         name: 'Tống Văn Phúc',
+        email: 'phuc.tv200409@sis.hust.edu.vn',
         role: 'Implementer',
       },
       {
+        id: 4,
         name: 'Nguyễn Trọng Quang',
+        email: 'quang.nt205118@sis.hust.edu.vn',
         role: 'Implementer',
       },
       {
+        id: 5,
         name: 'Trần Khắc Tuân',
+        email: 'tuan.tk200440@sis.hust.edu.vn',
         role: 'Implementer',
       },
     ],
@@ -300,25 +325,36 @@ export const projectDetail = [
   },
   {
     name: 'AI Chat Application',
+    description: 'The AI Chat Application project is an innovative software application that leverages artificial intelligence (AI) technologies to provide a conversational interface for users. This application aims to facilitate seamless communication between users and the computer system by enabling natural language conversations.',
     member: [
       {
+        id: 1,
         name: 'Hoàng Vân Trường',
+        email: 'truong.hv205034@sis.hust.edu.vn',
         role: 'Administrator',
       },
       {
+        id: 2,
         name: 'Lê Duy Quý',
+        email: 'quy.ld205018@sis.hust.edu.vn',
         role: 'Implementer',
       },
       {
+        id: 3,
         name: 'Tống Văn Phúc',
+        email: 'phuc.tv200409@sis.hust.edu.vn',
         role: 'Implementer',
       },
       {
+        id: 4,
         name: 'Nguyễn Trọng Quang',
+        email: 'quang.nt205118@sis.hust.edu.vn',
         role: 'Implementer',
       },
       {
+        id: 5,
         name: 'Trần Khắc Tuân',
+        email: 'tuan.tk200440@sis.hust.edu.vn',
         role: 'Implementer',
       },
     ],
@@ -476,25 +512,36 @@ export const projectDetail = [
   },
   {
     name: 'To-do List Application',
+    description: 'The To-do List Application is a project aimed at helping users effectively manage and organize their tasks and activities. The application provides a user-friendly interface where users can create, update, and track their to-do items.',
     member: [
       {
+        id: 1,
         name: 'Hoàng Vân Trường',
+        email: 'truong.hv205034@sis.hust.edu.vn',
         role: 'Administrator',
       },
       {
+        id: 2,
         name: 'Lê Duy Quý',
+        email: 'quy.ld205018@sis.hust.edu.vn',
         role: 'Implementer',
       },
       {
+        id: 3,
         name: 'Tống Văn Phúc',
+        email: 'phuc.tv200409@sis.hust.edu.vn',
         role: 'Implementer',
       },
       {
+        id: 4,
         name: 'Nguyễn Trọng Quang',
+        email: 'quang.nt205118@sis.hust.edu.vn',
         role: 'Implementer',
       },
       {
+        id: 5,
         name: 'Trần Khắc Tuân',
+        email: 'tuan.tk200440@sis.hust.edu.vn',
         role: 'Implementer',
       },
     ],
@@ -647,25 +694,36 @@ export const projectDetail = [
   },
   {
     name: 'Sport Tracking Software',
+    description:'The Sport Tracking Software is a comprehensive application designed to track and monitor various sporting activities. With this software, users can effortlessly record and analyze their performance data, providing valuable insights for athletes, coaches, and fitness enthusiasts.',
     member: [
       {
+        id: 1,
         name: 'Hoàng Vân Trường',
+        email: 'truong.hv205034@sis.hust.edu.vn',
         role: 'Administrator',
       },
       {
+        id: 2,
         name: 'Lê Duy Quý',
+        email: 'quy.ld205018@sis.hust.edu.vn',
         role: 'Implementer',
       },
       {
+        id: 3,
         name: 'Tống Văn Phúc',
+        email: 'phuc.tv200409@sis.hust.edu.vn',
         role: 'Implementer',
       },
       {
+        id: 4,
         name: 'Nguyễn Trọng Quang',
+        email: 'quang.nt205118@sis.hust.edu.vn',
         role: 'Implementer',
       },
       {
+        id: 5,
         name: 'Trần Khắc Tuân',
+        email: 'tuan.tk200440@sis.hust.edu.vn',
         role: 'Implementer',
       },
     ],

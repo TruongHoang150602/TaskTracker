@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import NativeSelect from '@mui/material/NativeSelect';
-import Button from '@mui/material/Button';
+import { projectDetail } from '../../../_mock/project_data';
 
 function Overview() {
 
@@ -44,22 +44,16 @@ function Overview() {
         { field: 'id', headerName: 'No.', width: 70 },
         { field: 'name', headerName: 'Name', width: 200 },
         { field: 'email', headerName: 'E-Mail', width: 250 },
-        { field: 'position', headerName: 'Position', width: 150, renderCell: renderPositionCell, onClick: (params) => handleRowClick(params.row.id) },
+        { field: 'role', headerName: 'Role', width: 150, renderCell: renderPositionCell, onClick: (params) => handleRowClick(params.row.id) },
     ];
 
-    const [rows, setRows] = useState([
-        { id: 1, name: 'Sarah Thompson', email: 'sarah.thompson@example.com', position: 'Adminstrator' },
-        { id: 2, name: 'David Anderson', email: ' david.anderson@example.com', position: 'Approver' },
-        { id: 3, name: 'Olivia Martinez', email: ' olivia.martinez@example.com', position: 'Assignee' },
-        { id: 4, name: 'William Taylor', email: 'william.taylor@example.com', position: 'Implementer' },
-        { id: 5, name: 'Sophia Lee', email: 'sophia.lee@example.com', position: 'Supporter' },
-    ]);
+    const [rows, setRows] = useState(projectDetail[2].member);
 
     return (
         <div>
             <div style={{ display: 'flex' }}>
                 <p style={{ fontWeight: 'bold', marginRight: '10px' }}>Description: </p>
-                <p> The AI Chat Application project is an innovative software application that leverages artificial intelligence (AI) technologies to provide a conversational interface for users. This application aims to facilitate seamless communication between users and the computer system by enabling natural language conversations.</p>
+                <p>{projectDetail[2].description}</p>
             </div>
             <div>
                 <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Member </p>

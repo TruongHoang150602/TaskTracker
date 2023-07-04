@@ -7,6 +7,7 @@ import NativeSelect from '@mui/material/NativeSelect';
 import Button from '@mui/material/Button';
 import QuesDialog from '../../../components/toast/quesdialog';
 import AlertDialog from '../../../components/toast/dialog';
+import { projectDetail } from '../../../_mock/project_data';
 
 function Overview() {
 
@@ -61,7 +62,7 @@ function Overview() {
         { field: 'id', headerName: 'No.', width: 70 },
         { field: 'name', headerName: 'Name', width: 200 },
         { field: 'email', headerName: 'E-Mail', width: 250 },
-        { field: 'position', headerName: 'Position', width: 150, renderCell: renderPositionCell, onClick: (params) => handleRowClick(params.row.id) },
+        { field: 'role', headerName: 'Role', width: 150, renderCell: renderPositionCell, onClick: (params) => handleRowClick(params.row.id) },
         {
             field: 'actions',
             headerName: 'Actions',
@@ -89,18 +90,7 @@ function Overview() {
         },
     ];
 
-    const [rows, setRows] = useState([
-        { id: 1, name: 'John Doe', email: 'john.doe@example.com', position: 'Administrator' },
-        { id: 2, name: 'Jane Smith', email: ' jane.smith@example.com', position: 'Implementer' },
-        { id: 3, name: 'Michael Johnson', email: 'michael.johnson@example.com', position: 'Implementer' },
-        { id: 4, name: 'Emily Davis', email: ' emily.davis@example.com', position: 'Assignee' },
-        { id: 5, name: 'Robert Wilson', email: ' robert.wilson@example.com', position: 'Approver' },
-        { id: 6, name: 'Sarah Thompson', email: 'sarah.thompson@example.com', position: 'Supporter' },
-        { id: 7, name: 'David Anderson', email: ' david.anderson@example.com', position: 'Implementer' },
-        { id: 8, name: 'Olivia Martinez', email: ' olivia.martinez@example.com', position: 'Implementer' },
-        { id: 9, name: 'William Taylor', email: 'william.taylor@example.com', position: 'Implementer' },
-        { id: 10, name: 'Sophia Lee', email: 'sophia.lee@example.com', position: 'Implementer' },
-    ]);
+    const [rows, setRows] = useState(projectDetail[0].member);
 
     const removeItem = (id) => {
         const updatedRows = rows.filter(row => row.id !== id);
@@ -111,10 +101,7 @@ function Overview() {
         <div>
             <div style={{ display: 'flex' }}>
                 <p style={{ fontWeight: 'bold', marginRight: '10px' }}>Description: </p>
-                <p> An e-commerce platform is an online marketplace where
-                    sellers and buyers can trade products and services.
-                    It offers convenience, a wide range of options, and
-                    secure transactions.</p>
+                <p>{projectDetail[0].description}</p>
             </div>
             <div>
                 <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Member </p>

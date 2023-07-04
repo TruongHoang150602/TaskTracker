@@ -1,10 +1,7 @@
 import { useState } from 'react';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import { DataGrid } from '@mui/x-data-grid';
 import NativeSelect from '@mui/material/NativeSelect';
-import Button from '@mui/material/Button';
+import { projectDetail } from '../../../_mock/project_data';
 
 function Overview() {
 
@@ -49,16 +46,10 @@ function Overview() {
         { field: 'id', headerName: 'No.', width: 70 },
         { field: 'name', headerName: 'Name', width: 200 },
         { field: 'email', headerName: 'E-Mail', width: 250 },
-        { field: 'position', headerName: 'Position', width: 150, renderCell: renderPositionCell, onClick: (params) => handleRowClick(params.row.id) },
+        { field: 'role', headerName: 'Role', width: 150, renderCell: renderPositionCell, onClick: (params) => handleRowClick(params.row.id) },
     ];
 
-    const [rows, setRows] = useState([
-        { id: 1, name: 'Ava Anderson', email: 'ava.anderson@example.com', position: 'Administrator' },
-        { id: 2, name: 'Noah Thompson', email: 'noah.thompson@example.com', position: 'Implementer' },
-        { id: 3, name: 'Sophia Wilson', email: 'sophia.wilson@example.com', position: 'Implementer' },
-        { id: 4, name: 'Liam Martinez', email: 'liam.martinez@example.com', position: 'Assignee' },
-        { id: 5, name: ' Isabella Taylor', email: 'isabella.taylor@example.com', position: 'Approver' },
-    ]);
+    const [rows, setRows] = useState(projectDetail[4].member);
 
     const removeItem = (id) => {
         const updatedRows = rows.filter(row => row.id !== id);
@@ -69,7 +60,7 @@ function Overview() {
         <div>
             <div style={{ display: 'flex' }}>
                 <p style={{ fontWeight: 'bold', marginRight: '10px' }}>Description: </p>
-                <p> The Sport Tracking Software is a comprehensive application designed to track and monitor various sporting activities. With this software, users can effortlessly record and analyze their performance data, providing valuable insights for athletes, coaches, and fitness enthusiasts.</p>
+                <p>{projectDetail[4].description}</p>
             </div>
             <div>
                 <p style={{ fontWeight: 'bold', marginTop: '10px' }}>Member </p>
