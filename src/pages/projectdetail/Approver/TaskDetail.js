@@ -52,6 +52,8 @@ const names = ['Submited', 'Completed', 'In progress', 'New task'];
 
 export default function TaskDetail({ handleClose, handleOpen, open, data, age1, setAge1, open1, setOpen1, handleChange1, handleClose1, handleOpen1 }) {
 
+    const [display, setDisplay] = React.useState(true);
+
     console.log(projectDetail[3].task[0].comment);
     return (
         <div>
@@ -184,22 +186,23 @@ export default function TaskDetail({ handleClose, handleOpen, open, data, age1, 
                                 </Grid>
                             </Grid>
                         </Typography>
-                        <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
-                            <h2>Comment</h2>
-                            <div className="text-right">
-                                <TextField className="w-[100%]" id="filled-basic" label="Write comment" variant="filled" />
-                                <Button className="my-[10px]" variant="contained" endIcon={<SendIcon />}>
-                                    Comment
-                                </Button>
-                            </div>
-                            {
-                                projectDetail[3].task[0].comment.map((obj) => (
-
-                                    <Comment comment={obj} />
-                                ))
-
-                            }
-                        </Typography>
+                        {display ? (
+                            <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
+                                <h2>Comment</h2>
+                                <div className="text-right">
+                                    <TextField className="w-[100%]" id="filled-basic" label="Write comment" variant="filled" />
+                                    <Button className="my-[10px]" variant="contained" endIcon={<SendIcon />}>
+                                        Comment
+                                    </Button>
+                                </div>
+                                {
+                                    data?.comment.map((item) => {
+                                        return <Comment comment={item} />
+                                    })
+                                }
+                            </Typography>
+                        ) : (<div />)
+                        }
                         <Typography className="px-[16px]" sx={{ m: 2 }}>
                             <div style={{
                                 display: 'flex',

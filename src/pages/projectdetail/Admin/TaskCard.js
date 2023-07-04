@@ -6,7 +6,7 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Button } from '@mui/material';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
-import TaskDetail from '../../task/TaskDetail';
+import TaskDetail from '../TaskDetail';
 import { fDate } from '../../../utils/formatTime';
 
 const PRIORITY = {
@@ -16,18 +16,14 @@ const PRIORITY = {
 }
 
 
-export function CardTask(title, assignee, priority, deadline) {
+export function CardTask(title, assignee, priority, deadline, item) {
     // console.log(assignee);
     const [open, setOpen] = useState(false);
-    const [item, setItem] = useState({
-        name: '',
-        comment: []
-    });
+
     const handleOpen = (e) => {
         e.stopPropagation()
         item.name = title;
         setOpen(true);
-        setItem(item);
     }
     const handleClose = () => setOpen(false);
 
@@ -64,7 +60,6 @@ export function CardTask(title, assignee, priority, deadline) {
                         <p style={{ color: 'red' }}>{fDate(deadline)}</p>
                     </div>
                     <div style={{ flex: 3 }}>
-
                         <Button onClick={handleOpen} style={{ backgroundColor: PRIORITY[priority], color: 'white' }} className="custom-button">
                             {priority}
                         </Button>
@@ -76,17 +71,13 @@ export function CardTask(title, assignee, priority, deadline) {
     )
 }
 
-export function CardSub(title, assignee, priority, deadline) {
+export function CardSub(title, assignee, priority, deadline, item) {
     const [open, setOpen] = useState(false);
-    const [item, setItem] = useState({
-        name: '',
-        comment: []
-    });
+
     const handleOpen = (e) => {
         e.stopPropagation()
         item.name = title;
         setOpen(true);
-        setItem(item);
     }
     const handleClose = () => setOpen(false);
 
@@ -137,17 +128,12 @@ export function CardSub(title, assignee, priority, deadline) {
     )
 }
 
-export function CardCompleted(title, assignee, point) {
+export function CardCompleted(title, assignee, point, item) {
     const [open, setOpen] = useState(false);
-    const [item, setItem] = useState({
-        name: '',
-        comment: []
-    });
     const handleOpen = (e) => {
         e.stopPropagation()
         item.name = title;
         setOpen(true);
-        setItem(item);
     }
     const handleClose = () => setOpen(false);
 

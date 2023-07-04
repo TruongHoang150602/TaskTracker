@@ -222,7 +222,7 @@ export default function ProjectDetail() {
                                         <div className="board-column-content">
                                             {submitted.map((option) => (
                                                 <div key={option.id} className="board-item">
-                                                    {CardSub(option.name, option.assignee, option.priority, option.end)}
+                                                    {CardSub(option.name, option.assignee, option.priority, option.end, option)}
                                                 </div>
                                             ))}
                                         </div>
@@ -236,7 +236,7 @@ export default function ProjectDetail() {
                                         <div className="board-column-content">
                                             {finished.map((option) => (
                                                 <div key={option.id} className="board-item">
-                                                    {CardCompleted(option.name, option.assignee, option.point)}
+                                                    {CardCompleted(option.name, option.assignee, option.point, option)}
                                                 </div>
                                             ))}
                                         </div>
