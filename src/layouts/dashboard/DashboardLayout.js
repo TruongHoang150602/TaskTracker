@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
 
@@ -40,19 +40,17 @@ const Main = styled('div')(({ theme }) => ({
 
 export default function DashboardLayout() {
   const [open, setOpen] = useState(false);
+  const username = sessionStorage.getItem("username");
+  if( username)
+    return (
+      <StyledRoot>
+        <Header onOpenNav={() => setOpen(true)} />
+        <Nav openNav={open} onCloseNav={() => setOpen(false)} />
+        <Main>
+          <Outlet />
+        </Main>
+      </StyledRoot>
+    );
+  return <Navigate to="/login" />
 
-  return (
-    <StyledRoot>
-      <Header onOpenNav={() => setOpen(true)} />
-
-      <Nav openNav={open} onCloseNav={() => setOpen(false)} />
-
-      <Main>
-        <Outlet />
-      </Main>
-
-     
-     
-    </StyledRoot>
-  );
 }

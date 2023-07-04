@@ -111,7 +111,7 @@
 //   );
 // }
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 // @mui
@@ -144,6 +144,7 @@ const MENU_OPTIONS = [
 // ...
 
 export default function AccountPopover() {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(null);
 
   const handleOpen = (event) => {
@@ -151,6 +152,8 @@ export default function AccountPopover() {
   };
 
   const handleClose = () => {
+    sessionStorage.removeItem("username");
+    navigate("/login");
     setOpen(null);
   };
 

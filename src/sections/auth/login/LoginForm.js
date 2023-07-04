@@ -1,28 +1,44 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // @mui
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import account from '../../../data/account';
 // components
 import Iconify from '../../../components/iconify';
-
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
   const navigate = useNavigate();
-
+  const username = useRef(null);
+  const password = useRef(null);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClick = () => {
-    navigate('/dashboard', { replace: true });
+    console.log(username.current.value , password.current.value);
+    // for ( const user1 of account){
+    //   if( user1.username === username.current.value && user1.password === password.current.value){
+    //     sessionStorage.setItem("username", username.current.value);
+    //     navigate('/dashboard', { replace: true });
+    //     break;
+    //   }
+    // }
+    account.forEach( (item)=>{
+      if( item.username === username.current.value && item.password === password.current.value){
+        sessionStorage.setItem("username", username.current.value);
+        navigate("/dashboard", { replace: true });
+        
+      }
+    })
   };
 
   return (
     <>
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" />
+        <TextField inputRef={username} name="email" label="Email address" />
 
         <TextField
+          inputRef={password}
           name="password"
           label="Password"
           type={showPassword ? 'text' : 'password'}
