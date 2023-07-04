@@ -152,8 +152,8 @@ export default function AccountPopover() {
   };
 
   const handleClose = () => {
-    sessionStorage.removeItem("username");
-    navigate("/login");
+    // sessionStorage.removeItem("username");
+    // navigate("/login");
     setOpen(null);
   };
 
