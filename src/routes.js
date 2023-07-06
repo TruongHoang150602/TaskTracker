@@ -40,7 +40,7 @@ export default function Router() {
         { path: 'project', element: <Project /> },
         { path: 'projectdetailid=0', element: <Admin /> },
         { path: 'projectdetailid=1', element: <Implementer /> },
-        { path: 'projectdetailid=2', element: <Supporter /> },
+        { path: 'projectdetailid=2', element: <Assignee /> },
         { path: 'projectdetailid=3', element: <Approver /> },
         { path: 'projectdetailid=4', element: <Supporter /> },
         { path: 'profile', element: <ProfilePage /> },
