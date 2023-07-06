@@ -15,11 +15,12 @@ import {
   Grid,
 } from '@mui/material';
 // utils
+import { NavLink as RouterLink } from 'react-router-dom';
 import { fToNow } from '../../../utils/formatTime';
 // components
 import Iconify from '../../../components/iconify';
-import Scrollbar from '../../../components/scrollbar';
-
+import TaskItem from '../../../pages/task/TaskItem';
+import data from '../../../pages/task/data';
 // ----------------------------------------------------------------------
 
 AppNewsUpdate.propTypes = {
@@ -28,75 +29,24 @@ AppNewsUpdate.propTypes = {
   list: PropTypes.array.isRequired,
 };
 
-function LinearProgressWithLabel(props) {
-  return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      <Box sx={{ width: '100%', mr: 1 }}>
-        <LinearProgress variant="determinate" {...props} />
-      </Box>
-      <Box sx={{ minWidth: 35 }}>
-        <Typography variant="body2" color="text.secondary">{`${Math.round(props.value)}%`}</Typography>
-      </Box>
-    </Box>
-  );
-}
+const inProcessTask = data.filter((item) => item.status === 'In Progress');
 
 export default function AppNewsUpdate({ title, subheader, list, ...other }) {
   return (
     <Card {...other}>
       <CardHeader title={title} subheader={subheader} />
-        <Grid container spacing={1} mt={4} mb={3} padding={3}>
-          <Grid xs={6} >
-            <Card sx={{ cursor: 'pointer', width:  290, marginBottom: '20px' }}>
-              <CardContent style={{ paddingBottom: '0' }}>
-                <Typography gutterBottom variant="h5" component="div">
-                  Message archiving
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Progress
-                </Typography>
-                <LinearProgressWithLabel value={60} />
-                <Typography variant="body2" color="text.secondary">
-                  Quality
-                </Typography>
-                <LinearProgressWithLabel value={70} />
-              </CardContent>
-              <CardActions style={{ margin: '10px 24px 24px 24px', padding: '0' }}>
-                <Button variant="contained" size="small">
-                  School
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
+      <Grid container spacing={1} mt={4} mb={3} padding={2}>
+        {inProcessTask.map((item, index) => (
           <Grid xs={6}>
-            <Card sx={{ cursor: 'pointer', width:  290, marginBottom: '20px' }}>
-              <CardContent style={{ paddingBottom: '0' }}>
-                <Typography gutterBottom variant="h5" component="div">
-                  Message archiving
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Progress
-                </Typography>
-                <LinearProgressWithLabel value={60} />
-                <Typography variant="body2" color="text.secondary">
-                  Quality
-                </Typography>
-                <LinearProgressWithLabel value={70} />
-              </CardContent>
-              <CardActions style={{ margin: '10px 24px 24px 24px', padding: '0' }}>
-                <Button variant="contained" size="small">
-                  School
-                </Button>
-              </CardActions>
-            </Card>
+            <TaskItem data={item} key={index} />
           </Grid>
-        </Grid>
-
+        ))}
+      </Grid>
 
       <Divider />
 
       <Box sx={{ p: 2, textAlign: 'right' }}>
-        <Button size="small" color="inherit" endIcon={<Iconify icon={'eva:arrow-ios-forward-fill'} />}>
+        <Button component={RouterLink} to={'/task'} size="small" color="inherit" endIcon={<Iconify icon={'eva:arrow-ios-forward-fill'} />}>
           View all
         </Button>
       </Box>
