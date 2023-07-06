@@ -9,7 +9,7 @@ const Alert = React.forwardRef((props, ref) => (
 ));
 
 
-export default function CustomizedSnackbars({ text, namebutton, content }) {
+export default function CustomizedSnackbars({ text, namebutton, content, handleSubmit }) {
     const [open, setOpen] = React.useState(false);
 
     const handleClick = () => {

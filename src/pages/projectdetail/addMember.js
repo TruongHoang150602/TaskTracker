@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, FormHelperText } from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -26,18 +26,30 @@ const alters = {
   namebutton: "Invite",
   content: "Successful invitation delivery!"
 }
-const InvitePopup = ({ open, onClose }) => {
-  const [position, setPosition] = React.useState('Implementer');
 
-  // const handleClose = () => {
-  //   setShowAlert(true);
-  //   onClose();
-  // }
+const InvitePopup = ({ open, onClose }) => {
+  const [position, setPosition] = useState(2);
+  const [error, setError] = useState(false);
+  const [email, setEmail] = useState('');
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
 
   const handleChange = (event) => {
     setPosition(event.target.value);
   };
 
+  const handleChangeEmail = (email) => {
+    if (email === '') {
+      setError(true);
+    } else {
+      setError(false);
+      setEmail(email);
+      onClose();
+      setEmail('');
+    }
+  }
   return (
     <div>
       <Modal
@@ -56,16 +68,21 @@ const InvitePopup = ({ open, onClose }) => {
             >
               <div className="text-[28px] text-[#48409E]">Send Invite</div>
             </Typography>
-            {/* <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
-              <h2>Full Name</h2>
-              <div className="text-right">
-                <TextField className="w-[100%]" id="filled-basic" label="Full Name" variant="filled" />
-              </div>
-            </Typography> */}
             <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
               <h2>E-Mail</h2>
               <div className="text-right">
-                <TextField className="w-[100%]" id="filled-basic" label="E-Mail" variant="filled" />
+                <TextField
+                  className="w-[100%]"
+                  id="filled-email"
+                  label="E-Mail"
+                  variant="filled"
+                  onChange={handleEmailChange}
+                  error={error}
+                  helperText={error ? 'Vui lòng nhập email' : ''}
+                />
+                {/* <FormHelperText error={error}>
+                  {error && 'Vui lòng nhập tên'}
+                </FormHelperText> */}
               </div>
             </Typography>
             <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
@@ -75,7 +92,7 @@ const InvitePopup = ({ open, onClose }) => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={position}
+                  defaultValue={position}
                   label="Position"
                   onChange={handleChange}
                 >
@@ -97,7 +114,8 @@ const InvitePopup = ({ open, onClose }) => {
                 <Button variant="outlined" color="error" onClick={onClose}>
                   Cancel
                 </Button>
-                <CustomizedSnackbars text={alters.text} namebutton={alters.namebutton} content={alters.content} />
+                {/* <CustomizedSnackbars text={alters.text} namebutton={alters.namebutton} content={alters.content} /> */}
+                <Button onClick={() => handleChangeEmail(email)}> Save </Button>
               </div>
             </Typography>
           </Typography>
