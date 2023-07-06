@@ -10,19 +10,17 @@ import account from '../../_mock/account';
 // sections
 import {
   // AppTasks,
-  // AppNewsUpdate,
+  AppNewsUpdate,
   // AppOrderTimeline,
   // AppCurrentVisits,
   CustomizedTimeline,
   AppWebsiteVisits,
-  AppTrafficBySite,
+  // AppTrafficBySite,
   AppWidgetSummary,
   // AppCurrentSubject,
   // AppConversionRates,
 } from '../../sections/@dashboard/app';
 
-import events from '../../_mock/events';
-import {   CalendarStyle } from '../../sections/@dashboard/calendar';
 import { fDate } from '../../utils/formatTime';
 
 // ----------------------------------------------------------------------
@@ -67,8 +65,8 @@ export default function DashboardAppPage() {
 
           
 
-          {/* <Grid item xs={12} md={6} lg={8}  >
-            <AppTasks
+          <Grid item xs={12} md={6} lg={7}  >
+            <AppNewsUpdate
               title="Tasks"
               list={[
                 { id: '1', label: 'Create FireStone Logo' },
@@ -78,7 +76,7 @@ export default function DashboardAppPage() {
                 { id: '5', label: 'Sprint Showcase' },
               ]}
             />
-          </Grid> */}
+          </Grid>
        
 
         <Grid item xs={12} md={6} lg={7}>
@@ -97,15 +95,15 @@ export default function DashboardAppPage() {
               chartData={[
                 {
                   name: 'Current week',
-                  type: 'line',
-                  fill: 'solid',
-                  data: [23, 11, 22, 27, 13],
+                  type: 'area',
+                  fill: 'gradient',
+                  data: [8, 8.5, 9, 8.25, 7.5],
                 },
                 {
                   name: 'Last week',
                   type: 'area',
                   fill: 'gradient',
-                  data: [44, 55, 41, 67, 22, 43, 21],
+                  data: [8.5, 9.5, 9.25, 9, 8.5, 8, 7],
                 },
               ]}
             />

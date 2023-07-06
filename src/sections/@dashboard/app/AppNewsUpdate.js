@@ -1,6 +1,19 @@
 // @mui
 import PropTypes from 'prop-types';
-import { Box, Stack, Link, Card, Button, Divider, Typography, CardHeader } from '@mui/material';
+import {
+  Box,
+  Stack,
+  Link,
+  Card,
+  Button,
+  Divider,
+  Typography,
+  CardHeader,
+  CardActions,
+  LinearProgress,
+  CardContent,
+  Grid,
+} from '@mui/material';
 // utils
 import { fToNow } from '../../../utils/formatTime';
 // components
@@ -15,18 +28,70 @@ AppNewsUpdate.propTypes = {
   list: PropTypes.array.isRequired,
 };
 
+function LinearProgressWithLabel(props) {
+  return (
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      <Box sx={{ width: '100%', mr: 1 }}>
+        <LinearProgress variant="determinate" {...props} />
+      </Box>
+      <Box sx={{ minWidth: 35 }}>
+        <Typography variant="body2" color="text.secondary">{`${Math.round(props.value)}%`}</Typography>
+      </Box>
+    </Box>
+  );
+}
+
 export default function AppNewsUpdate({ title, subheader, list, ...other }) {
   return (
     <Card {...other}>
       <CardHeader title={title} subheader={subheader} />
+        <Grid container spacing={1} mt={4} mb={3} padding={3}>
+          <Grid xs={6} >
+            <Card sx={{ cursor: 'pointer', width:  290, marginBottom: '20px' }}>
+              <CardContent style={{ paddingBottom: '0' }}>
+                <Typography gutterBottom variant="h5" component="div">
+                  Message archiving
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Progress
+                </Typography>
+                <LinearProgressWithLabel value={60} />
+                <Typography variant="body2" color="text.secondary">
+                  Quality
+                </Typography>
+                <LinearProgressWithLabel value={70} />
+              </CardContent>
+              <CardActions style={{ margin: '10px 24px 24px 24px', padding: '0' }}>
+                <Button variant="contained" size="small">
+                  School
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+          <Grid xs={6}>
+            <Card sx={{ cursor: 'pointer', width:  290, marginBottom: '20px' }}>
+              <CardContent style={{ paddingBottom: '0' }}>
+                <Typography gutterBottom variant="h5" component="div">
+                  Message archiving
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Progress
+                </Typography>
+                <LinearProgressWithLabel value={60} />
+                <Typography variant="body2" color="text.secondary">
+                  Quality
+                </Typography>
+                <LinearProgressWithLabel value={70} />
+              </CardContent>
+              <CardActions style={{ margin: '10px 24px 24px 24px', padding: '0' }}>
+                <Button variant="contained" size="small">
+                  School
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        </Grid>
 
-      <Scrollbar>
-        <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
-          {list.map((news) => (
-            <NewsItem key={news.id} news={news} />
-          ))}
-        </Stack>
-      </Scrollbar>
 
       <Divider />
 
