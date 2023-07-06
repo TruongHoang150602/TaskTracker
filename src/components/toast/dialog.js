@@ -7,7 +7,11 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Snackbar, Alert } from '@mui/material';
 
-export default function AlertDialog({ title, ques, content }) {
+const sleep = (milliseconds) => {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
+};
+
+export default function AlertDialog({ title, ques, content, handleClose3 }) {
     const [open, setOpen] = React.useState(false);
     const [alter, setAlter] = React.useState(false);
     const handleClickOpen = () => {
@@ -17,9 +21,11 @@ export default function AlertDialog({ title, ques, content }) {
     const handleClose = () => {
         setOpen(false);
     };
-    const handleClose1 = () => {
+    const handleClose1 = async () => {
         // setOpen(false);
         setAlter(true);
+        await sleep(1000);
+        handleClose3();
     }
     const handleClose2 = () => {
         setAlter(false);

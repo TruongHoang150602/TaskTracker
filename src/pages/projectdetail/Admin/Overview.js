@@ -51,10 +51,9 @@ function Overview() {
         // setOpen(true);
         removeItem(row.id);
     }
-    // const hdlcl = () => {
-    //     setAlter(false);
-    //     setOpen(false);
-    // }
+    const handleClose3 = () => {
+        console.log("Close");
+    }
     const handleRowClick = (id) => {
         setSelectedRowId(id);
     }
@@ -119,7 +118,7 @@ function Overview() {
                 </div>
             </div>
             <div style={{ float: 'right' }}>
-                <AlertDialog title="Save" ques="Notifications" content="Do you want to save all changes ?" />
+                <AlertDialog title="Save" ques="Notifications" content="Do you want to save all changes ?" handleClose3={handleClose3} />
             </div>
         </div>
     );

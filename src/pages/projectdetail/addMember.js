@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, FormHelperText } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, MuiAlert, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import CloseIcon from '@mui/icons-material/Close';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -32,6 +31,12 @@ const InvitePopup = ({ open, onClose }) => {
   const [error, setError] = useState(false);
   const [email, setEmail] = useState('');
 
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+  });
+
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -40,12 +45,17 @@ const InvitePopup = ({ open, onClose }) => {
     setPosition(event.target.value);
   };
 
-  const handleChangeEmail = (email) => {
+  const sleep = (milliseconds) => {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  };
+
+  const handleChangeEmail = async (email) => {
     if (email === '') {
       setError(true);
     } else {
       setError(false);
       setEmail(email);
+      await sleep(1000);
       onClose();
       setEmail('');
     }
@@ -80,9 +90,6 @@ const InvitePopup = ({ open, onClose }) => {
                   error={error}
                   helperText={error ? 'Vui lòng nhập email' : ''}
                 />
-                {/* <FormHelperText error={error}>
-                  {error && 'Vui lòng nhập tên'}
-                </FormHelperText> */}
               </div>
             </Typography>
             <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
@@ -114,8 +121,8 @@ const InvitePopup = ({ open, onClose }) => {
                 <Button variant="outlined" color="error" onClick={onClose}>
                   Cancel
                 </Button>
-                {/* <CustomizedSnackbars text={alters.text} namebutton={alters.namebutton} content={alters.content} /> */}
-                <Button onClick={() => handleChangeEmail(email)}> Save </Button>
+                <CustomizedSnackbars text={alters.text} namebutton={alters.namebutton} content={alters.content} click={() => handleChangeEmail(email)} error={error} />
+                {/* <Button onClick={() => handleChangeEmail(email)}> Save </Button> */}
               </div>
             </Typography>
           </Typography>

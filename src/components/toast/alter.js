@@ -9,12 +9,21 @@ const Alert = React.forwardRef((props, ref) => (
 ));
 
 
-export default function CustomizedSnackbars({ text, namebutton, content, handleSubmit }) {
+export default function CustomizedSnackbars({ text, namebutton, content, click, error }) {
     const [open, setOpen] = React.useState(false);
 
     const handleClick = () => {
         setOpen(true);
     };
+
+    const setClick = () => {
+        if (error === true) {
+            click();
+            handleClick();
+        } else {
+            click();
+        }
+    }
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -26,10 +35,10 @@ export default function CustomizedSnackbars({ text, namebutton, content, handleS
 
     return (
         <Stack spacing={2} sx={{ width: '10%' }}>
-            <Button variant="outlined" onClick={handleClick}>
+            <Button variant="outlined" onClick={setClick}>
                 {namebutton}
             </Button>
-            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+            <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity={text} sx={{ width: '100%' }}>
                     {content}
                 </Alert>

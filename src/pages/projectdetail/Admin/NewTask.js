@@ -13,6 +13,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import css from "../../../assets/css/task.module.css";
+import AlertDialog from '../../../components/toast/dialog';
 
 
 const style = {
@@ -217,9 +218,7 @@ export default function NewTask({ handleClose, handleOpen, open }) {
                                 <Button variant="outlined" color="error" onClick={handleClose}>
                                     Cancel
                                 </Button>
-                                <Button variant="contained" size="medium" onClick={handleClose}>
-                                    Add Task
-                                </Button>
+                                <AlertDialog title="Add Task" ques="Notifications" content="Do you want to add new task ?" handleClose3={handleClose} />
                             </div>
                         </Typography>
                     </Typography>
