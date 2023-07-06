@@ -68,13 +68,6 @@ export default function DashboardAppPage() {
           <Grid item xs={12} md={6} lg={7}  >
             <AppNewsUpdate
               title="Tasks"
-              list={[
-                { id: '1', label: 'Create FireStone Logo' },
-                { id: '2', label: 'Add SCSS and JS files if required' },
-                { id: '3', label: 'Stakeholder Meeting' },
-                { id: '4', label: 'Scoping & Estimations' },
-                { id: '5', label: 'Sprint Showcase' },
-              ]}
             />
           </Grid>
        
