@@ -1,12 +1,26 @@
 // @mui
 import PropTypes from 'prop-types';
-import { Box, Stack, Link, Card, Button, Divider, Typography, CardHeader } from '@mui/material';
+import {
+  Box,
+  Stack,
+  Link,
+  Card,
+  Button,
+  Divider,
+  Typography,
+  CardHeader,
+  CardActions,
+  LinearProgress,
+  CardContent,
+  Grid,
+} from '@mui/material';
 // utils
+import { NavLink as RouterLink } from 'react-router-dom';
 import { fToNow } from '../../../utils/formatTime';
 // components
 import Iconify from '../../../components/iconify';
-import Scrollbar from '../../../components/scrollbar';
-
+import TaskItem from '../../../pages/task/TaskItem';
+import data from '../../../pages/task/data';
 // ----------------------------------------------------------------------
 
 AppNewsUpdate.propTypes = {
@@ -15,23 +29,24 @@ AppNewsUpdate.propTypes = {
   list: PropTypes.array.isRequired,
 };
 
+const inProcessTask = data.filter((item) => item.status === 'In Progress');
+
 export default function AppNewsUpdate({ title, subheader, list, ...other }) {
   return (
     <Card {...other}>
       <CardHeader title={title} subheader={subheader} />
-
-      <Scrollbar>
-        <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
-          {list.map((news) => (
-            <NewsItem key={news.id} news={news} />
-          ))}
-        </Stack>
-      </Scrollbar>
+      <Grid container spacing={1} mt={4} mb={3} padding={2}>
+        {inProcessTask.map((item, index) => (
+          <Grid xs={6}>
+            <TaskItem data={item} key={index} />
+          </Grid>
+        ))}
+      </Grid>
 
       <Divider />
 
       <Box sx={{ p: 2, textAlign: 'right' }}>
-        <Button size="small" color="inherit" endIcon={<Iconify icon={'eva:arrow-ios-forward-fill'} />}>
+        <Button component={RouterLink} to={'/task'} size="small" color="inherit" endIcon={<Iconify icon={'eva:arrow-ios-forward-fill'} />}>
           View all
         </Button>
       </Box>

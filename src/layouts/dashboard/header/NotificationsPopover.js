@@ -40,7 +40,7 @@ const NOTIFICATIONS = [
   },
   {
     id: faker.datatype.uuid(),
-    title: faker.name.fullName(),
+    title: "Hoàng Vân Trường",
     description: 'sent you a invite request to join',
     avatar: '/assets/images/avatars/avatar_3.jpg',
     type: 'friend_interactive',
