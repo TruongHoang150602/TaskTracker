@@ -49,7 +49,19 @@ const COLOR_OPTIONS = [
 
 const names = ['Submited', 'Completed', 'In progress', 'New task'];
 
-export default function TaskDetail({ handleClose, handleOpen, open, data, age1, setAge1, open1, setOpen1, handleChange1, handleClose1, handleOpen1 }) {
+export default function TaskDetail({
+  handleClose,
+  handleOpen,
+  open,
+  data,
+  age1,
+  setAge1,
+  open1,
+  setOpen1,
+  handleChange1,
+  handleClose1,
+  handleOpen1,
+}) {
   const [display, setDisplay] = React.useState(true);
 
   return (
@@ -93,11 +105,7 @@ export default function TaskDetail({ handleClose, handleOpen, open, data, age1, 
               component="h2"
             >
               <div className="text-[28px] text-[#48409E]">{data?.name}</div>
-              {
-                data?.point ? <div className="text-[16px] text-[#6F6F6F]">Quanlity:{data?.point}</div> :
-                  null
-              }
-
+              {data?.point ? <div className="text-[16px] text-[#6F6F6F]">Quality:{data?.point}</div> : null}
             </Typography>
             <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
               <h6 className="text-[#6F6F6F] mt-[0px] mb-[10px] text-[16px]">Priority</h6>
@@ -186,25 +194,22 @@ export default function TaskDetail({ handleClose, handleOpen, open, data, age1, 
                 </Grid>
               </Grid>
             </Typography>
-            {display ?
-              (
-                <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
-                  <h2>Comment</h2>
-                  <div className="text-right">
-                    <TextField className="w-[100%]" id="filled-basic" label="Write comment" variant="filled" />
-                    <Button className="my-[10px]" variant="contained" endIcon={<SendIcon />}>
-                      Comment
-                    </Button>
-                  </div>
-                  {
-                    data?.comment.map((item) => {
-                      return <Comment comment={item} />
-                    })
-                  }
-                </Typography>
-              ) : (
-                <div />
-              )}
+            {display ? (
+              <Typography className="px-[16px]" id="modal-modal-description" sx={{ mt: 2 }}>
+                <h2>Comment</h2>
+                <div className="text-right">
+                  <TextField className="w-[100%]" id="filled-basic" label="Write comment" variant="filled" />
+                  <Button className="my-[10px]" variant="contained" endIcon={<SendIcon />}>
+                    Comment
+                  </Button>
+                </div>
+                {data?.comment.map((item) => {
+                  return <Comment comment={item} />;
+                })}
+              </Typography>
+            ) : (
+              <div />
+            )}
           </Typography>
         </Box>
       </Modal>

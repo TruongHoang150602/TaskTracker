@@ -15,14 +15,6 @@ const TaskItem = ({ data, show }) => {
   return (
     <Card style={{ height: 180 }} onClick={show} className=" my-[20px] mx-[20px]" sx={{ width: 300 }}>
       <CardActionArea style={{ height: 180 }}>
-        <Typography
-          className="flex justify-between items-center"
-          variant="body2"
-          color="#fff"
-          sx={{ top: '10px', position: 'absolute', right: '20px' }}
-        >
-          <div className={`w-[80px] bg-[blue] h-[30px] text-center leading-[30px] rounded-[15px]`}>{data.workspace}</div>
-        </Typography>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {data.name}
@@ -59,6 +51,16 @@ const TaskItem = ({ data, show }) => {
               </div>
             </Typography>
           )}
+          <Typography
+            className="flex justify-between items-center"
+            variant="body2"
+            color="#fff"
+            sx={{ buttom: '10px', position: 'absolute', left: '20px' }}
+          >
+            <div className={`w-[80px] bg-[blue] h-[30px] text-center leading-[30px] rounded-[15px]`}>
+              {data.workspace}
+            </div>
+          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
