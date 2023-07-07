@@ -33,9 +33,9 @@ function Overview() {
 
         if (selectedRowId === id) {
             return (
-                <NativeSelect value={selectedPositions[id] || ''} onChange={handleChange}>
+                <NativeSelect value={selectedPositions[id] || ''} onChange={handleChange} defaultValue="default">
                     {positionOptions.map((option) => (
-                        <option value={option.value}>
+                        <option value="default" disabled>
                             {option.label}
                         </option>
                     ))}
