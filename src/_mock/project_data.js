@@ -30,30 +30,35 @@ export const project = [
     workspace: 'School',
     progress: 50,
     quality: 70,
+    role: 'Admin',
   },
   {
     name: 'Messaging Application',
     workspace: 'Home',
     progress: 70,
     quality: 80,
+    role: 'Implementer',
   },
   {
     name: 'AI Chat Application',
     workspace: 'Company',
     progress: 30,
     quality: 90,
+    role: 'Assignee',
   },
   {
     name: 'To-do List Application',
     workspace: 'Home',
     progress: 90,
     quality: 80,
+    role: 'Approver',
   },
   {
     name: 'Sport Tracking Software',
     workspace: 'Company',
     progress: 60,
     quality: 85,
+    role: 'Supporter',
   },
 ];
 

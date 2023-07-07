@@ -215,22 +215,6 @@ export default function ProjectDetail() {
                     <TabPanel value="1" style={{ padding: '0px', paddingTop: '20px' }}>
                         <div className="drag-container"> <p>abc</p> </div>
                         <div className="board" style={{ display: 'flex', justifyContent: 'center' }}>
-
-                            <div className="board-column new">
-                                <div className="board-column-container ">
-                                    <div className="board-column-header">New Task</div>
-                                    <div className="board-column-content-wrapper">
-                                        <div className="board-column-content">
-                                            {newTask.map((option) => (
-                                                <div key={option.id} className="board-item">
-                                                    {CardTask(option.name, option.assignee, option.priority, option.end, option)}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div className="board-column working">
                                 <div className="board-column-container">
                                     <div className="board-column-header">Submitted</div>

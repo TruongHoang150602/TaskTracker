@@ -4,17 +4,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { DataGrid } from '@mui/x-data-grid';
 import NativeSelect from '@mui/material/NativeSelect';
-import Button from '@mui/material/Button';
-import QuesDialog from '../../../components/toast/quesdialog';
 import AlertDialog from '../../../components/toast/dialog';
 import { projectDetail } from '../../../_mock/project_data';
 
 function Overview() {
 
-    // const [alter, setAlter] = useState(false);
     const [selectedRowId, setSelectedRowId] = useState(null);
     const [selectedPositions, setSelectedPositions] = useState({});
-    // const [open, setOpen] = useState(false);
+    const [currentRoles, setCurrentRoles] = useState({});
+
     const positionOptions = [
         { value: 'Administrator', label: 'Administrator' },
         { value: 'Implementer', label: 'Implementer' },
@@ -33,9 +31,9 @@ function Overview() {
 
         if (selectedRowId === id) {
             return (
-                <NativeSelect value={selectedPositions[id] || ''} onChange={handleChange} defaultValue="default">
+                <NativeSelect value={selectedPositions[id] || currentRoles[id] || ''} onChange={handleChange}>
                     {positionOptions.map((option) => (
-                        <option value="default" disabled>
+                        <option key={option.value} value={option.value}>
                             {option.label}
                         </option>
                     ))}
@@ -47,8 +45,6 @@ function Overview() {
 
     const handleIconClick = (rows, row) => {
         console.log(row.id);
-        // setAlter(true);
-        // setOpen(true);
         removeItem(row.id);
     }
     const handleClose3 = () => {
@@ -56,6 +52,10 @@ function Overview() {
     }
     const handleRowClick = (id) => {
         setSelectedRowId(id);
+        setCurrentRoles((prevState) => ({
+            ...prevState,
+            [id]: rows.find((row) => row.id === id)?.role,
+        }));
     }
     const columns = [
         { field: 'id', headerName: 'No.', width: 70 },
@@ -73,10 +73,6 @@ function Overview() {
                         onClick={() => handleIconClick(rows, params.row)}
                     >
                         <DeleteIcon />
-                        {/* {
-                            alter &&
-                            <QuesDialog open={open} handleClose={hdlcl} title="Dialog" ques="Do you want to delete ?" />
-                        } */}
                     </IconButton>
                     <IconButton
                         color="primary"
