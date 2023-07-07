@@ -43,7 +43,7 @@ export default function DashboardAppPage() {
           Today {fDate(new Date())} , you have
         </Typography>
 
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={3} md={6}>
             <AppWidgetSummary title="Schedule" total={5} icon={'bi:calendar-week'} />
           </Grid>
@@ -62,8 +62,6 @@ export default function DashboardAppPage() {
           <CustomizedTimeline />
         </Card>
           </Grid>
-
-          
 
           <Grid item xs={12} md={6} lg={7}  >
             <AppNewsUpdate

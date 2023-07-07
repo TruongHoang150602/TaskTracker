@@ -35,10 +35,10 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
   return (
     <Card {...other}>
       <CardHeader title={title} subheader={subheader} />
-      <Grid container spacing={1} mt={4} mb={3} padding={2}>
+      <Grid container spacing={0.5} mt={4} mb={4} >
         {inProcessTask.map((item, index) => (
           <Grid xs={6}>
-            <TaskItem data={item} key={index} />
+            <TaskItem data={item} key={index}/>
           </Grid>
         ))}
       </Grid>
