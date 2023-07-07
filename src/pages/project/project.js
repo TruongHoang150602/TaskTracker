@@ -218,10 +218,11 @@ export default function Project() {
                 </Typography>
                 <LinearProgressWithLabel value={p.quality} />
               </CardContent>
-              <CardActions style={{ margin: '10px 24px 24px 24px', padding: '0' }}>
+              <CardActions style={{ margin: '10px 24px 24px 24px', padding: '0', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                 <Button variant="contained" size="small">
                   {p.workspace}
                 </Button>
+                <p style={{ margin: 'auto', paddingLeft: '95px' }}>{p.role}</p>
               </CardActions>
             </Card>
           ))}
@@ -240,6 +241,6 @@ export default function Project() {
           />
         )}
       </div>
-    </div>
+    </div >
   );
 }

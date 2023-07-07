@@ -30,30 +30,35 @@ export const project = [
     workspace: 'School',
     progress: 50,
     quality: 70,
+    role: 'Admin',
   },
   {
     name: 'Messaging Application',
     workspace: 'Home',
     progress: 70,
     quality: 80,
+    role: 'Implementer',
   },
   {
     name: 'AI Chat Application',
     workspace: 'Company',
     progress: 30,
     quality: 90,
+    role: 'Assignee',
   },
   {
     name: 'To-do List Application',
     workspace: 'Home',
     progress: 90,
     quality: 80,
+    role: 'Approver',
   },
   {
     name: 'Sport Tracking Software',
     workspace: 'Company',
     progress: 60,
     quality: 85,
+    role: 'Supporter',
   },
 ];
 
@@ -685,7 +690,7 @@ export const projectDetail = [
         detail:
           'Add security features to the to-do list application to protect user data, such as password protection, two-factor authentication, and data encryption.',
         priority: 'High',
-        status: 'New Task',
+        status: 'Submitted',
         assignee: ['Hoàng Vân Trường'],
         comment: [],
         ...randomTimeRange(),
@@ -694,7 +699,7 @@ export const projectDetail = [
   },
   {
     name: 'Sport Tracking Software',
-    description:'The Sport Tracking Software is a comprehensive application designed to track and monitor various sporting activities. With this software, users can effortlessly record and analyze their performance data, providing valuable insights for athletes, coaches, and fitness enthusiasts.',
+    description: 'The Sport Tracking Software is a comprehensive application designed to track and monitor various sporting activities. With this software, users can effortlessly record and analyze their performance data, providing valuable insights for athletes, coaches, and fitness enthusiasts.',
     member: [
       {
         id: 1,

@@ -21,6 +21,7 @@ import Select from '@mui/material/Select';
 import css from '../../../assets/css/task.module.css';
 import Comment from '../Comment';
 import { projectDetail } from '../../../_mock/project_data';
+import AlertDialog from '../../../components/toast/dialog';
 
 const style = {
     position: 'absolute',
@@ -213,9 +214,11 @@ export default function TaskDetail({ handleClose, handleOpen, open, data, age1, 
                                 <Button variant="outlined" color="error" onClick={handleClose}>
                                     Cancel
                                 </Button>
-                                <Button variant="contained" size="medium" onClick={handleClose}>
+                                {/* <Button variant="contained" size="medium" onClick={handleClose}>
                                     Save
-                                </Button>
+                                </Button> */}
+                                <AlertDialog title="Save" ques="Notifications" content="Do you want to add new task ?" handleClose3={handleClose} />
+
                             </div>
                         </Typography>
                     </Typography>

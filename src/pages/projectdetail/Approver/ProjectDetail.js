@@ -183,13 +183,13 @@ export default function ProjectDetail() {
                                     <Filter data={COLOR_OPTIONS} onClickColor={(event) => filter(event)} />
                                 </div>
 
-                                <Button
+                                {/* <Button
                                     variant="contained"
                                     startIcon={<Iconify icon={'eva:plus-fill'} width={20} height={20} />}
                                     onClick={handleOpen}
                                 >
                                     New Task
-                                </Button>
+                                </Button> */}
                             </div>
 
                         ) : (
