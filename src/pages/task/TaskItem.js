@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, CardHeader } from '@mui/material';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 
 const colors = {
@@ -13,8 +13,16 @@ const colors = {
 
 const TaskItem = ({ data, show }) => {
   return (
-    <Card style={{ height: 180 }} onClick={show} className=" my-[20px] mx-[20px]" sx={{ width: 320 }}>
+    <Card style={{ height: 180 }} onClick={show} className=" my-[20px] mx-[20px]" sx={{ width: 300 }}>
       <CardActionArea style={{ height: 180 }}>
+        <Typography
+          className="flex justify-between items-center"
+          variant="body2"
+          color="#fff"
+          sx={{ top: '10px', position: 'absolute', right: '20px' }}
+        >
+          <div className={`w-[80px] bg-[blue] h-[30px] text-center leading-[30px] rounded-[15px]`}>{data.workspace}</div>
+        </Typography>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {data.name}

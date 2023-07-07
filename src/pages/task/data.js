@@ -26,6 +26,7 @@ function randomTimeRange() {
 const task = [
     {
         id: 2,
+        workspace: "School",
         project: "E-Commerce Website",
         name: 'Database design',
         priority: 'High',
@@ -43,6 +44,7 @@ const task = [
     {
         id: 7,
         name: 'Order management system',
+        workspace: "Company",
         project: 'E-Commerce Website',
         priority: 'High',
         status: 'Submitted',
@@ -59,6 +61,7 @@ const task = [
     {
         project: 'E-Commerce Website',
         id: 4,
+        workspace: "Company",
         name: 'User authentication',
         detail: 'Create a secure authentication system for users. Handle login, registration, and password recovery.',
         priority: 'Medium',
@@ -77,6 +80,7 @@ const task = [
         id: 9,
         project: 'Messaging Application',
         name: 'Message archiving',
+        workspace: "Home",
         detail:
             'Develop a system to archive and store messages. Allow users to access and retrieve past conversations.',
         priority: 'Low',
@@ -95,6 +99,7 @@ const task = [
         id: 10,
         project: 'Messaging Application',
         name: 'Deployment',
+        workspace: "Home",
         detail: 'Deploy the messaging application to production. Ensure that the application is available to users.',
         priority: 'High',
         status: 'In Progress',
@@ -112,6 +117,7 @@ const task = [
         id: 10,
         project: 'AI Chat Application',
         name: 'Continuous learning',
+        workspace: "School",
         detail:
             'Enable the chatbot to learn from user interactions and improve over time. Implement feedback loops and model retraining.',
         priority: 'High',
