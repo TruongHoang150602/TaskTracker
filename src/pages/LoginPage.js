@@ -46,7 +46,7 @@ export default function LoginPage() {
   return (
     <>
       <Helmet>
-        <title> Login | Minimal UI </title>
+        <title> Login  </title>
       </Helmet>
 
       <StyledRoot>
@@ -94,10 +94,9 @@ export default function LoginPage() {
 
             <Divider sx={{ my: 3 }}>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                OR
+                Account test: truonghoang@gmail.com / password: 1
               </Typography>
             </Divider>
-
             <LoginForm />
           </StyledContent>
         </Container>

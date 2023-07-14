@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
+import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Grid } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import account from '../../../data/account';
 // components
@@ -35,12 +35,13 @@ export default function LoginForm() {
   return (
     <>
       <Stack spacing={3}>
-        <TextField inputRef={username} name="email" label="Email address" />
+        <TextField defaultValue={"truonghoang@gmail.com"} inputRef={username} name="email" label="Email address" />
 
         <TextField
           inputRef={password}
           name="password"
           label="Password"
+          defaultValue={1}
           type={showPassword ? 'text' : 'password'}
           InputProps={{
             endAdornment: (
@@ -55,7 +56,10 @@ export default function LoginForm() {
       </Stack>
 
       <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
-        <Checkbox name="remember" label="Remember me" />
+        <Grid>
+          <Checkbox name="remember" label="Remember me" />
+          Remember password
+        </Grid>
         <Link variant="subtitle2" underline="hover">
           Forgot password?
         </Link>

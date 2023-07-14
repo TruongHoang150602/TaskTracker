@@ -70,7 +70,7 @@ export default function DashboardAppPage() {
           </Grid>
        
 
-        <Grid item xs={12} md={6} lg={7}>
+        <Grid item xs={12} md={12} lg={12}>
             <AppWebsiteVisits
               title="Schedule"
               subheader="(-30%) than last week"
