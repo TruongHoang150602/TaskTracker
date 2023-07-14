@@ -94,7 +94,7 @@ export default function TaskDetail({ handleClose, handleOpen, open, data, age1, 
             >
               <div className="text-[28px] text-[#48409E]">{data?.name}</div>
               {
-                data?.point ? <div className="text-[16px] text-[#6F6F6F]">Quanlity:{data?.point}</div>:
+                data?.point ? <div className="text-[16px] text-[#6F6F6F]">Quality:{data?.point}</div>:
                 null
               }
               
